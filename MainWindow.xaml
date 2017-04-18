@@ -6,13 +6,9 @@
     <Viewbox>
         <Grid Width="auto" Height="900">
             <Grid Width="670" Height="900" Margin="0,10,629.2,-10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"  MinHeight="250"/>
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="*"  MinHeight="240"/>
-                </Grid.RowDefinitions>
+
                 <ListView Grid.Row="0" Name="LvShopping" Background="LightYellow" HorizontalAlignment="Left"
-                          VerticalAlignment="Top" Width="674" Height="557" Margin="-14,23,0,0" FontWeight="Bold" SelectionChanged="LvShopping_SelectionChanged" Grid.RowSpan="3" >
+                          VerticalAlignment="Top" Width="674" Height="580" Margin="-14,0,0,0" FontWeight="Bold"  >
                     <ListView.View >
                         <GridView>
                             <GridViewColumn  Header="ID" Width="50" DisplayMemberBinding="{Binding Path=ID}" />
@@ -25,15 +21,15 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Background="Red" Margin="0,55.2,0,327" />
 
-                <Grid Grid.Row="2" Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="0,0,-4,30" VerticalAlignment="Bottom" Width="674" >
+
+                <Grid Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="-14,0,-4,30" VerticalAlignment="Bottom" Width="688" >
                     <Label FontWeight="Black" Content="TAX $" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.46,0.185" Height="38" Width="51"/>
                     <Label  FontWeight="Black" Content="PAID $" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
                     <Label  FontWeight="Black" Content="TYPE" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
                     <TextBox  HorizontalAlignment="Left" Height="38" Margin="61,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
                     <TextBox   HorizontalAlignment="Left" Height="34" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
-                    <Label  FontWeight="Black" Content="TOTAL" HorizontalAlignment="Left" Margin="353,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
+                    <Label  FontWeight="Black" Content="TOTAL" HorizontalAlignment="Left" Margin="385,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
                     <TextBox  HorizontalAlignment="Left" Height="38" Margin="438,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
                     <ComboBox FontWeight="Black"  HorizontalAlignment="Left" Margin="61,187,0,0" VerticalAlignment="Top" Width="170">
                         <ComboBoxItem FontWeight="Black" IsSelected="True">CASH</ComboBoxItem>
@@ -84,7 +80,7 @@
             <Button Click="ButtonChekOut_Click" FontWeight="Bold" Content="CHECKOUT" HorizontalAlignment="Left" Margin="914,814,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonPrint_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
             <Button  FontWeight="Bold" Content="Reset" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
-          
+
 
             <TabControl BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="333" Margin="710,387,0,0" VerticalAlignment="Top" Width="584">
 
@@ -119,12 +115,21 @@
                             <ListView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                             </ListView.Background>
+                            <ListView.View >
+                                <GridView>
+
+                                    <GridViewColumn Header="Product Name" Width="310"  />
+
+                                    <GridViewColumn Header="UnitPrice" Width="265"   />
+
+                                </GridView>
+                            </ListView.View>
                         </ListView>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Invoice" Name="tab2"></TabItem>
 
-               
+
 
 
 
@@ -137,7 +142,7 @@
             <Label Content="Hot Drink" HorizontalAlignment="Left" Margin="767,352,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold" />
             <Label Content="Dinner" HorizontalAlignment="Left" Margin="985,352,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
             <Label Content="Wine" HorizontalAlignment="Left" Margin="1196,352,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
-            
+
 
 
 

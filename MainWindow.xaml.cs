@@ -169,19 +169,12 @@ namespace PointOfSaleManagementSys
 
         }
 
+    
+
 
      
 
-        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
-        {
-            LvShopping.Items.RemoveAt(LvShopping.Items.IndexOf(LvShopping.SelectedItem));
-        }
-
-        private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+    
      
 
        
