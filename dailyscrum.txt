@@ -114,8 +114,18 @@ WILL DO IN THE NEXT 24 HOURS
 WHERE I NEED HELP IS
 1) GridSplitter
 
-<<<<<<< HEAD
-=======
+
+--- Apr. 13 Elmira
+
+DID SINCE LAST SCRUM:
+1)Implemented add button ,delete button, checkout button
+
+WILL DO IN THE NEXT 24 HOURS
+1)Implement Print
+
+WHERE I NEED HELP IS
+1)Print
+
 
 --- Apr. 18 Mike
 
@@ -131,7 +141,7 @@ WILL DO IN THE NEXT 24 HOURS
 WHERE I NEED HELP IS
 1) GridSplitter
 
->>>>>>> origin/yu
+
 
 
 

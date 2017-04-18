@@ -21,11 +21,10 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class MainWindow : Window
     {
-<<<<<<< HEAD
-=======
+
         Database db;
 
->>>>>>> origin/yu
+
         double[,] itemCost = new double[,]{
                   /*{"Alexander keith ","Blond","BudWiser","Corona","lager","Staute"},
                   {"Coffee","Green Tea","Tea", "Hot Chocolate","Cafe Latte","Cappuccino"}
@@ -63,14 +62,13 @@ namespace PointOfSaleManagementSys
             }
 
             InitializeComponent();
-<<<<<<< HEAD
-=======
+
           // LvItems.ItemsSource=db.GetAllCategory();
             //int CategoryId=1;
             //int ProductId=1;
             LvShopping.Items.Add(db.GetProductbyID(1,1));
             LvShopping.Items.Add(db.GetProductbyID(1, 2));
->>>>>>> origin/yu
+
         }
 
         string currentItemText;
@@ -148,30 +146,13 @@ namespace PointOfSaleManagementSys
                      break;
                  case "Cappuccino":
                      break;
-<<<<<<< HEAD
-                 
 
-=======
->>>>>>> origin/yu
 
              }
           
 
         }
-<<<<<<< HEAD
 
-        private void ButtonPrint_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
-        {
-            LvShopping.Items.RemoveAt(LvShopping.Items.IndexOf(LvShopping.SelectedItem));
-        }
-
-        private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
-=======
 
         private void ButtonPrint_Click(object sender, RoutedEventArgs e)
         {
@@ -188,11 +169,20 @@ namespace PointOfSaleManagementSys
 
         }
 
-        private void LvShopping_SelectionChanged(object sender, SelectionChangedEventArgs e)
->>>>>>> origin/yu
+
+     
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            LvShopping.Items.RemoveAt(LvShopping.Items.IndexOf(LvShopping.SelectedItem));
+        }
+
+        private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+     
 
        
     }

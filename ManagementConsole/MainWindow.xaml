@@ -3,6 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="Red" />
+
+        <Grid Grid.Row="0"
+          Grid.Column="1"
+          Background="Blue" />
+
+        <Grid Grid.Row="1"
+          Grid.Column="0"
+          Grid.ColumnSpan="2"
+          Background="Violet" />
+
+        <Grid Grid.Row="2"
+          Grid.Column="0"
+          Grid.ColumnSpan="2"
+          Background="Green" />
+
+        <StackPanel Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+            <Button>OK</Button>
+            <Button>Cancel</Button>
+        </StackPanel>
     </Grid>
 </Window>
+    

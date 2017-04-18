@@ -78,30 +78,13 @@
             </Button>
 
 
-<<<<<<< HEAD
+
             <Button Click="ButtonAdd_Click" FontWeight="Bold" Content="ADD PRODUCT" HorizontalAlignment="Left" Margin="710,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click="ButtonDelete_Click" FontWeight="Bold" Content="DELETE PRODUCT" HorizontalAlignment="Left" Margin="914,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonChekOut_Click" FontWeight="Bold" Content="CHECKOUT" HorizontalAlignment="Left" Margin="914,814,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonPrint_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
             <Button  FontWeight="Bold" Content="Reset" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
-            <ListView Name="LvShopping" Background="LightYellow" HorizontalAlignment="Left" Height="580" VerticalAlignment="Top" Width="674" Margin="0,10,0,0" FontWeight="Bold" >
-                <ListView.View >
-                    <GridView>
-                        <GridViewColumn  Header="ID" Width="50" DisplayMemberBinding="{Binding Path=ID}" />
-                        <GridViewColumn Header="Product" Width="110" DisplayMemberBinding="{Binding Path=ProductName}" />
-                        <GridViewColumn Header="Qty" Width="80"  DisplayMemberBinding="{Binding Path=Quantity}"  />
-                        <GridViewColumn Header="UnitPrice" Width="110"  DisplayMemberBinding="{Binding Path=UnitPrice}"   />
-                        <GridViewColumn Header="Discount" Width="120" DisplayMemberBinding="{Binding Path=Discount}"  />
-                        <GridViewColumn Header="Total" Width="90"  DisplayMemberBinding="{Binding Path=Total}" />
-                        <GridViewColumn Header="Tax" Width="110"  DisplayMemberBinding="{Binding Path=Tax}"  />
-
-                    </GridView>
-
-                </ListView.View>
-
-            </ListView>
-=======
->>>>>>> origin/yu
+          
 
             <TabControl BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="333" Margin="710,387,0,0" VerticalAlignment="Top" Width="584">
 
@@ -140,11 +123,10 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Invoice" Name="tab2"></TabItem>
-<<<<<<< HEAD
-               
-=======
 
->>>>>>> origin/yu
+               
+
+
 
             </TabControl>
 
