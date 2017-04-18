@@ -1,0 +1,153 @@
+
+
+---Apr. 10, Elmira,
+WILL DO IN THE NEXT 24 HOURS:
+   1) upgrade the proposal 
+   2) check visual studio version compatibility
+   3) make git works fine with the team member 
+   4) learn more about trello and git version control
+   5) Install the Point of sale management system to understand the bussines
+
+    
+   
+--- Apr. 10, mike,
+WILL DO IN THE NEXT 24 HOURS:   
+   1)  upgrade the proposal and database design
+   2)  Search more materials for inventory system 
+   3)  make git works fine with the team member 
+   4)  learn more about trello and git version control
+   5)  consider project outline and divide into parts for trello and scrum 
+   
+---Apr. 11 Elmira,
+
+DID SINCE LAST SCRUM:
+1) Implimented the main window, tab control was the new thing that I learned about
+2) Gathered Information about log in and register window data base and validation
+
+WILL DO IN THE NEXT 24 HOURS
+1) Make the main Window Responsive
+2) Bind the categories button and images
+3) Learn more bout GridSplitter and stackPannel
+
+WHERE I NEED HELP IS...
+1. I need help finding an example how to bind the category button and grid view to show the related items
+
+---Apr. 11 Mike,
+
+DID SINCE LAST SCRUM:
+1) Finished Proposal
+2) Finished Login System
+
+WILL DO IN THE NEXT 24 HOURS
+1)Improve Login System
+2)Combine files together(Main Window and login System)
+3)Learn more bout GridSplitter and stackPannel
+
+
+WHERE I NEED HELP IS...
+1) Have to fix SourceTree
+
+
+---Apr. 12 Elmira
+DID SINCE LAST SCRUM:
+1) Impemented view and GridSplitter(SomwHow) in man window
+2) Found pictures to use  in catregory
+3) learned more about gridSplitter
+
+will do :
+1) bind category and tab control
+2) grid splitter
+3) Create Classes
+
+help:
+1) binding
+2) Grid Splitter
+
+
+--- Apr. 12 Mike
+
+DID SINCE LAST SCRUM:
+1)Revised Proposal
+2)Learned more about gridsplitter
+3)Create one table in Azure
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Create Tables in Database stored in azure
+2)Bind categories to show Items
+3)GridSplitter
+4)learn how to make constraint in azure sql database
+
+WHERE I NEED HELP IS
+1) Source Tree Issues
+
+
+--- Apr. 13 Elmira
+
+DID SINCE LAST SCRUM:
+1)Implemented pictures in Buttons
+2)Created classes for category and shoppingList
+3)watched tutorial About Point of Sale Online Application
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Implement Add button 
+2)Bind Shopping Class with shopping list View
+3)Implement Delete Button
+
+WHERE I NEED HELP IS
+1)GridSplitter 
+
+
+--- Apr. 13 Mike
+
+DID SINCE LAST SCRUM:
+1)Implement Add button
+2)Searched about GridSplitter
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Continue GridSplitter
+2)Add Button to shopping List
+3)Implement Delete Button
+
+WHERE I NEED HELP IS
+1) GridSplitter
+
+<<<<<<< HEAD
+=======
+
+--- Apr. 18 Mike
+
+DID SINCE LAST SCRUM:
+1)Implement database in programs
+2)Tried GridSplitter in many times 
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Using database in program
+2)finish Add Button to shopping List
+
+WHERE I NEED HELP IS
+1) GridSplitter
+
+>>>>>>> origin/yu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
