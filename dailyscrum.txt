@@ -143,7 +143,19 @@ WHERE I NEED HELP IS
 
 
 
+--- Apr. 19 Mike
 
+DID SINCE LAST SCRUM:
+1)work with database for add update and so in programs
+2)add button works fine with multiple choice
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)reset, checkout buttons in program
+2)work for different orderlist and order
+
+WHERE I NEED HELP IS
+1) GridSplitter
 
 
 
