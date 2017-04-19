@@ -21,30 +21,35 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class MainWindow : Window
     {
-
         Database db;
-
         public int IdOfCategory;
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
                                          {0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},};
-        string[,] items = new string[,]{
-                  {"Alexander keith ","Blond","BudWiser","Corona","lager","Staute"},
-                  {"Coffee","Green Tea","Tea", "Hot Chocolate","Cafe Latte","Cappuccino"}
-               ,{"Lasagna","Pasta","Pizza","Filet Mignon","Steak","Chicken Wing"},
-               {"Cheese Burger","General Tso","Koobide","Sushi","Ghormeh Sabzi","Poutine"},
-               {"Cheese Cake","Chocolate Cake","Tiramisu","Ice Cream Cake","Ginger Bread","Jelly"},
-               {"SYRAH","MERLOT","RIESLING","GEWÜRZTRAMINER","CHARDONNAY","PINOT NOIR"}
-        };
+        public string[,] ProductName =
+                {  {" ","","","","",""},{" ","","","","",""},
+                     {" ","","","","",""}, {" ","","","","",""},
+                     {" ","","","","",""},  {" ","","","","",""}};
+        public int[,] Counts =
+                {  {0,0,0,0,0,0},{0,0,0,0,0,0},
+                    {0,0,0,0,0,0},{0,0,0,0,0,0},
+                    {0,0,0,0,0,0},{0,0,0,0,0,0},};
+        //  {  {"Alexander keith ","Blond","BudWiser","Corona","lager","Staute"},
+        //           {"Cheese Cake","Chocolate Cake","Tiramisu","Ice Cream Cake","Ginger Bread","Jelly"},
+        //           {"Cheese Burger","General Tso","Koobide","Sushi","Ghormeh Sabzi","Poutine"}, 
+        //           {"Coffee","Green Tea","Tea", "Hot Chocolate","Cafe Latte","Cappuccino"}
+        //       ,{"Lasagna","Pasta","Pizza","Filet Mignon","Steak","Chicken Wing"},
+        //       {"SYRAH","MERLOT","RIESLING","GEWÜRZTRAMINER","CHARDONNAY","PINOT NOIR"}
+        //};
 
-        double[,] itemCost = new double[,]{
-                  /*{"Alexander keith ","Blond","BudWiser","Corona","lager","Staute"},
-                  {"Coffee","Green Tea","Tea", "Hot Chocolate","Cafe Latte","Cappuccino"}
-               ,{"Lasagna","Pasta","Pizza","Filet Mignon","Steak","Chicken Wing"},
-               {"Cheese Burger","General Tso","Koobide","Sushi","Ghormeh Sabzi","Poutine"},
-               {"Cheese Cake","Chocolate Cake","Tiramisu","Ice Cream Cake","Ginger Bread","Jelly"},
-               {"SYRAH","MERLOT","RIESLING","GEWÜRZTRAMINER","CHARDONNAY","PINOT NOIR"}*/
-        
-        };
+        //double[,] itemCost = new double[,]{
+        //          /*{"Alexander keith ","Blond","BudWiser","Corona","lager","Staute"},
+        //          {"Coffee","Green Tea","Tea", "Hot Chocolate","Cafe Latte","Cappuccino"}
+        //       ,{"Lasagna","Pasta","Pizza","Filet Mignon","Steak","Chicken Wing"},
+        //       {"Cheese Burger","General Tso","Koobide","Sushi","Ghormeh Sabzi","Poutine"},
+        //       {"Cheese Cake","Chocolate Cake","Tiramisu","Ice Cream Cake","Ginger Bread","Jelly"},
+        //       {"SYRAH","MERLOT","RIESLING","GEWÜRZTRAMINER","CHARDONNAY","PINOT NOIR"}*/
+
+        //};
 
         double iTax, iSubTotal, iTotal;
         List<Shopping> shoppingList = new List<Shopping>();
@@ -65,9 +70,7 @@ namespace PointOfSaleManagementSys
             }
 
             InitializeComponent();
-            readProductPrice();
-
-
+            ReadProductPrice();
 
             // LvItems.ItemsSource=db.GetAllCategory();
             //int CategoryId=1;
@@ -76,39 +79,57 @@ namespace PointOfSaleManagementSys
 
         }
 
-        string currentItemText;
-        int currentItemIndex;
+        //string currentItemText;
+        //int currentItemIndex;
 
-
-        private void readProductPrice()
+        private void ReadProductPrice()
         {
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    ProductPrice[i, j] = db.GetProductbyID(i, j).UnitPrice;
+                    int i1 = i + 1 + (j * 6);
+                    Shopping p = db.GetProductbyId(j + 1, i1);
+                    ProductPrice[j, i] = p.UnitPrice;
+                    ProductName[j, i] = p.ProductName;
+                    Counts[j, i] = 0;
                 }
             }
         }
+        private void RefreshShoppingList()
+        {
+            LvShopping.Items.Clear();
+            List<OrderList> list = db.GetAllOrderList();
+            foreach (OrderList l in list)
+            {
+                int categoryId = (l.ProductId-1) / 6;
+                int i = l.ProductId - categoryId * 6-1;
+                string name = ProductName[categoryId,i];
+                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, 3, 1);
+                LvShopping.Items.Add(s);
+            }
+            //LvShopping.ItemsSource = list;
+            //LvShopping.Items.Refresh();
+        }
+
+
         private void ButtonBeer_Click(object sender, RoutedEventArgs e)
         {
             ItemList(0);
         }
-        private void ButtonHotDrink_Click(object sender, RoutedEventArgs e)
+        private void ButtonDessert_Click(object sender, RoutedEventArgs e)
         {
             ItemList(1);
         }
-
-        private void ButtonDinner_Click(object sender, RoutedEventArgs e)
+        private void ButtonLunch_Click(object sender, RoutedEventArgs e)
         {
             ItemList(2);
         }
-        private void ButtonLunch_Click(object sender, RoutedEventArgs e)
+        private void ButtonHotDrink_Click(object sender, RoutedEventArgs e)
         {
             ItemList(3);
         }
-
-        private void ButtonDessert_Click(object sender, RoutedEventArgs e)
+        private void ButtonDinner_Click(object sender, RoutedEventArgs e)
         {
             ItemList(4);
         }
@@ -116,15 +137,13 @@ namespace PointOfSaleManagementSys
         {
             ItemList(5);
         }
+
         private void ItemList(int categoryId)
         {
             List<string> itemList = new List<string>();
-
             for (int i = 0; i < 6; i++)
             {
-                int j = i + 1 + (categoryId * 6);
-                Shopping p = db.GetProductbyID(categoryId + 1, j);
-                itemList.Add(p.ProductName + "  " + p.UnitPrice);
+                itemList.Add(ProductName[categoryId, i]);
             }
             LvItems.ItemsSource = itemList;
             IdOfCategory = categoryId;
@@ -133,43 +152,30 @@ namespace PointOfSaleManagementSys
 
         private void ApplyDataBinding()
         {
-
             List<string> itemList = new List<string>();
             // Bind ArrayList with the ListBox
             LvItems.ItemsSource = itemList;
         }
+
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-
-            currentItemText = LvItems.SelectedValue.ToString();
-            currentItemIndex = LvItems.SelectedIndex;
-
-            Shopping s = new Shopping(currentItemText, 1, 3, 4, 3, 1);
-            LvShopping.Items.Add(s);
-
-            int quantity = 0;
-            switch (currentItemText)
+            List<OrderList> oList = new List<OrderList>();
+            int idx = LvItems.SelectedIndex;
+            decimal unitprice = ProductPrice[IdOfCategory, idx];
+            string name = ProductName[IdOfCategory, idx];
+            Counts[IdOfCategory, idx]++;
+            int quantity = Counts[IdOfCategory, idx];
+            int productId = idx + 1 + 6 * IdOfCategory;
+            OrderList o = new OrderList(1, productId, quantity, unitprice, 0.1m);
+            if (quantity == 1)
             {
-                case "Coffee":
-                    quantity++;
-                    break;
-                case "Green Tea":
-                    break;
-                case "Tea":
-                    break;
-                case "Hot Chocolate":
-                    break;
-                case "Cafe Latte":
-                    break;
-                case "Cappuccino":
-                    break;
-
-
-            }
-
-
+            db.AddOrderList(o);
+            RefreshShoppingList();
+            return;
+            }    
+            db.UpdateOrderList(o);
+           RefreshShoppingList();
         }
-
 
         private void ButtonPrint_Click(object sender, RoutedEventArgs e)
         {

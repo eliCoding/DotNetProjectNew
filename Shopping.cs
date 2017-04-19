@@ -16,9 +16,9 @@ namespace PointOfSaleManagementSys
         private decimal _total;
         private decimal _tax;
 
-        public Shopping(string productName, int quantity, decimal unitPrice, decimal discount, decimal total, decimal tax)
+        public Shopping(int id, string productName, int quantity, decimal unitPrice, decimal discount, decimal total, decimal tax)
         {
-          
+           this.ID = id;
            this.ProductName = productName;
            this.Quantity = quantity;
            this.UnitPrice = unitPrice;
@@ -26,6 +26,7 @@ namespace PointOfSaleManagementSys
            this.Total = total;
            this.Tax = tax;
         }
+
         public int ID
         {
             get { return _id; }
