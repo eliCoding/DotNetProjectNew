@@ -71,7 +71,7 @@ namespace PointOfSaleManagementSys
 
             InitializeComponent();
             ReadProductPrice();
-
+            RefreshShoppingList();
             // LvItems.ItemsSource=db.GetAllCategory();
             //int CategoryId=1;
             //int ProductId=1;
@@ -105,6 +105,7 @@ namespace PointOfSaleManagementSys
                 int categoryId = (l.ProductId-1) / 6;
                 int i = l.ProductId - categoryId * 6-1;
                 string name = ProductName[categoryId,i];
+                Counts[categoryId, i] = l.Quantity;
                 Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, 3, 1);
                 LvShopping.Items.Add(s);
             }
