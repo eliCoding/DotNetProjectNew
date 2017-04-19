@@ -32,7 +32,8 @@
                     <Label  FontWeight="Black" Content="PAID $" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
                     <Label  FontWeight="Black" Content="TYPE" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
 
-                    <TextBox  HorizontalAlignment="Left" Height="38" Margin="61,32,0,0" TextWrapping="Wrap" VerticalAlignment="Left" Width="226"/>
+                    <TextBox Name="totalTaxCost"  HorizontalAlignment="Left" Height="38" Margin="61,35,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="226"/>
+                   
                     <TextBox   HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
 
 
@@ -42,6 +43,7 @@
                         <ComboBoxItem FontWeight="Black" IsSelected="True">CASH</ComboBoxItem>
                         <ComboBoxItem  FontWeight="Black">CREDIT CART</ComboBoxItem>
                     </ComboBox>
+                   
                 </Grid>
             </Grid>
 
