@@ -49,7 +49,7 @@
             <Button  Click="ButtonDelete_Click" FontWeight="Bold" Content="DELETE PRODUCT" HorizontalAlignment="Left" Margin="914,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonChekOut_Click" FontWeight="Bold" Content="CHECKOUT" HorizontalAlignment="Left" Margin="914,814,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonPrint_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
-            <Button  FontWeight="Bold" Content="Reset" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
+            <Button  Click ="ButtonReset_Click" FontWeight="Bold" Content="Reset" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
             
             <Button Click="ButtonHotDrink_Click" FontWeight="Bold" Background="Aqua"  BorderBrush="Gainsboro"  HorizontalAlignment="Left" Margin="710,210,0,0" VerticalAlignment="Top" Width="188" Height="134" FontStretch="SemiCondensed" OpacityMask="Black">
                 <Image Source="Images/coffee.jpg" Stretch="UniformToFill"  Height="128" Width="186"/>

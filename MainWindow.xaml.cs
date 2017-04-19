@@ -102,9 +102,9 @@ namespace PointOfSaleManagementSys
             List<OrderList> list = db.GetAllOrderList();
             foreach (OrderList l in list)
             {
-                int categoryId = (l.ProductId-1) / 6;
-                int i = l.ProductId - categoryId * 6-1;
-                string name = ProductName[categoryId,i];
+                int categoryId = (l.ProductId - 1) / 6;
+                int i = l.ProductId - categoryId * 6 - 1;
+                string name = ProductName[categoryId, i];
                 Counts[categoryId, i] = l.Quantity;
                 Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, 3, 1);
                 LvShopping.Items.Add(s);
@@ -168,14 +168,14 @@ namespace PointOfSaleManagementSys
             int quantity = Counts[IdOfCategory, idx];
             int productId = idx + 1 + 6 * IdOfCategory;
             OrderList o = new OrderList(1, productId, quantity, unitprice, 0.1m);
-            if (quantity == 1)
+            if (quantity ==1)
             {
-            db.AddOrderList(o);
-            RefreshShoppingList();
-            return;
-            }    
+                db.AddOrderList(o);
+                RefreshShoppingList();
+                return;
+            }
             db.UpdateOrderList(o);
-           RefreshShoppingList();
+            RefreshShoppingList();
         }
 
         private void ButtonPrint_Click(object sender, RoutedEventArgs e)
@@ -183,6 +183,13 @@ namespace PointOfSaleManagementSys
 
         }
 
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            int Id = 1;
+            db.DeleteOrderListById(Id);
+            RefreshShoppingList();
+
+        }
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             LvShopping.Items.RemoveAt(LvShopping.Items.IndexOf(LvShopping.SelectedItem));
@@ -192,11 +199,6 @@ namespace PointOfSaleManagementSys
         {
 
         }
-
-
-
-
-
 
 
 
