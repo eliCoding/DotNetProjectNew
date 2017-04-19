@@ -102,7 +102,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
         public void DeleteOrderListById(int Id)
         {
-            using (SqlCommand cmd = new SqlCommand("DELETE FROM orderlist WHERE orderId=@Id", conn))
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM orderlist WHERE productId=@Id", conn))
             {
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Id", Id);

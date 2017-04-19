@@ -33,24 +33,7 @@ namespace PointOfSaleManagementSys
                 {  {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},};
-        //  {  {"Alexander keith ","Blond","BudWiser","Corona","lager","Staute"},
-        //           {"Cheese Cake","Chocolate Cake","Tiramisu","Ice Cream Cake","Ginger Bread","Jelly"},
-        //           {"Cheese Burger","General Tso","Koobide","Sushi","Ghormeh Sabzi","Poutine"}, 
-        //           {"Coffee","Green Tea","Tea", "Hot Chocolate","Cafe Latte","Cappuccino"}
-        //       ,{"Lasagna","Pasta","Pizza","Filet Mignon","Steak","Chicken Wing"},
-        //       {"SYRAH","MERLOT","RIESLING","GEWÜRZTRAMINER","CHARDONNAY","PINOT NOIR"}
-        //};
-
-        //double[,] itemCost = new double[,]{
-        //          /*{"Alexander keith ","Blond","BudWiser","Corona","lager","Staute"},
-        //          {"Coffee","Green Tea","Tea", "Hot Chocolate","Cafe Latte","Cappuccino"}
-        //       ,{"Lasagna","Pasta","Pizza","Filet Mignon","Steak","Chicken Wing"},
-        //       {"Cheese Burger","General Tso","Koobide","Sushi","Ghormeh Sabzi","Poutine"},
-        //       {"Cheese Cake","Chocolate Cake","Tiramisu","Ice Cream Cake","Ginger Bread","Jelly"},
-        //       {"SYRAH","MERLOT","RIESLING","GEWÜRZTRAMINER","CHARDONNAY","PINOT NOIR"}*/
-
-        //};
-
+      
         double iTax, iSubTotal, iTotal;
         List<Shopping> shoppingList = new List<Shopping>();
 
@@ -141,13 +124,17 @@ namespace PointOfSaleManagementSys
 
         private void ItemList(int categoryId)
         {
-            List<string> itemList = new List<string>();
+            List<ItemList> item = new List<ItemList>();
+            LvItems.Items.Clear();
             for (int i = 0; i < 6; i++)
             {
-                itemList.Add(ProductName[categoryId, i]);
+                ItemList it = new ItemList(ProductName[categoryId, i], ProductPrice[categoryId, i]);
+
+                LvItems.Items.Add(it);
+           
             }
-            LvItems.ItemsSource = itemList;
-            IdOfCategory = categoryId;
+      
+          
         }
 
 
@@ -161,6 +148,8 @@ namespace PointOfSaleManagementSys
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             List<OrderList> oList = new List<OrderList>();
+
+
             int idx = LvItems.SelectedIndex;
             decimal unitprice = ProductPrice[IdOfCategory, idx];
             string name = ProductName[IdOfCategory, idx];
@@ -192,10 +181,63 @@ namespace PointOfSaleManagementSys
         }
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            LvShopping.Items.RemoveAt(LvShopping.Items.IndexOf(LvShopping.SelectedItem));
+     
+            int index = LvShopping.SelectedIndex;
+            if (index < 0)
+            {
+                MessageBox.Show("Please select Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            Shopping s = (Shopping)LvShopping.Items[index];
+            if (s.Quantity > 1)
+            {
+                int categoryId = (s.ID - 1) / 6;
+                int i = s.ID - categoryId * 6 - 1;
+                Counts[categoryId, i] = s.Quantity - 1;
+               
+                OrderList o = new OrderList(1, s.ID, s.Quantity - 1, s.UnitPrice, 0.1m);
+                db.UpdateOrderList(o);
+                RefreshShoppingList();
+                return;
+            }
+
+            try
+            {
+                db.DeleteOrderListById(s.ID);
+
+                RefreshShoppingList();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("Database query error " + ex.Message);
+            }
         }
 
         private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
+        {
+            // Bind Check out Button With Tab COntrol
+            int nIndex = TabControl.SelectedIndex + 1;
+            if (nIndex < 1)
+            {
+                nIndex = TabControl.Items.Count + 1;
+            }
+            TabControl.SelectedIndex = nIndex;
+
+
+            TBoxInvoice.Text = "\t\t\t" + "   iShop" + "\t\t" + "JOhn Abbot College" +"\t\t\t" + "WestIsland" + "\t\t\t" + "Canada" ;
+          
+          
+          
+            TBoxInvoice.Text = "==============================";
+            TBoxInvoice.Text = "Tax " + "\t\t\t";
+            TBoxInvoice.Text = "SubTotal" + "\t";
+            TBoxInvoice.Text = "==============================";
+            TBoxInvoice.Text = "\t" + "Thank you for Shoping at iShop";
+
+        }
+
+        private void ButtonTotal_Click(object sender, RoutedEventArgs e)
         {
 
         }

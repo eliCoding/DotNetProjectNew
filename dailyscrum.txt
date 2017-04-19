@@ -142,6 +142,22 @@ WHERE I NEED HELP IS
 1) GridSplitter
 
 
+--- Apr. 19 Mike
+
+DID SINCE LAST SCRUM:
+1) Added Data in Data base for Products
+2) Changed the Design for ListItems
+3) Implement Delete button
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)invoice
+2)Print
+
+WHERE I NEED HELP IS
+1)Print
+
+
 
 --- Apr. 19 Mike
 
