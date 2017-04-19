@@ -21,6 +21,7 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool unsavedChanges = false;
         Database db;
         public int IdOfCategory;
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
@@ -238,7 +239,36 @@ namespace PointOfSaleManagementSys
 
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+           /* if (unsavedChanges)
+            {
+                MessageBoxResult result = MessageBox.Show("Save unsaved changes?", "Unsaved changes",
+                    MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                    case MessageBoxResult.Yes:
+                        if (openFilePath == null)
+                        {
+                            // FIXME: should not cancel, unless SaveAs was cancelled
+                            e.Cancel = true;
+                            MenuFileSaveAs_Click(null, null);
+                        }
+                        else
+                        {
+                            MenuFileSave_Click(null, null);
+                        }
+                        break;
+                }
+            }*/
+        }
 
+    
 
 
     }
