@@ -31,10 +31,10 @@
                     <Label FontWeight="Black" Content="TAX $" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.46,0.185" Height="38" Width="51"/>
                     <Label  FontWeight="Black" Content="PAID $" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
                     <Label  FontWeight="Black" Content="TYPE" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
-                    <TextBox  HorizontalAlignment="Left" Height="38" Margin="61,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
+                    <TextBox Name="totalTaxCost" HorizontalAlignment="Left" Height="38" Margin="61,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
                     <TextBox   HorizontalAlignment="Left" Height="34" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
                     <Label  FontWeight="Black" Content="TOTAL" HorizontalAlignment="Left" Margin="353,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
-                    <TextBox  HorizontalAlignment="Left" Height="38" Margin="438,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
+                    <TextBox  Name="totalPrice" HorizontalAlignment="Left" Height="38" Margin="438,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
                     <ComboBox FontWeight="Black"  HorizontalAlignment="Left" Margin="61,187,0,0" VerticalAlignment="Top" Width="170">
                         <ComboBoxItem FontWeight="Black" IsSelected="True">CASH</ComboBoxItem>
                         <ComboBoxItem  FontWeight="Black">CREDIT CART</ComboBoxItem>

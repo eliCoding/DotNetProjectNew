@@ -37,8 +37,6 @@ namespace PointOfSaleManagementSys
         double iTax, iSubTotal, iTotal;
         List<Shopping> shoppingList = new List<Shopping>();
 
-
-
         public MainWindow()
         {
             try
@@ -55,16 +53,10 @@ namespace PointOfSaleManagementSys
             InitializeComponent();
             ReadProductPrice();
             RefreshShoppingList();
-            // LvItems.ItemsSource=db.GetAllCategory();
-            //int CategoryId=1;
-            //int ProductId=1;
-
-
+            
         }
 
-        //string currentItemText;
-        //int currentItemIndex;
-
+        
         private void ReadProductPrice()
         {
             for (int i = 0; i < 6; i++)
@@ -83,15 +75,25 @@ namespace PointOfSaleManagementSys
         {
             LvShopping.Items.Clear();
             List<OrderList> list = db.GetAllOrderList();
+            decimal total = 0.0m;
+            decimal totalTax = 0.0m;
             foreach (OrderList l in list)
             {
                 int categoryId = (l.ProductId - 1) / 6;
                 int i = l.ProductId - categoryId * 6 - 1;
                 string name = ProductName[categoryId, i];
                 Counts[categoryId, i] = l.Quantity;
-                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, 3, 1);
+                decimal subtaotal = l.Quantity * l.UnitPrice;
+                total = total + subtaotal;
+                decimal tax = subtaotal * 0.15m;
+                totalTax = totalTax + tax;
+                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
                 LvShopping.Items.Add(s);
-            }
+            } 
+            
+            totalTaxCost.Text = totalTax.ToString();
+            totalPrice.Text = total.ToString();
+
             //LvShopping.ItemsSource = list;
             //LvShopping.Items.Refresh();
         }
@@ -129,12 +131,8 @@ namespace PointOfSaleManagementSys
             for (int i = 0; i < 6; i++)
             {
                 ItemList it = new ItemList(ProductName[categoryId, i], ProductPrice[categoryId, i]);
-
                 LvItems.Items.Add(it);
-           
             }
-      
-          
         }
 
 
@@ -148,8 +146,6 @@ namespace PointOfSaleManagementSys
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             List<OrderList> oList = new List<OrderList>();
-
-
             int idx = LvItems.SelectedIndex;
             decimal unitprice = ProductPrice[IdOfCategory, idx];
             string name = ProductName[IdOfCategory, idx];
@@ -175,7 +171,7 @@ namespace PointOfSaleManagementSys
         private void ButtonReset_Click(object sender, RoutedEventArgs e)
         {
             int Id = 1;
-            db.DeleteOrderListById(Id);
+            db.DeleteOrderById(Id);
             RefreshShoppingList();
 
         }
