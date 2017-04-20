@@ -27,7 +27,7 @@ namespace PointOfSaleManagementSys
        
 
        
-
+      
         Database db;
         public int IdOfCategory;
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
@@ -231,15 +231,17 @@ namespace PointOfSaleManagementSys
             }
             TabControl.SelectedIndex = nIndex;
 
-
-           string itemPurchasedInfo = "";
-           itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date:  \t\t " + "\r\n=============================" + "\r\n";
-
-           itemPurchasedInfo += "====================" + "\r\n";
+            string theDate = dpDate.Text;
+                //.ToString("yyyy-MM-dd");
+           string itemPurchasedInfo ="";
+           itemPurchasedInfo ="=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date: "+theDate+ "\r\n=============================" + "\r\n";
+           //string theDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+          
             for (int i = 0; i < LvShopping.Items.Count; i++)
             {
                 Shopping s = (Shopping)LvShopping.Items[i];
-                itemPurchasedInfo += s.ProductName+ "  "+s.Quantity+"  "+s.UnitPrice+" "+s.Total+ "\r\n";
+                itemPurchasedInfo += "Product Name: " + s.ProductName + "\r\n  Quantity: " + s.Quantity +
+                    "\r\n  Unit Price: " + String.Format("{0:C}", s.UnitPrice) + "\r\n\r\n";
             }
             itemPurchasedInfo += "====================" + "\r\n";
 
@@ -255,7 +257,7 @@ namespace PointOfSaleManagementSys
            {
              string path = @"..\..\Invoice.txt";
             System.IO.StreamWriter file = new System.IO.StreamWriter(path);
-            file.WriteLine(itemPurchasedInfo + "\r\n");
+            file.WriteLine(itemPurchasedInfo );
 
                 file.Close();
 
@@ -277,6 +279,7 @@ namespace PointOfSaleManagementSys
             }
             catch (IOException er)
             {
+                Console.WriteLine(er.StackTrace);
                 MessageBoxResult result = MessageBox.Show("There is an Error in Opening or Finding the File!", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
