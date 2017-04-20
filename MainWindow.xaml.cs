@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +23,11 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class MainWindow : Window
     {
-        // private bool unsavedChanges = false;
+
+       
+
+       
+
         Database db;
         public int IdOfCategory;
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
@@ -35,7 +41,11 @@ namespace PointOfSaleManagementSys
                     {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},};
       
-       // double iTax, iSubTotal, iTotal;
+
+       
+
+    
+
         List<Shopping> shoppingList = new List<Shopping>();
 
         public MainWindow()
@@ -92,8 +102,12 @@ namespace PointOfSaleManagementSys
                 LvShopping.Items.Add(s);
             } 
             
+
+            
+
             totalTaxCost.Text = totalTax.ToString("C");
             totalPrice.Text = total.ToString("C");
+
 
             //LvShopping.ItemsSource = list;
             //LvShopping.Items.Refresh();
@@ -219,18 +233,107 @@ namespace PointOfSaleManagementSys
                 nIndex = TabControl.Items.Count + 1;
             }
             TabControl.SelectedIndex = nIndex;
+
+
+           string itemPurchasedInfo = "";
+           itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date:  \t\t " + "\r\n=============================" + "\r\n";
+           itemPurchasedInfo += "Tax:  " + totalTaxCost.Text + "\r\n";
+           itemPurchasedInfo += "Balance:  " + BalancePriceTb.Text + "\r\n";
+           itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";
+           itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
+
+           itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
+           /*FileStream fileStream = new FileStream(
+     @"c:\words.txt", FileMode.OpenOrCreate, 
+     FileAccess.ReadWrite, FileShare.None);
+            
+             using (FileStream fileStream = new FileStream(
+                fileName, FileMode.OpenOrCreate,
+                FileAccess.ReadWrite, FileShare.None))
+            */
+           try
+            {
+                string path = @"..\..\Invoice.txt";
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        // This text is added only once to the file.
+                        sw.Write(itemPurchasedInfo + "\r\n");
+                        sw.Close();
+                    }
+                }
+
+                // This text is always added, making the file longer over time
+                // if it is not deleted.
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.Write(itemPurchasedInfo + "\r\n");
+                    sw.Close();
+                }
+             
+               
+            }
+            catch (IOException er)
+            {
+                MessageBoxResult result = MessageBox.Show("There is an Error in Opening or Finding the File!", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Question);
+                if (result == MessageBoxResult.OK)
+                {
+                    return;
+                }
+            }
+           using (StreamReader sr = new StreamReader(@"..\..\Invoice.txt"))
+           {
+               string line;
+               // Read and display lines from the file until the end of  
+               // the file is reached. 
+               while ((line = sr.ReadLine()) != null)
+               {
+                   Console.WriteLine(line);
+               }
+           }
+           
+          /*  string fileName = "Invoice.txt";
+            string fullPath;
+            fullPath = Path.GetFullPath(fileName);
+            TBoxInvoice.Text = fullPath;
+            System.IO.File.ReadAllText(fullPath);*/
+         /*   TBoxInvoice.Text = "\t\t\t" + "   iShop" + "\t\t" + "JOhn Abbot College" +"\t\t\t" + "WestIsland" + "\t\t\t" + "Canada" ;
+
             TBoxInvoice.Text = "\t\t\t" + "   iShop" + "\t\t" + "JOhn Abbot College" +"\t\t\t" + "WestIsland" + "\t\t\t" + "Canada" ;
+
           
             TBoxInvoice.Text = "==============================";
             TBoxInvoice.Text = "Tax " + "\t\t\t";
             TBoxInvoice.Text = "SubTotal" + "\t";
             TBoxInvoice.Text = "==============================";
-            TBoxInvoice.Text = "\t" + "Thank you for Shoping at iShop";
+            TBoxInvoice.Text = "\t" + "Thank you for Shoping at iShop";*/
 
         }
 
         private void ButtonTotal_Click(object sender, RoutedEventArgs e)
         {
+            LvShopping.Items.Clear();
+            List<OrderList> list = db.GetAllOrderList();
+            decimal total = 0.0m;
+            decimal totalTax = 0.0m;
+            foreach (OrderList l in list)
+            {
+                int categoryId = (l.ProductId - 1) / 6;
+                int i = l.ProductId - categoryId * 6 - 1;
+                string name = ProductName[categoryId, i];
+                Counts[categoryId, i] = l.Quantity;
+                decimal subtaotal = l.Quantity * l.UnitPrice;
+                total = total + subtaotal;
+                decimal tax = subtaotal * 0.15m;
+                totalTax = totalTax + tax;
+                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
+                LvShopping.Items.Add(s);
+            }
+            totalTaxCost.Text = String.Format("{0:C}", totalTax);
+            BalancePriceTb.Text = String.Format("{0:C}", total);
+            PaidTextBox.Text = String.Format("{0:C}", total); 
 
         }
 
