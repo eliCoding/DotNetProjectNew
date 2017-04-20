@@ -23,7 +23,11 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class MainWindow : Window
     {
+
        
+
+       
+
         Database db;
         public int IdOfCategory;
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
@@ -37,7 +41,11 @@ namespace PointOfSaleManagementSys
                     {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},};
       
+
        
+
+    
+
         List<Shopping> shoppingList = new List<Shopping>();
 
         public MainWindow()
@@ -94,7 +102,13 @@ namespace PointOfSaleManagementSys
                 LvShopping.Items.Add(s);
             } 
             
+
             
+
+            totalTaxCost.Text = totalTax.ToString("C");
+            totalPrice.Text = total.ToString("C");
+
+
             //LvShopping.ItemsSource = list;
             //LvShopping.Items.Refresh();
         }
@@ -134,6 +148,7 @@ namespace PointOfSaleManagementSys
                 ItemList it = new ItemList(ProductName[categoryId, i], ProductPrice[categoryId, i]);
                 LvItems.Items.Add(it);
             }
+            IdOfCategory = categoryId;
         }
 
 
@@ -178,7 +193,6 @@ namespace PointOfSaleManagementSys
         }
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-     
             int index = LvShopping.SelectedIndex;
             if (index < 0)
             {
@@ -201,7 +215,6 @@ namespace PointOfSaleManagementSys
             try
             {
                 db.DeleteOrderListById(s.ID);
-
                 RefreshShoppingList();
             }
             catch (SqlException ex)
@@ -220,6 +233,7 @@ namespace PointOfSaleManagementSys
                 nIndex = TabControl.Items.Count + 1;
             }
             TabControl.SelectedIndex = nIndex;
+
 
            string itemPurchasedInfo = "";
            itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date:  \t\t " + "\r\n=============================" + "\r\n";
@@ -286,8 +300,9 @@ namespace PointOfSaleManagementSys
             TBoxInvoice.Text = fullPath;
             System.IO.File.ReadAllText(fullPath);*/
          /*   TBoxInvoice.Text = "\t\t\t" + "   iShop" + "\t\t" + "JOhn Abbot College" +"\t\t\t" + "WestIsland" + "\t\t\t" + "Canada" ;
-          
-          
+
+            TBoxInvoice.Text = "\t\t\t" + "   iShop" + "\t\t" + "JOhn Abbot College" +"\t\t\t" + "WestIsland" + "\t\t\t" + "Canada" ;
+
           
             TBoxInvoice.Text = "==============================";
             TBoxInvoice.Text = "Tax " + "\t\t\t";
@@ -324,7 +339,10 @@ namespace PointOfSaleManagementSys
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-           /* if (unsavedChanges)
+            int Id = 1;
+            db.DeleteOrderById(Id);
+            RefreshShoppingList();
+            /* if (unsavedChanges)
             {
                 MessageBoxResult result = MessageBox.Show("Save unsaved changes?", "Unsaved changes",
                     MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
@@ -351,8 +369,19 @@ namespace PointOfSaleManagementSys
             }*/
         }
 
-    
+        private void LvItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ButtonAdd_Click(null, null);
+        }
 
+        private void LvShopping_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (e.RightButton == MouseButtonState.Pressed)
+            {
+                ButtonDelete_Click(null, null);
+            }
+           
+        }
 
     }
 }
