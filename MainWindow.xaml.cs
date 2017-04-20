@@ -154,6 +154,12 @@ namespace PointOfSaleManagementSys
         {
             List<OrderList> oList = new List<OrderList>();
             int idx = LvItems.SelectedIndex;
+           
+            if (idx < 0)
+            {
+                MessageBox.Show("Please select Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             decimal unitprice = ProductPrice[IdOfCategory, idx];
             string name = ProductName[IdOfCategory, idx];
             Counts[IdOfCategory, idx]++;
@@ -304,31 +310,7 @@ namespace PointOfSaleManagementSys
             int Id = 1;
             db.DeleteOrderById(Id);
             RefreshShoppingList();
-            /* if (unsavedChanges)
-            {
-                MessageBoxResult result = MessageBox.Show("Save unsaved changes?", "Unsaved changes",
-                    MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-                switch (result)
-                {
-                    case MessageBoxResult.No:
-                        break;
-                    case MessageBoxResult.Cancel:
-                        e.Cancel = true;
-                        break;
-                    case MessageBoxResult.Yes:
-                        if (openFilePath == null)
-                        {
-                            // FIXME: should not cancel, unless SaveAs was cancelled
-                            e.Cancel = true;
-                            MenuFileSaveAs_Click(null, null);
-                        }
-                        else
-                        {
-                            MenuFileSave_Click(null, null);
-                        }
-                        break;
-                }
-            }*/
+        
         }
 
         private void LvItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -344,6 +326,7 @@ namespace PointOfSaleManagementSys
             }
            
         }
+      
 
     }
 }

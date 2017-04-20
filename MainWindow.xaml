@@ -1,18 +1,18 @@
 ﻿<Window x:Class="PointOfSaleManagementSys.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Point of Sale " Height="900" Width="1350"  Closing="Window_Closing" >
+        Title="Point of Sale " Height="900" Width="1350"   Closing="Window_Closing" >
 
     <Viewbox>
         <Grid Width="auto" Height="900">
-            <Grid Width="670" Height="900" Margin="0,10,629,-10">
+            <Grid Width="670" Margin="0,10,629,0">
                 <!--   <Grid.RowDefinitions>
                     <RowDefinition Height="*"  MinHeight="250"/>
                     <RowDefinition Height="5" />
                     <RowDefinition Height="*"  MinHeight="240"/>
                 </Grid.RowDefinitions>-->
 
-          
+
 
                 <ListView Grid.Row="0" Name="LvShopping" Background="LightYellow" 
                           VerticalAlignment="Top" Width="674" Height="557" Margin="-14,23,0,0" FontWeight="Bold"  Grid.RowSpan="3" MouseDoubleClick="LvShopping_MouseDoubleClick" >
@@ -39,8 +39,8 @@
 
                     <TextBox  Name="totalTaxCost"  HorizontalAlignment="Left" Height="38" Margin="61,35,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="226"/>
 
-                  
-                  
+
+
 
 
                     <TextBox  Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
@@ -52,6 +52,22 @@
                         <ComboBoxItem FontWeight="Black" IsSelected="True">CASH</ComboBoxItem>
                         <ComboBoxItem  FontWeight="Black">CREDIT CART</ComboBoxItem>
                     </ComboBox>
+                    <StackPanel>
+                        <StackPanel.Resources>
+                            <Style TargetType="Calendar"
+           x:Key="DateTimeCalendar">
+                                <Setter Property="Background" Value="#F1E4E8"/>
+                                <Setter Property="BorderBrush" Value="#CEB1BE"/>
+                                <Setter Property="BorderThickness" Value="5"/>
+                            </Style>
+
+                        </StackPanel.Resources>
+                        <DatePicker  Background="#CEB1BE"
+              CalendarStyle="{StaticResource DateTimeCalendar}" SelectedDateFormat="Long" SelectedDate="4/20/17"
+                  DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
+                  FirstDayOfWeek="Monday"  HorizontalAlignment="Left" Margin="438,115,0,0" VerticalAlignment="Top" Height="28" Width="177"/>
+                    </StackPanel>
+
 
 
 
