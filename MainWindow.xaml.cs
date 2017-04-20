@@ -228,6 +228,15 @@ namespace PointOfSaleManagementSys
 
            string itemPurchasedInfo = "";
            itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date:  \t\t " + "\r\n=============================" + "\r\n";
+
+           itemPurchasedInfo += "====================" + "\r\n";
+            for (int i = 0; i < LvShopping.Items.Count; i++)
+            {
+                Shopping s = (Shopping)LvShopping.Items[i];
+                itemPurchasedInfo += s.ProductName+ "  "+s.Quantity+"  "+s.UnitPrice+" "+s.Total+ "\r\n";
+            }
+            itemPurchasedInfo += "====================" + "\r\n";
+
            itemPurchasedInfo += "Tax:  " + totalTaxCost.Text + "\r\n";
            itemPurchasedInfo += "Balance:  " + BalancePriceTb.Text + "\r\n";
            itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";

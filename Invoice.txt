@@ -6,9 +6,14 @@ JOhn Abbot College
 Phone: 514- 543 74 89
 INVOICE NO:  		 Date:  		 
 =============================
-Tax:  $1.35
-Balance:  $9.00
-Paid:  $9.00
+====================
+Stout  1  7.0000 7.0000
+Ice Cream  1  4.0000 4.0000
+Green Tea  1  2.0000 2.0000
+====================
+Tax:  $1.95
+Balance:  $13.00
+Paid:  $13.00
 Method Of Payment:  CASH
 *****************************
 Thank you for Shoping at Mike & Elmira's Company
