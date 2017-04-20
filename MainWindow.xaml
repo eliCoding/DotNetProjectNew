@@ -31,7 +31,7 @@
                 </ListView>
                 <!--   <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Background="Red" Margin="0,55.2,0,327" />-->
 
-                <Grid Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="0,0,-4,30" VerticalAlignment="Bottom" Width="674" >
+                <Grid Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="-9,0,0,36" VerticalAlignment="Bottom" Width="674" >
                     <Label FontWeight="Black" Content="TAX $" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.46,0.185" Height="38" Width="51"/>
                     <Label  FontWeight="Black" Content="PAID $" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
                     <Label  FontWeight="Black" Content="TYPE" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
@@ -39,8 +39,8 @@
 
                     <TextBox  Name="totalTaxCost"  HorizontalAlignment="Left" Height="38" Margin="61,35,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="226"/>
 
-                    <TextBox  HorizontalAlignment="Left" Height="38" Margin="61,32,0,0" TextWrapping="Wrap" VerticalAlignment="Left" Width="226"/>
-                    <TextBox   HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
+                  
+                  
 
 
                     <TextBox  Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />

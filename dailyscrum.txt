@@ -142,7 +142,7 @@ WHERE I NEED HELP IS
 1) GridSplitter
 
 
---- Apr. 19 Mike
+--- Apr. 19 Elmira
 
 DID SINCE LAST SCRUM:
 1) Added Data in Data base for Products
@@ -175,9 +175,35 @@ WHERE I NEED HELP IS
 
 
 
+--- Apr. 20 Elmira
+
+DID SINCE LAST SCRUM:
+1) Implement CHeck out Button(Write to the file)
+2) Impelment string format
 
 
+WILL DO IN THE NEXT 24 HOURS
+1)invoice
+2)Print
 
+WHERE I NEED HELP IS
+1)Print
+
+
+--- Apr. 20 Mike
+
+DID SINCE LAST SCRUM:
+1)impletement of login windows
+2) completed reset, close windows 
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)printing invoice
+2)work for different orderlist and order
+
+WHERE I NEED HELP IS
+1) GridSplitter
+2) chart
 
 
 

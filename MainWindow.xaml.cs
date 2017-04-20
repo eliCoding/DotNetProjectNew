@@ -101,16 +101,7 @@ namespace PointOfSaleManagementSys
                 Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
                 LvShopping.Items.Add(s);
             } 
-            
-
-            
-
-            totalTaxCost.Text = totalTax.ToString("C");
-            totalPrice.Text = total.ToString("C");
-
-
-            //LvShopping.ItemsSource = list;
-            //LvShopping.Items.Refresh();
+                               
         }
 
 
@@ -243,36 +234,30 @@ namespace PointOfSaleManagementSys
            itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
 
            itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
-           /*FileStream fileStream = new FileStream(
-     @"c:\words.txt", FileMode.OpenOrCreate, 
-     FileAccess.ReadWrite, FileShare.None);
-            
-             using (FileStream fileStream = new FileStream(
-                fileName, FileMode.OpenOrCreate,
-                FileAccess.ReadWrite, FileShare.None))
-            */
+ 
+       
            try
-            {
-                string path = @"..\..\Invoice.txt";
-                if (!File.Exists(path))
-                {
-                    // Create a file to write to.
-                    using (StreamWriter sw = File.CreateText(path))
-                    {
-                        // This text is added only once to the file.
-                        sw.Write(itemPurchasedInfo + "\r\n");
-                        sw.Close();
-                    }
-                }
+           {
+             string path = @"..\..\Invoice.txt";
+            System.IO.StreamWriter file = new System.IO.StreamWriter(path);
+            file.WriteLine(itemPurchasedInfo + "\r\n");
 
-                // This text is always added, making the file longer over time
-                // if it is not deleted.
-                using (StreamWriter sw = File.AppendText(path))
+                file.Close();
+
+                // Open the file to read from.
+                           
+                using (StreamReader sr = File.OpenText(path))
                 {
-                    sw.Write(itemPurchasedInfo + "\r\n");
-                    sw.Close();
+
+                    string [] s = File.ReadAllLines(path);
+                    for (int i = 0; i < s.Length; i++)
+                    {
+                        TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
+                    }
+                        
+                 
                 }
-             
+           
                
             }
             catch (IOException er)
@@ -282,33 +267,10 @@ namespace PointOfSaleManagementSys
                 {
                     return;
                 }
+               
             }
-           using (StreamReader sr = new StreamReader(@"..\..\Invoice.txt"))
-           {
-               string line;
-               // Read and display lines from the file until the end of  
-               // the file is reached. 
-               while ((line = sr.ReadLine()) != null)
-               {
-                   Console.WriteLine(line);
-               }
-           }
-           
-          /*  string fileName = "Invoice.txt";
-            string fullPath;
-            fullPath = Path.GetFullPath(fileName);
-            TBoxInvoice.Text = fullPath;
-            System.IO.File.ReadAllText(fullPath);*/
-         /*   TBoxInvoice.Text = "\t\t\t" + "   iShop" + "\t\t" + "JOhn Abbot College" +"\t\t\t" + "WestIsland" + "\t\t\t" + "Canada" ;
-
-            TBoxInvoice.Text = "\t\t\t" + "   iShop" + "\t\t" + "JOhn Abbot College" +"\t\t\t" + "WestIsland" + "\t\t\t" + "Canada" ;
-
           
-            TBoxInvoice.Text = "==============================";
-            TBoxInvoice.Text = "Tax " + "\t\t\t";
-            TBoxInvoice.Text = "SubTotal" + "\t";
-            TBoxInvoice.Text = "==============================";
-            TBoxInvoice.Text = "\t" + "Thank you for Shoping at iShop";*/
+         
 
         }
 
