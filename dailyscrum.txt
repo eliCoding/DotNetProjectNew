@@ -184,10 +184,10 @@ DID SINCE LAST SCRUM:
 
 WILL DO IN THE NEXT 24 HOURS
 1)invoice
-2)Print
+2)DatePicker
 
 WHERE I NEED HELP IS
-1)Print
+1)
 
 
 --- Apr. 20 Mike
