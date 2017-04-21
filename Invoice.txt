@@ -4,3 +4,24 @@ Mike & Elmira's Company
 Address:
 John Abbot College
 Phone: 514- 543 74 89
+INVOICE NO: 25		Date: Friday, April 21, 2017
+=============================
+Product Name: Green Tea
+  Quantity: 1
+  Unit Price: $2.00
+
+Product Name: Hot Chocolate
+  Quantity: 1
+  Unit Price: $3.00
+
+Product Name: Cappucino
+  Quantity: 1
+  Unit Price: $3.00
+
+====================
+Tax:  $1.20
+Balance:  $9.20
+Paid:  $9.20
+Method Of Payment:  CASH
+*****************************
+Thank you for Shoping at Mike & Elmira's Company

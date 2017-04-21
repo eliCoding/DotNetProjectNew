@@ -13,15 +13,15 @@
                     <RowDefinition Height="*"  MinHeight="240"/>
                 </Grid.RowDefinitions>-->
 
-  
+
 
                 <ListView Grid.Row="0" Name="LvShopping" Background="LightYellow" 
                           VerticalAlignment="Top" Width="674" Height="557" Margin="-14,23,0,0" FontWeight="Bold"  Grid.RowSpan="3" MouseDoubleClick="LvShopping_MouseDoubleClick" >
-                   <ListView.ItemContainerStyle>
+                    <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                         </Style>
-                    </ListView.ItemContainerStyle>     
+                    </ListView.ItemContainerStyle>
                     <ListView.View >
                         <GridView >
                             <GridViewColumn  Header="ID" Width="50" DisplayMemberBinding="{Binding Path=ID}" />
@@ -36,21 +36,17 @@
                 </ListView>
                 <!--   <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Background="Red" Margin="0,55.2,0,327" />-->
 
-                <Grid Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="-9,0,0,36" VerticalAlignment="Bottom" Width="674" >
+                <Grid Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="-9,0,0,34" VerticalAlignment="Bottom" Width="674" >
                     <Label FontWeight="Black" Content="TAX $" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.46,0.185" Height="38" Width="51"/>
                     <Label  FontWeight="Black" Content="PAID $" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
                     <Label  FontWeight="Black" Content="TYPE" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
 
-                    <TextBox  Name="totalTaxCost"  HorizontalAlignment="Left" Height="38" Margin="61,35,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="226"/>
-                    <TextBox  Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
+
                     <Label  FontWeight="Black" Content="BALANCE$" HorizontalAlignment="Left" Margin="371,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
                     <TextBox  Name="BalancePriceTb" HorizontalAlignment="Left" Height="38" Margin="438,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
 
                     <TextBox  FontSize="14" FontWeight="ExtraBlack" Name="totalTaxCost"  HorizontalAlignment="Left" Height="38" Margin="61,35,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="226"/>
-                    <TextBox FontSize="14" FontWeight="ExtraBlack"   Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
-
-
-                    <Label  FontWeight="Black" Content="BALANCE $" HorizontalAlignment="Left" Margin="364,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
+                    <TextBox FontSize="14" FontWeight="ExtraBlack"  Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
 
                     <ComboBox Name="ComboCard" FontWeight="Black"  HorizontalAlignment="Left" Margin="61,187,0,0" VerticalAlignment="Top" Width="170">
                         <ComboBoxItem FontWeight="Black" IsSelected="True">CASH</ComboBoxItem>
@@ -70,7 +66,7 @@
               CalendarStyle="{StaticResource DateTimeCalendar}" SelectedDateFormat="Long" SelectedDate="{x:Static sys:DateTime.Now}" FontWeight="SemiBold"
                                     
                   DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
-                  FirstDayOfWeek="Monday"  HorizontalAlignment="Left" Margin="438,115,0,0" VerticalAlignment="Top" Height="28" Width="177"/>
+                  FirstDayOfWeek="Monday"  HorizontalAlignment="Left" Margin="438,115,0,0" VerticalAlignment="Top" Height="34" Width="226"/>
                     </StackPanel>
 
 
@@ -151,7 +147,7 @@
                             <ListView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                             </ListView.Background>
-                            
+
                             <ListView.View >
                                 <GridView>
                                     <GridViewColumn Header="Product Name" Width="310" DisplayMemberBinding="{Binding Path=ProductName}"   />
@@ -165,7 +161,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem   Header="Invoice" Name="tab2">
-                    <FlowDocumentScrollViewer Name="fdViewer">
+                    <FlowDocumentScrollViewer x:Name="fdViewer">
                         <!--<FlowDocument Name="flowDocument">-->
                         <!--<TextBox  Name="TBoxInvoice" TextWrapping="Wrap" Margin="0,0,0,0"/>-->
                         <!--

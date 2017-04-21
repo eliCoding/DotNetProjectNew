@@ -26,6 +26,7 @@ namespace PointOfSaleManagementSys
 
 
         Database db;
+        PrintInvoice pi;
         public int IdOfCategory;
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
                                          {0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},};
@@ -48,6 +49,7 @@ namespace PointOfSaleManagementSys
             try
             {
                 db = new Database();
+                pi = new PrintInvoice();
             }
             catch (SqlException e)
             {
@@ -181,20 +183,19 @@ namespace PointOfSaleManagementSys
             int Id = 1;
             db.DeleteOrderById(Id);
             RefreshShoppingList();
-            TBoxInvoice.Text = "";
+            BalancePriceTb.Text = "";
             totalTaxCost.Clear();
             PaidTextBox.Clear();
             BalancePriceTb.Clear();
-
+            doc.Blocks.Clear();
             int nIndex = TabControl.SelectedIndex - 1;
             if (nIndex < 1)
             {
                 nIndex = TabControl.Items.Count - 1;
             }
             TabControl.SelectedIndex = nIndex;
-            
-
         }
+
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             int index = LvShopping.SelectedIndex;
@@ -209,7 +210,6 @@ namespace PointOfSaleManagementSys
                 int categoryId = (s.ID - 1) / 6;
                 int i = s.ID - categoryId * 6 - 1;
                 Counts[categoryId, i] = s.Quantity - 1;
-
                 OrderList o = new OrderList(1, s.ID, s.Quantity - 1, s.UnitPrice, 0.1m);
                 db.UpdateOrderList(o);
                 RefreshShoppingList();
@@ -230,7 +230,9 @@ namespace PointOfSaleManagementSys
 
         private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
         {
-            // Bind Check out Button With Tab COntrol
+       
+            //doc.Blocks.Clear();
+            
             int nIndex = TabControl.SelectedIndex + 1;
             if (nIndex < 1)
             {
@@ -239,8 +241,6 @@ namespace PointOfSaleManagementSys
             TabControl.SelectedIndex = nIndex;
 
             string theDate = dpDate.Text;
-
-
 
             string invoiceNo = Convert.ToString(dpDate.SelectedDate.Value.Month + dpDate.SelectedDate.Value.Day);               
             string itemPurchasedInfo ="";
@@ -257,7 +257,6 @@ namespace PointOfSaleManagementSys
             itemPurchasedInfo += "Balance:  " + BalancePriceTb.Text + "\r\n";
             itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";
             itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
-
             itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
        
            try
@@ -266,30 +265,32 @@ namespace PointOfSaleManagementSys
             System.IO.StreamWriter file = new System.IO.StreamWriter(path);
             file.WriteLine(itemPurchasedInfo );
 
-
                 file.Close();
 
-                // Open the file to read from.
+               pi.PrintInv(path);
 
-                using (StreamReader sr = File.OpenText(path))
-                {
-                    //   FlowDocument doc = new FlowDocument();
-                    string[] s = File.ReadAllLines(path);
-                    for (int i = 0; i < s.Length; i++)
-                    {
-                        Paragraph p = new Paragraph(new Run(s[i]));
-                        doc.Blocks.Add(p);
-                        //  TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
-                    }
-                    //p.FontSize = 36;
-                    //p = new Paragraph(new Run("The ultimate programming greeting!"));
-                    //p.FontSize = 14;
-                    //p.FontStyle = FontStyles.Italic;
-                    //p.TextAlignment = TextAlignment.Left;
-                    //p.Foreground = Brushes.Gray;
-                    //doc.Blocks.Add(p);
-                    fdViewer.Document = doc;
-                }
+               // Open the file to read from.
+
+
+               //using (StreamReader sr = File.OpenText(path))
+               //{
+               //    //   FlowDocument doc = new FlowDocument();
+               //    string[] s = File.ReadAllLines(path);
+               //    for (int i = 0; i < s.Length; i++)
+               //    {
+               //        Paragraph p = new Paragraph(new Run(s[i]));
+               //        doc.Blocks.Add(p);
+               //        //  TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
+               //    }
+               //    //p.FontSize = 36;
+               //    //p = new Paragraph(new Run("The ultimate programming greeting!"));
+               //    //p.FontSize = 14;
+               //    //p.FontStyle = FontStyles.Italic;
+               //    //p.TextAlignment = TextAlignment.Left;
+               //    //p.Foreground = Brushes.Gray;
+               //    //doc.Blocks.Add(p);
+               //    fdViewer.Document = doc;
+           
 
 
             }

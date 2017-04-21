@@ -61,6 +61,7 @@
     <Compile Include="Database.cs" />
     <Compile Include="ItemList.cs" />
     <Compile Include="orderList.cs" />
+    <Compile Include="PrintInvoice.cs" />
     <Compile Include="Shopping.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
