@@ -24,10 +24,10 @@ namespace PointOfSaleManagementSys
     public partial class MainWindow : Window
     {
 
-       
 
-       
-      
+
+
+
         Database db;
         public int IdOfCategory;
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
@@ -40,11 +40,11 @@ namespace PointOfSaleManagementSys
                 {  {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},};
-      
 
-       
 
-    
+        FlowDocument doc = new FlowDocument();
+
+
 
         List<Shopping> shoppingList = new List<Shopping>();
 
@@ -64,10 +64,10 @@ namespace PointOfSaleManagementSys
             InitializeComponent();
             ReadProductPrice();
             RefreshShoppingList();
-            
+
         }
 
-        
+
         private void ReadProductPrice()
         {
             for (int i = 0; i < 6; i++)
@@ -100,8 +100,8 @@ namespace PointOfSaleManagementSys
                 totalTax = totalTax + tax;
                 Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
                 LvShopping.Items.Add(s);
-            } 
-                               
+            }
+
         }
 
 
@@ -154,7 +154,7 @@ namespace PointOfSaleManagementSys
         {
             List<OrderList> oList = new List<OrderList>();
             int idx = LvItems.SelectedIndex;
-           
+
             if (idx < 0)
             {
                 MessageBox.Show("Please select Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -166,7 +166,7 @@ namespace PointOfSaleManagementSys
             int quantity = Counts[IdOfCategory, idx];
             int productId = idx + 1 + 6 * IdOfCategory;
             OrderList o = new OrderList(1, productId, quantity, unitprice, 0.1m);
-            if (quantity ==1)
+            if (quantity == 1)
             {
                 db.AddOrderList(o);
                 RefreshShoppingList();
@@ -202,7 +202,7 @@ namespace PointOfSaleManagementSys
                 int categoryId = (s.ID - 1) / 6;
                 int i = s.ID - categoryId * 6 - 1;
                 Counts[categoryId, i] = s.Quantity - 1;
-               
+
                 OrderList o = new OrderList(1, s.ID, s.Quantity - 1, s.UnitPrice, 0.1m);
                 db.UpdateOrderList(o);
                 RefreshShoppingList();
@@ -232,11 +232,11 @@ namespace PointOfSaleManagementSys
             TabControl.SelectedIndex = nIndex;
 
             string theDate = dpDate.Text;
-                //.ToString("yyyy-MM-dd");
-           string itemPurchasedInfo ="";
-           itemPurchasedInfo ="=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date: "+theDate+ "\r\n=============================" + "\r\n";
-           //string theDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-          
+            //.ToString("yyyy-MM-dd");
+            string itemPurchasedInfo = "";
+            itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date: " + theDate + "\r\n=============================" + "\r\n";
+            //string theDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+
             for (int i = 0; i < LvShopping.Items.Count; i++)
             {
                 Shopping s = (Shopping)LvShopping.Items[i];
@@ -244,40 +244,44 @@ namespace PointOfSaleManagementSys
                     "\r\n  Unit Price: " + String.Format("{0:C}", s.UnitPrice) + "\r\n\r\n";
             }
             itemPurchasedInfo += "====================" + "\r\n";
+            itemPurchasedInfo += "Tax:  " + totalTaxCost.Text + "\r\n";
+            itemPurchasedInfo += "Balance:  " + BalancePriceTb.Text + "\r\n";
+            itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";
+            itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
 
-           itemPurchasedInfo += "Tax:  " + totalTaxCost.Text + "\r\n";
-           itemPurchasedInfo += "Balance:  " + BalancePriceTb.Text + "\r\n";
-           itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";
-           itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
+            itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
 
-           itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
-
-
-           
-
-       
-           try
-           {
-             string path = @"..\..\Invoice.txt";
-            System.IO.StreamWriter file = new System.IO.StreamWriter(path);
-            file.WriteLine(itemPurchasedInfo );
+            try
+            {
+                string path = @"..\..\Invoice.txt";
+                System.IO.StreamWriter file = new System.IO.StreamWriter(path);
+                file.WriteLine(itemPurchasedInfo);
 
                 file.Close();
 
                 // Open the file to read from.
-                           
+
                 using (StreamReader sr = File.OpenText(path))
                 {
-
-                    string [] s = File.ReadAllLines(path);
+                    //   FlowDocument doc = new FlowDocument();
+                    string[] s = File.ReadAllLines(path);
                     for (int i = 0; i < s.Length; i++)
                     {
-           //         TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
+                        Paragraph p = new Paragraph(new Run(s[i]));
+                        doc.Blocks.Add(p);
+                        //  TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
                     }
-                        
+                    //p.FontSize = 36;
+                    //p = new Paragraph(new Run("The ultimate programming greeting!"));
+                    //p.FontSize = 14;
+                    //p.FontStyle = FontStyles.Italic;
+                    //p.TextAlignment = TextAlignment.Left;
+                    //p.Foreground = Brushes.Gray;
+                    //doc.Blocks.Add(p);
+                    fdViewer.Document = doc;
                 }
-           
-               
+
+
             }
             catch (IOException er)
             {
@@ -287,26 +291,26 @@ namespace PointOfSaleManagementSys
                 {
                     return;
                 }
-               
+
             }
         }
 
-        private void InvokePrint(object sender, RoutedEventArgs e)
-        {
-            // Create the print dialog object and set options
-            PrintDialog pDialog = new PrintDialog();
-            pDialog.PageRangeSelection = PageRangeSelection.AllPages;
-            pDialog.UserPageRangeEnabled = true;
+        //private void InvokePrint(object sender, RoutedEventArgs e)
+        //{
+        //    // Create the print dialog object and set options
+        //    PrintDialog pDialog = new PrintDialog();
+        //    pDialog.PageRangeSelection = PageRangeSelection.AllPages;
+        //    pDialog.UserPageRangeEnabled = true;
 
-            // Display the dialog. This returns true if the user presses the Print button.
-            Nullable<Boolean> print = pDialog.ShowDialog();
-            if (print == true)
-            {
-                XpsDocument xpsDocument = new XpsDocument("C:\\FixedDocumentSequence.xps", FileAccess.ReadWrite);
-                FixedDocumentSequence fixedDocSeq = xpsDocument.GetFixedDocumentSequence();
-                pDialog.PrintDocument(fixedDocSeq.DocumentPaginator, "Test print job");
-            }
-        }
+        //    // Display the dialog. This returns true if the user presses the Print button.
+        //    Nullable<Boolean> print = pDialog.ShowDialog();
+        //    if (print == true)
+        //    {
+        //        XpsDocument xpsDocument = new XpsDocument("C:\\FixedDocumentSequence.xps", FileAccess.ReadWrite);
+        //        FixedDocumentSequence fixedDocSeq = xpsDocument.GetFixedDocumentSequence();
+        //        pDialog.PrintDocument(fixedDocSeq.DocumentPaginator, "Test print job");
+        //    }
+        //}
 
 
 
@@ -331,20 +335,18 @@ namespace PointOfSaleManagementSys
             }
             totalTaxCost.Text = String.Format("{0:C}", totalTax);
             BalancePriceTb.Text = String.Format("{0:C}", total);
-            PaidTextBox.Text = String.Format("{0:C}", total); 
+            PaidTextBox.Text = String.Format("{0:C}", total);
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonInvoice_Click(object sender, RoutedEventArgs e)
         {
+
             PrintDialog pd = new PrintDialog();
             if (pd.ShowDialog() != true) return;
-
-            flowDocument.PageHeight = pd.PrintableAreaHeight;
-            flowDocument.PageWidth = pd.PrintableAreaWidth;
-
-            IDocumentPaginatorSource idocument = flowDocument as IDocumentPaginatorSource;
-
+            doc.PageHeight = pd.PrintableAreaHeight;
+            doc.PageWidth = pd.PrintableAreaWidth;
+            IDocumentPaginatorSource idocument = doc as IDocumentPaginatorSource;
             pd.PrintDocument(idocument.DocumentPaginator, "Printing Flow Document...");
         }
 
@@ -354,7 +356,7 @@ namespace PointOfSaleManagementSys
             int Id = 1;
             db.DeleteOrderById(Id);
             RefreshShoppingList();
-        
+
         }
 
         private void LvItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -368,9 +370,9 @@ namespace PointOfSaleManagementSys
             {
                 ButtonDelete_Click(null, null);
             }
-           
+
         }
-      
+
 
     }
 }

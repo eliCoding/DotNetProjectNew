@@ -4,16 +4,20 @@ Mike & Elmira's Company
 Address:
 JOhn Abbot College
 Phone: 514- 543 74 89
-INVOICE NO:  		 Date: April 21, 2017
+INVOICE NO:  		 Date: Friday, April 21, 2017
 =============================
-Product Name: Steak
+Product Name: budwiser
   Quantity: 1
-  Unit Price: $19.00
+  Unit Price: $4.00
+
+Product Name: Pizza
+  Quantity: 1
+  Unit Price: $17.00
 
 ====================
-Tax:  $2.85
-Balance:  $19.00
-Paid:  $19.00
+Tax:  $3.15
+Balance:  $21.00
+Paid:  $21.00
 Method Of Payment:  CASH
 *****************************
 Thank you for Shoping at Mike & Elmira's Company

@@ -36,17 +36,8 @@
                     <Label FontWeight="Black" Content="TAX $" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.46,0.185" Height="38" Width="51"/>
                     <Label  FontWeight="Black" Content="PAID $" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
                     <Label  FontWeight="Black" Content="TYPE" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
-
-
                     <TextBox  Name="totalTaxCost"  HorizontalAlignment="Left" Height="38" Margin="61,35,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="226"/>
-
-
-
-
-
                     <TextBox  Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
-
-
                     <Label  FontWeight="Black" Content="BALANCE$" HorizontalAlignment="Left" Margin="371,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
                     <TextBox  Name="BalancePriceTb" HorizontalAlignment="Left" Height="38" Margin="438,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
                     <ComboBox Name="ComboCard" FontWeight="Black"  HorizontalAlignment="Left" Margin="61,187,0,0" VerticalAlignment="Top" Width="170">
@@ -82,7 +73,7 @@
             <Button Click="ButtonAdd_Click" FontWeight="Bold" Content="ADD PRODUCT" HorizontalAlignment="Left" Margin="710,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click="ButtonDelete_Click" FontWeight="Bold" Content="DELETE PRODUCT" HorizontalAlignment="Left" Margin="914,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonChekOut_Click" FontWeight="Bold" Content="CHECKOUT" HorizontalAlignment="Left" Margin="914,814,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
-            <Button  Click="Button_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="1131,815,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
+            <Button  Click="ButtonInvoice_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="1131,815,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click ="ButtonReset_Click" FontWeight="Bold" Content="RESET" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
             <Button Click="ButtonTotal_Click" Content="SUBTOTAL" FontWeight="Bold" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
 
@@ -160,17 +151,15 @@
                     </Grid>
                 </TabItem>
                 <TabItem   Header="Invoice" Name="tab2">
-
-                    <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
-                        <FlowDocumentReader>
-                            <FlowDocument Name="flowDocument">
-                                <!--<TextBox  Name="TBoxInvoice" TextWrapping="Wrap" Margin="0,0,0,0"/>-->
+                    <FlowDocumentScrollViewer Name="fdViewer">
+                        <!--<FlowDocument Name="flowDocument">-->
+                        <!--<TextBox  Name="TBoxInvoice" TextWrapping="Wrap" Margin="0,0,0,0"/>-->
+                        <!--
                                 <Paragraph x:Name="TBoxInvoice" FontSize="20"
                                            FontWeight="Bold"></Paragraph>
-                                <Paragraph FontSize="15">This is sample text to be printed.</Paragraph>
-                            </FlowDocument>
-                        </FlowDocumentReader>
-                    </ScrollViewer>
+                                <Paragraph FontSize="15">This is sample text to be printed.</Paragraph>-->
+                        <!--</FlowDocument>-->
+                    </FlowDocumentScrollViewer>
                 </TabItem>
 
             </TabControl>
