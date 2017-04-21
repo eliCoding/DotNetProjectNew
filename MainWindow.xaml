@@ -82,7 +82,7 @@
             <Button Click="ButtonAdd_Click" FontWeight="Bold" Content="ADD PRODUCT" HorizontalAlignment="Left" Margin="710,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click="ButtonDelete_Click" FontWeight="Bold" Content="DELETE PRODUCT" HorizontalAlignment="Left" Margin="914,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonChekOut_Click" FontWeight="Bold" Content="CHECKOUT" HorizontalAlignment="Left" Margin="914,814,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
-            <Button Click="ButtonPrint_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="1131,815,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
+            <Button  Click="Button_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="1131,815,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click ="ButtonReset_Click" FontWeight="Bold" Content="RESET" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
             <Button Click="ButtonTotal_Click" Content="SUBTOTAL" FontWeight="Bold" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
 
@@ -155,23 +155,25 @@
 
                                 </GridView>
                             </ListView.View>
-                         
+
                         </ListView>
                     </Grid>
                 </TabItem>
                 <TabItem   Header="Invoice" Name="tab2">
-                    <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
-                        <TextBlock  x:Name="TBoxInvoice" TextWrapping="Wrap" Margin="0,0,0,0"/>
-                    </ScrollViewer>
 
+                    <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
+                        <FlowDocumentReader>
+                            <FlowDocument Name="flowDocument">
+                                <!--<TextBox  Name="TBoxInvoice" TextWrapping="Wrap" Margin="0,0,0,0"/>-->
+                                <Paragraph x:Name="TBoxInvoice" FontSize="20"
+                                           FontWeight="Bold"></Paragraph>
+                                <Paragraph FontSize="15">This is sample text to be printed.</Paragraph>
+                            </FlowDocument>
+                        </FlowDocumentReader>
+                    </ScrollViewer>
                 </TabItem>
 
-
-
-
-
             </TabControl>
-
 
             <Label Content="Beer" HorizontalAlignment="Left" Margin="767,152,0,0" VerticalAlignment="Top" Width="52" FontWeight="Bold" FontSize="15"/>
             <Label Content="Dessert" HorizontalAlignment="Left" Margin="981,152,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold" />

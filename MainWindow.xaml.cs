@@ -251,7 +251,10 @@ namespace PointOfSaleManagementSys
            itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
 
            itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
- 
+
+
+           
+
        
            try
            {
@@ -269,10 +272,9 @@ namespace PointOfSaleManagementSys
                     string [] s = File.ReadAllLines(path);
                     for (int i = 0; i < s.Length; i++)
                     {
-                        TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
+           //         TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
                     }
                         
-                 
                 }
            
                
@@ -287,10 +289,26 @@ namespace PointOfSaleManagementSys
                 }
                
             }
-          
-         
-
         }
+
+        private void InvokePrint(object sender, RoutedEventArgs e)
+        {
+            // Create the print dialog object and set options
+            PrintDialog pDialog = new PrintDialog();
+            pDialog.PageRangeSelection = PageRangeSelection.AllPages;
+            pDialog.UserPageRangeEnabled = true;
+
+            // Display the dialog. This returns true if the user presses the Print button.
+            Nullable<Boolean> print = pDialog.ShowDialog();
+            if (print == true)
+            {
+                XpsDocument xpsDocument = new XpsDocument("C:\\FixedDocumentSequence.xps", FileAccess.ReadWrite);
+                FixedDocumentSequence fixedDocSeq = xpsDocument.GetFixedDocumentSequence();
+                pDialog.PrintDocument(fixedDocSeq.DocumentPaginator, "Test print job");
+            }
+        }
+
+
 
         private void ButtonTotal_Click(object sender, RoutedEventArgs e)
         {
@@ -316,6 +334,20 @@ namespace PointOfSaleManagementSys
             PaidTextBox.Text = String.Format("{0:C}", total); 
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog pd = new PrintDialog();
+            if (pd.ShowDialog() != true) return;
+
+            flowDocument.PageHeight = pd.PrintableAreaHeight;
+            flowDocument.PageWidth = pd.PrintableAreaWidth;
+
+            IDocumentPaginatorSource idocument = flowDocument as IDocumentPaginatorSource;
+
+            pd.PrintDocument(idocument.DocumentPaginator, "Printing Flow Document...");
+        }
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

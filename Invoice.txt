@@ -4,28 +4,16 @@ Mike & Elmira's Company
 Address:
 JOhn Abbot College
 Phone: 514- 543 74 89
-INVOICE NO:  		 Date: Thursday, April 20, 2017
+INVOICE NO:  		 Date: April 21, 2017
 =============================
-Product Name: Green Tea
+Product Name: Steak
   Quantity: 1
-  Unit Price: $2.00
-
-Product Name: Cafe Latte
-  Quantity: 1
-  Unit Price: $3.00
-
-Product Name: Cappucino
-  Quantity: 1
-  Unit Price: $3.00
-
-Product Name: Riesling
-  Quantity: 1
-  Unit Price: $12.00
+  Unit Price: $19.00
 
 ====================
-Tax:  $3.00
-Balance:  $20.00
-Paid:  $20.00
+Tax:  $2.85
+Balance:  $19.00
+Paid:  $19.00
 Method Of Payment:  CASH
 *****************************
 Thank you for Shoping at Mike & Elmira's Company
