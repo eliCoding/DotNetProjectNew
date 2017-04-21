@@ -53,9 +53,9 @@
                             </Setter>
                         </Style>
                     </TabControl.Resources>
-                    <TabItem Header="In Stock" Name="tab1" FontSize="23" FontWeight="SemiBold">
+                    <TabItem Header="In Stock" Name="tab1" FontSize="20">
                         <Grid Margin="0,0,-21,0">
-                            <ListView Name="LvItems" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" FontWeight="Bold" >
+                            <ListView Name="LvItems" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"  >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
@@ -77,9 +77,9 @@
                             </ListView>
                         </Grid>
                     </TabItem>
-                    <TabItem   Header="Order" Name="tab2" FontSize="23" FontWeight="SemiBold">
+                    <TabItem   Header="Order" Name="tab2" FontSize="20" >
                         <Grid Margin="0,0,-21,0">
-                            <ListView Name="LvOrders" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" FontWeight="Bold" >
+                            <ListView Name="LvOrders" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"  >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
@@ -105,9 +105,9 @@
 
 
                     </TabItem>
-                    <TabItem   Header="Employee" Name="tab3" FontSize="23" FontWeight="SemiBold">
+                    <TabItem   Header="Employee" Name="tab3" FontSize="20" >
                         <Grid Margin="0,0,-21,0">
-                            <ListView Name="LvEmployee" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" FontWeight="Bold" >
+                            <ListView Name="LvEmployee" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"  >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
