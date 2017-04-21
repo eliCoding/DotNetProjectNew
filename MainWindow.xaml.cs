@@ -24,9 +24,7 @@ namespace PointOfSaleManagementSys
     public partial class MainWindow : Window
     {
 
-       
-
-       
+          
       
         Database db;
         public int IdOfCategory;
@@ -42,9 +40,7 @@ namespace PointOfSaleManagementSys
                     {0,0,0,0,0,0},{0,0,0,0,0,0},};
       
 
-       
-
-    
+          
 
         List<Shopping> shoppingList = new List<Shopping>();
 
@@ -186,6 +182,18 @@ namespace PointOfSaleManagementSys
             int Id = 1;
             db.DeleteOrderById(Id);
             RefreshShoppingList();
+            TBoxInvoice.Text = "";
+            totalTaxCost.Clear();
+            PaidTextBox.Clear();
+            BalancePriceTb.Clear();
+
+            int nIndex = TabControl.SelectedIndex - 1;
+            if (nIndex < 1)
+            {
+                nIndex = TabControl.Items.Count - 1;
+            }
+            TabControl.SelectedIndex = nIndex;
+            
 
         }
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
@@ -232,10 +240,10 @@ namespace PointOfSaleManagementSys
             TabControl.SelectedIndex = nIndex;
 
             string theDate = dpDate.Text;
-                //.ToString("yyyy-MM-dd");
-           string itemPurchasedInfo ="";
-           itemPurchasedInfo ="=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "JOhn Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO:  \t\t Date: "+theDate+ "\r\n=============================" + "\r\n";
-           //string theDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            string invoiceNo = Convert.ToString(dpDate.SelectedDate.Value.Month + dpDate.SelectedDate.Value.Day);               
+            string itemPurchasedInfo ="";
+           itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "John Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO: " + invoiceNo + "\t\t" + "Date: " + theDate + "\r\n=============================" + "\r\n";
+           
           
             for (int i = 0; i < LvShopping.Items.Count; i++)
             {
@@ -250,7 +258,7 @@ namespace PointOfSaleManagementSys
            itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";
            itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
 
-           itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
+           itemPurchasedInfo += "\r\n" + "********************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
  
        
            try
@@ -304,15 +312,16 @@ namespace PointOfSaleManagementSys
                 int i = l.ProductId - categoryId * 6 - 1;
                 string name = ProductName[categoryId, i];
                 Counts[categoryId, i] = l.Quantity;
-                decimal subtaotal = l.Quantity * l.UnitPrice;
-                total = total + subtaotal;
-                decimal tax = subtaotal * 0.15m;
+                decimal subtotal = l.Quantity * l.UnitPrice;
+                total = total + subtotal;
+                decimal tax = subtotal * 0.15m;
                 totalTax = totalTax + tax;
-                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
+                total = total + tax;
+                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtotal, tax);
                 LvShopping.Items.Add(s);
             }
             totalTaxCost.Text = String.Format("{0:C}", totalTax);
-            BalancePriceTb.Text = String.Format("{0:C}", total);
+            BalancePriceTb.Text = String.Format("{0:C}",total);
             PaidTextBox.Text = String.Format("{0:C}", total); 
 
         }
