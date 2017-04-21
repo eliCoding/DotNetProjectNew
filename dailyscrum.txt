@@ -223,6 +223,32 @@ WHERE I NEED HELP IS
 
 
 
+--- Apr. 21 Mike
+
+DID SINCE LAST SCRUM:
+1) Implimented Print 
+
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Inventory Management Console
+2)Drag and Drop
+
+WHERE I NEED HELP IS
+1)
+
+
+
+Weekend Scrum : 
+
+WILL DO: drag and drop
+         console management
+
+
+
+
+
+
 
 
 

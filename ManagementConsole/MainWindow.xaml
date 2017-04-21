@@ -53,7 +53,7 @@
                             </Setter>
                         </Style>
                     </TabControl.Resources>
-                    <TabItem Header="In Stock" Name="tab1" FontSize="20">
+                    <TabItem Header="In Stock" Name="tab1" FontSize="20" HorizontalAlignment="Left" Width="99">
                         <Grid Margin="0,0,-21,0">
                             <ListView Name="LvItems" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"  >
                                 <ListView.Background>
@@ -63,12 +63,14 @@
                                 <ListView.View >
                                     <GridView>
                                         <GridViewColumn  Header="ID" Width="40"  />
-                                        <GridViewColumn Header="Product" Width="100" />
-                                        <GridViewColumn Header="Qty" Width="50"   />
-                                        <GridViewColumn Header="Sale Price" Width="120" />
-                                        <GridViewColumn Header="Purchase Price" Width="140"    />
-                                        <GridViewColumn Header="Discount" Width="120"   />
-                                        <GridViewColumn Header="Vendor" Width="120"  />
+                                        <GridViewColumn Header="Categoty ID" Width="110" />
+                                        <GridViewColumn Header="Product Name" Width="130"   />
+                                        <GridViewColumn Header="Unit Price" Width="90" />
+                                        <GridViewColumn Header="Sale Price" Width="100"    />
+                                        <GridViewColumn Header="unit In Stock" Width="110"   />
+                                        <GridViewColumn Header="Vendor" Width="100"  />
+                                        <GridViewColumn Header="Vendor Address" Width="150"  />
+
                                         <GridViewColumn Header="Expiry" Width="110"   />
 
                                     </GridView>
