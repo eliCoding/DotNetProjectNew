@@ -206,6 +206,46 @@ WHERE I NEED HELP IS
 2) chart
 
 
+--- Apr. 21 Elmira
+
+DID SINCE LAST SCRUM:
+1) Implimented Invoice 
+2) Implemented INventory Management Design
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Unit Testing
+2)Inventory Management classes and data base
+
+WHERE I NEED HELP IS
+1)
+
+
+
+
+--- Apr. 21 Mike
+
+DID SINCE LAST SCRUM:
+1) Implimented Print 
+
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Inventory Management Console
+2)Drag and Drop
+
+WHERE I NEED HELP IS
+1)
+
+
+
+Weekend Scrum : 
+
+WILL DO: drag and drop
+         console management
+
+
+
 
 
 
