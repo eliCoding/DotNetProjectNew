@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ManagementConsole
 {
-    class Order
+    class InStock
     {
+
+
     }
 }

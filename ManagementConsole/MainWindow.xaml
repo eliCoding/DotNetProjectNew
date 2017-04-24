@@ -205,9 +205,10 @@
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal">
 
-            <Button FontWeight="Bold" FontSize="25" Content="Delete" Width="362"/>
-            <Button FontWeight="Bold" FontSize="25" Content="Edit" Width="362"/>
-            <Button FontWeight="Bold" FontSize="25" Content="Print" Width="377"/>
+            <Button Click="ButtonDelete_Click" FontWeight="Bold" FontSize="25" Content="Delete" Width="284"/>
+            <Button Click="ButtonEdit_Click"  FontWeight="Bold" FontSize="25" Content="Edit" Width="284"/>
+            <Button Click="ButtonPrint_Click" FontWeight="Bold" FontSize="25" Content="Print" Width="284"/>
+            <Button Click="ButtonAdd_Click" Content="Add" Width="244" FontWeight="Bold" FontSize="25"/>
         </StackPanel>
     </Grid>
 </Window>
