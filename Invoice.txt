@@ -4,31 +4,16 @@ Mike & Elmira's Company
 Address:
 John Abbot College
 Phone: 514- 543 74 89
-<<<<<<< HEAD
-INVOICE NO:  		 Date: April 21, 2017
+INVOICE NO: 26		Date: April 22, 2017
 =============================
-Product Name: Steak
+Product Name: Hot Chocolate
   Quantity: 1
-  Unit Price: $19.00
-
-====================
-Tax:  $2.85
-Balance:  $19.00
-Paid:  $19.00
-Method Of Payment:  CASH
-*****************************
-=======
-INVOICE NO: 25		Date: Friday, April 21, 2017
-=============================
-Product Name: Alexander keith
-  Quantity: 5
   Unit Price: $3.00
 
 ====================
-Tax:  $2.25
-Balance:  $17.25
-Paid:  $17.25
-Method Of Payment:  CREDIT CART
-********************************
->>>>>>> 06059534e7b98fdc28b3876e11af1fae46aab218
+Tax:  $0.45
+Balance:  $3.00
+Paid:  $3.00
+Method Of Payment:  CASH
+*****************************
 Thank you for Shoping at Mike & Elmira's Company

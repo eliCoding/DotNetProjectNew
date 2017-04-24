@@ -13,16 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagementConsole
+namespace PointOfSaleManagementSys.ManagementConsole
 {
+    //PointOfSaleManagementSys.Database db1;
+    ////PointOfSaleManagementSys.PrintInvoice pi;
+    ////public int IdOfCategory;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+
         public MainWindow()
         {
-            InitializeComponent();
+            //db1 = new PointOfSaleManagementSys.Database();
+            
+            //InitializeComponent();
         }
     }
 }
