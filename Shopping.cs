@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSaleManagementSys
 {
-    class Shopping
+    public class Shopping
     {
         private int _id;
         private string _productName;

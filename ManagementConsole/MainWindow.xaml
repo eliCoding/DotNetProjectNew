@@ -18,14 +18,14 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1"
-          Grid.Column="0"
-          Background="#ECBEB4" Margin="0,83,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="396" VerticalAlignment="Top" >
+              Grid.Column="0"
+              Background="#ECBEB4" Margin="0,83,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="396" VerticalAlignment="Top" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="23*"/>
                 <ColumnDefinition Width="250*"/>
             </Grid.ColumnDefinitions>
             <GroupBox  FontWeight="SemiBold" FontSize="32" Header="Inventory" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Height="364" Width="1012" Grid.ColumnSpan="2">
-                <TabControl Name="TabControl" BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="283" Margin="10,10,0,0" VerticalAlignment="Top" Width="965">
+                <TabControl Name="TabControlConsole" BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="283" Margin="10,10,0,0" VerticalAlignment="Top" Width="965">
 
 
                     <TabControl.Resources>
@@ -35,10 +35,10 @@
                                     <ControlTemplate TargetType="TabItem">
                                         <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
                                             <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="10,2"/>
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"
+                                                              ContentSource="Header"
+                                                              Margin="10,2"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsSelected" Value="True">
@@ -55,24 +55,26 @@
                     </TabControl.Resources>
                     <TabItem Header="In Stock" Name="tab1" FontSize="20" HorizontalAlignment="Left" Width="99">
                         <Grid Margin="0,0,-21,0">
-                            <ListView Name="LvItems" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="17*"/>
+                                <ColumnDefinition Width="105*"/>
+                            </Grid.ColumnDefinitions>
+                            <ListView Name="LvItems" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Grid.ColumnSpan="2"  >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
 
                                 <ListView.View >
                                     <GridView>
-                                        <GridViewColumn  Header="ID" Width="40"  />
-                                        <GridViewColumn Header="Categoty ID" Width="110" />
-                                        <GridViewColumn Header="Product Name" Width="130"   />
-                                        <GridViewColumn Header="Unit Price" Width="90" />
-                                        <GridViewColumn Header="Sale Price" Width="100"    />
-                                        <GridViewColumn Header="unit In Stock" Width="110"   />
-                                        <GridViewColumn Header="Vendor" Width="100"  />
-                                        <GridViewColumn Header="Vendor Address" Width="150"  />
-
-                                        <GridViewColumn Header="Expiry" Width="110"   />
-
+                                        <GridViewColumn  Header="ID" Width="40" DisplayMemberBinding="{Binding Path=Id}" />
+                                        <GridViewColumn Header="Categoty ID" Width="110" DisplayMemberBinding="{Binding Path=CategoryId}" />
+                                        <GridViewColumn Header="Product Name" Width="130"  DisplayMemberBinding="{Binding Path=ProductName}" />
+                                        <GridViewColumn Header="Unit Price" Width="90" DisplayMemberBinding="{Binding Path=UnitPrice}"/>
+                                        <GridViewColumn Header="Sale Price" Width="100"   DisplayMemberBinding="{Binding Path=SalePrice}"  />
+                                        <GridViewColumn Header="Unit In Stock" Width="110"  DisplayMemberBinding="{Binding Path=Quantity}"  />
+                                        <GridViewColumn Header="Vendor" Width="100" DisplayMemberBinding="{Binding Path=Vendor}"  />
+                                        <GridViewColumn Header="Vendor Address" Width="150" DisplayMemberBinding="{Binding Path=VendorAddress}"  />
+                                        <GridViewColumn Header="Expiry" Width="110"  DisplayMemberBinding="{Binding Path=ExpiryDate}"  />
                                     </GridView>
                                 </ListView.View>
 
@@ -81,24 +83,24 @@
                     </TabItem>
                     <TabItem   Header="Order" Name="tab2" FontSize="20" >
                         <Grid Margin="0,0,-21,0">
-                            <ListView Name="LvOrders" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="235*"/>
+                                <ColumnDefinition Width="741*"/>
+                            </Grid.ColumnDefinitions>
+                            <ListView Name="LvOrders" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="953" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Grid.ColumnSpan="2"  >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
 
                                 <ListView.View >
                                     <GridView>
-                                        <GridViewColumn  Header="ID" Width="40"  />
-                                        <GridViewColumn Header="Employee ID" Width="100" />
-                                        <GridViewColumn Header="Order Date" Width="100"   />
-                                        <GridViewColumn Header="Customer ID" Width="100" />
-                                        <GridViewColumn Header="Purchase Price" Width="125"    />
-                                        <GridViewColumn Header="Order Status" Width="110"   />
-                                        <GridViewColumn Header="Discount" Width="90"  />
-                                        <GridViewColumn Header="Payment method" Width="140"  />
-                                        <GridViewColumn Header="Discount" Width="80"  />
-                                        <GridViewColumn Header="Total" Width="60"   />
-
+                                        <GridViewColumn Header="Order ID" Width="100"  DisplayMemberBinding="{Binding Path=OrderId}"/>
+                                        <GridViewColumn Header="Employee ID" Width="100" DisplayMemberBinding="{Binding Path=EmpId}"/>
+                                        <GridViewColumn Header="Order Date" Width="160"  DisplayMemberBinding="{Binding Path=OrderDate}" />
+                                        <GridViewColumn Header="Customer ID" Width="120" DisplayMemberBinding="{Binding Path=CustomerId}" />
+                                        <GridViewColumn Header="Total Price" Width="140"  DisplayMemberBinding="{Binding Path=TotalPrice}"   />
+                                        <GridViewColumn Header="Payment method" Width="140" DisplayMemberBinding="{Binding Path=PaymentMethod}"  />
+                                        <GridViewColumn Header="Invoice Number" Width="200" DisplayMemberBinding="{Binding Path=InvoiceNr}"  />
                                     </GridView>
                                 </ListView.View>
 
@@ -116,13 +118,11 @@
 
                                 <ListView.View >
                                     <GridView>
-                                        <GridViewColumn  Header="ID" Width="100"  />
-                                        <GridViewColumn Header="First Name" Width="220" />
-                                        <GridViewColumn Header="Last Name" Width="240"   />
-                                        <GridViewColumn Header="User Name" Width="200" />
-                                        <GridViewColumn Header="Pass Word" Width="200"    />
-
-
+                                        <GridViewColumn  Header="ID" Width="100" DisplayMemberBinding="{Binding Path=Id}"/>
+                                        <GridViewColumn Header="First Name" Width="220" DisplayMemberBinding="{Binding Path=FirstName}" />
+                                        <GridViewColumn Header="Last Name" Width="240"  DisplayMemberBinding="{Binding Path=LastName}"  />
+                                        <GridViewColumn Header="User Name" Width="200" DisplayMemberBinding="{Binding Path=UserName}" />
+                                        <GridViewColumn Header="Pass Word" Width="200"   DisplayMemberBinding="{Binding Path=PSword}" />
                                     </GridView>
                                 </ListView.View>
 
@@ -147,9 +147,9 @@
         </Grid>
 
         <Grid
-          Grid.Column="0"
-          Grid.ColumnSpan="2"
-          Background="#7EB09B" Margin="0,54,0,156.5" Grid.RowSpan="2" >
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Background="#7EB09B" Margin="0,54,0,156.5" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="257*"/>
@@ -169,7 +169,7 @@
                     <StackPanel Margin="0,0,222,0">
                         <StackPanel.Resources>
                             <Style TargetType="Calendar"
-           x:Key="DateTimeCalendar">
+                                   x:Key="DateTimeCalendar">
                                 <Setter Property="Background" Value="White"/>
                                 <Setter Property="BorderBrush" Value="LightYellow"/>
                                 <Setter Property="BorderThickness" Value="5"/>
@@ -177,10 +177,10 @@
 
                         </StackPanel.Resources>
                         <DatePicker x:Name="dpDate" Background="LightPink"
-              CalendarStyle="{StaticResource DateTimeCalendar}" SelectedDateFormat="Long" SelectedDate="{x:Static sys:DateTime.Now}" FontWeight="SemiBold"
+                                    CalendarStyle="{StaticResource DateTimeCalendar}" SelectedDateFormat="Long" SelectedDate="{x:Static sys:DateTime.Now}" FontWeight="SemiBold"
                                     
-                  DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
-                  FirstDayOfWeek="Monday" HorizontalAlignment="Left" Margin="490,92,-353,0" VerticalAlignment="Top" Width="383" Height="63" RenderTransformOrigin="0.373,0.476"/>
+                                    DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
+                                    FirstDayOfWeek="Monday" HorizontalAlignment="Left" Margin="490,92,-353,0" VerticalAlignment="Top" Width="383" Height="63" RenderTransformOrigin="0.373,0.476"/>
                     </StackPanel>
 
 
@@ -194,20 +194,21 @@
 
 
         <Grid Grid.Row="0"
-          Grid.Column="0"
-          Grid.ColumnSpan="2"
-          Background="#519E8A" Margin="0,0,0,186" >
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Background="#519E8A" Margin="0,0,0,186" >
             <Label FontWeight="SemiBold" FontSize="25" Content="INVENTORY MANAGEMENT"  HorizontalAlignment="Left" Margin="368,10,0,0" VerticalAlignment="Top" Height="44" Width="350"/>
 
         </Grid>
 
         <StackPanel Height="50" Grid.Row="3"
-                Grid.ColumnSpan="2"
-                Orientation="Horizontal">
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal">
 
-            <Button FontWeight="Bold" FontSize="25" Content="Delete" Width="362"/>
-            <Button FontWeight="Bold" FontSize="25" Content="Edit" Width="362"/>
-            <Button FontWeight="Bold" FontSize="25" Content="Print" Width="377"/>
+            <Button Click="ButtonDelete_Click" FontWeight="Bold" FontSize="25" Content="Delete" Width="284"/>
+            <Button Click="ButtonEdit_Click"  FontWeight="Bold" FontSize="25" Content="Edit" Width="284"/>
+            <Button Click="ButtonPrint_Click" FontWeight="Bold" FontSize="25" Content="Print" Width="284"/>
+            <Button Click="ButtonAdd_Click" Content="Add" Width="244" FontWeight="Bold" FontSize="25"/>
         </StackPanel>
     </Grid>
 </Window>

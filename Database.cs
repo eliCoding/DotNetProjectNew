@@ -7,9 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace PointOfSaleManagementSys
 {
-    class Database
+   public class Database
     {
         SqlConnection conn;
 
@@ -98,6 +99,51 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             return result;
         }
 
+        //public List<InStock> GetAllProducts()
+        //{
+        //    List<InStock> result = new List<InStock>();
+        //    using (SqlCommand command = new SqlCommand("SELECT * FROM Products", conn))
+        //    using (SqlDataReader reader = command.ExecuteReader())
+        //    {
+        //        while (reader.Read())
+        //        {
+        //            int Id = (int)reader["productId"];
+        //            int CategoryId = (int)reader["CategoryId"];
+        //            string ProductName = (string)reader["productName"];
+        //            decimal UnitPrice = (decimal)reader["unitPrice"];
+        //            decimal SalePrice  = (decimal)reader["PurchasedPrice"];
+        //            DateTime orderDate = (DateTime)reader["orderDate"];
+        //            int customerId = (int)reader["customerId"];
+                   
+        //            string paymentMethod = (string)reader["paymentMethod"];
+        //            int invoiceNr = (int)reader["invoiceNr"];
+        //            Order o = new Order(orderId, empId, orderDate, customerId, totalPrice, paymentMethod, invoiceNr);
+        //            result.Add(o);
+        //        }
+        //    }
+        //    return result;
+        //    }
+
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> result = new List<Employee>();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Employees", conn))
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {   
+                    int empId = (int)reader["empId"];
+                    string firstName = (string)reader["firstName"];
+                    string lastName = (string)reader["lastName"];
+                    string userName = (string)reader["userName"];
+                    string PSword = (string)reader["PSword"];
+                    Employee ep = new Employee(empId, firstName, lastName, userName, PSword);
+                    result.Add(ep);
+                }
+            }
+            return result;
+        }
+
         public int MaxOrderId()
         {
             int maxOrderId = 0;
@@ -111,8 +157,6 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
             return maxOrderId;
         }
-
-
         public void AddOrder(Order o)
         {
             string sql = "INSERT INTO Orders (orderId, empId, orderDate,customerId, totalPrice, paymentMethod, invoiceNr) VALUES (@orderId, @empId, @orderDate, @customerId, @totalPrice, @paymentMethod, @invoiceNr)";
@@ -152,8 +196,6 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
         }
-
-
 
         public void DeleteOrderListById(int Id)
         {
@@ -201,6 +243,40 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
             return false;
         }
+
+        public void AddEmployee(Employee e)
+        {
+            string sql = "INSERT INTO Employees (FirstName, LastName, Username, PSword) VALUES (@firstName, @lastName, @userName, @pSword)";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add("@firstName", SqlDbType.Text).Value = e.FirstName;
+            cmd.Parameters.Add("@lastName", SqlDbType.Text).Value = e.LastName;
+            cmd.Parameters.Add("@userName", SqlDbType.Text).Value = e.UserName;
+            cmd.Parameters.Add("@pSword", SqlDbType.Text).Value = e.PSword;
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+        }
+
+        public string ValidPassword(string username, string password)
+        {
+            //using (SqlCommand command = new SqlCommand("select * from Employees WHERE username='" + username + "' and psword='" + password+"'", conn))
+            //   string sql = "SELECT * FROM Employees username=`" + username + "` and psword=`" + password + "`";
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Employees where username='" + username + "' and psword='" + password + "'", conn))
+                //    using (SqlCommand command = new SqlCommand("SELECT * FROM Employees where username='mikeyu'  and psword='monk6500'", conn))
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    string name = (string)reader["FirstName"];
+                    Console.WriteLine(name);
+                    return name;
+                }
+                return "you are wrong!!!";
+            }
+        }
+
+
 
     }
 }

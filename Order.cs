@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSaleManagementSys
 {
-    class Order
+    public class Order
     {
         private int _orderId;
         private int _empId;

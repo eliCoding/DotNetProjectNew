@@ -60,7 +60,6 @@
                   DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
                   FirstDayOfWeek="Monday"  HorizontalAlignment="Left" Margin="438,115,0,0" VerticalAlignment="Top" Height="34" Width="226"/>
                     </StackPanel>
-                    <Button Content="New Order"  HorizontalAlignment="Left" Margin="353,183,0,0" VerticalAlignment="Top" Width="196" Height="32" Click="Button_NewOrder"/>
                 </Grid>
             </Grid>
 
@@ -69,7 +68,7 @@
             <Button Click="ButtonChekOut_Click" FontWeight="Bold" Content="CHECKOUT" HorizontalAlignment="Left" Margin="914,814,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click="ButtonInvoice_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="1131,815,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click ="ButtonReset_Click" FontWeight="Bold" Content="RESET/New Order" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
-            <Button Click="ButtonTotal_Click" Content="SUBTOTAL" FontWeight="Bold" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
+            <Button Click="ButtonInventory_Click" Content="Inventory" FontWeight="Bold" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39" FontSize="18" FontFamily="Cooper Std Black"/>
 
             <Button Click="ButtonHotDrink_Click" FontWeight="Bold" Background="Aqua"  BorderBrush="Gainsboro"  HorizontalAlignment="Left" Margin="710,210,0,0" VerticalAlignment="Top" Width="188" Height="134" FontStretch="SemiCondensed" OpacityMask="Black">
                 <Image Source="Images/coffee.jpg" Stretch="UniformToFill"  Height="128" Width="186"/>
@@ -161,12 +160,6 @@
             <Label Content="Hot Drink" HorizontalAlignment="Left" Margin="767,352,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold" />
             <Label Content="Dinner" HorizontalAlignment="Left" Margin="985,352,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
             <Label Content="Wine" HorizontalAlignment="Left" Margin="1196,352,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
-
-
-
-
-
-
 
         </Grid>
 
