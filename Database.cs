@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PointOfSaleManagementSys
 {
@@ -59,7 +60,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         public List<OrderList> GetAllOrderList(int Id)
         {
             List<OrderList> result = new List<OrderList>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM OrderList where orderId="+Id, conn))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM OrderList where orderId=" + Id, conn))
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -171,6 +172,34 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                 cmd.Parameters.AddWithValue("@Id", Id);
                 cmd.ExecuteNonQuery();
             }
+        }
+        public void DeductProductById(int Id, int quantity)
+        {
+            using (SqlCommand cmd = new SqlCommand(
+                "UPDATE products SET unitinstock = unitinstock-@quantity WHERE productId=@productId", conn))
+            {
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = Id;
+                cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = quantity;
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public Boolean ProductStockById(int Id)
+        {
+            using (SqlCommand cmd = new SqlCommand("SELECT * from products where productId="+Id, conn))
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    int unitinstock = (int)reader["unitinstock"];
+                    int triggerlevel = (int)reader["triggerlevel"];
+                    if (unitinstock <= triggerlevel)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
     }

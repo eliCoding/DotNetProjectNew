@@ -262,11 +262,25 @@ namespace PointOfSaleManagementSys
             FdViewer.Document = doc;
             Order o = new Order(currentOrderId, 1, DateTime.Today, 100, total, ComboCard.Text, invoiceNo);
             db.AddOrder(o);
+            DeductProduct();
             currentOrderId++;
             TabControl.SelectedIndex = 1;
             total = 0.0m;
         }
 
+        private void DeductProduct()
+        {
+            for (int i = 0; i < LvShopping.Items.Count; i++)
+            {
+                Shopping s = (Shopping)LvShopping.Items[i];
+                db.DeductProductById(s.ID, s.Quantity);
+                if (db.ProductStockById(s.ID))
+                {
+                    MessageBox.Show(s.ProductName+ " needs reload !!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            
+        }
         private void ButtonTotal_Click(object sender, RoutedEventArgs e)
         {
             LvShopping.Items.Clear();
