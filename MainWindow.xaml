@@ -3,8 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Point of Sale " Height="900" Width="1350"   Closing="Window_Closing" >
+<<<<<<< HEAD
 
     
+=======
+    <Viewbox>
+>>>>>>> 6236c628d3702cb1fab4f8ee9f4ab2cdb1a33e79
         <Grid Width="auto" Height="900">
             <Grid Width="670" Margin="0,10,629,0">
                 <!--   <Grid.RowDefinitions>
@@ -12,16 +16,14 @@
                     <RowDefinition Height="5" />
                     <RowDefinition Height="*"  MinHeight="240"/>
                 </Grid.RowDefinitions>-->
-
-  
-
+                <!--Drop="DropList_Drop"   DragEnter="DropList_DragEnter"  AllowDrop="True"-->
                 <ListView Grid.Row="0" Name="LvShopping" Background="LightYellow" 
                           VerticalAlignment="Top" Width="674" Height="557" Margin="-14,23,0,0" FontWeight="Bold"  Grid.RowSpan="3" MouseDoubleClick="LvShopping_MouseDoubleClick" >
-                   <ListView.ItemContainerStyle>
+                    <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                         </Style>
-                    </ListView.ItemContainerStyle>     
+                    </ListView.ItemContainerStyle>
                     <ListView.View >
                         <GridView >
                             <GridViewColumn  Header="ID" Width="50" DisplayMemberBinding="{Binding Path=ID}" />
@@ -36,52 +38,42 @@
                 </ListView>
                 <!--   <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Background="Red" Margin="0,55.2,0,327" />-->
 
-                <Grid Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="-9,0,0,36" VerticalAlignment="Bottom" Width="674" >
+                <Grid Background="Bisque" HorizontalAlignment="Left" Height="245" Margin="-9,0,0,34" VerticalAlignment="Bottom" Width="674" >
                     <Label FontWeight="Black" Content="TAX $" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.46,0.185" Height="38" Width="51"/>
                     <Label  FontWeight="Black" Content="PAID $" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
                     <Label  FontWeight="Black" Content="TYPE" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
+                    <Label  FontWeight="Black" Content="BALANCE$" HorizontalAlignment="Left" Margin="371,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
+                    <TextBox  Name="BalancePriceTb" HorizontalAlignment="Left" Height="38" Margin="438,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
+
                     <TextBox  FontSize="14" FontWeight="ExtraBlack" Name="totalTaxCost"  HorizontalAlignment="Left" Height="38" Margin="61,35,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="226"/>
-                    <TextBox FontSize="14" FontWeight="ExtraBlack"   Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
+                    <TextBox FontSize="14" FontWeight="ExtraBlack"  Name="PaidTextBox"  HorizontalAlignment="Left" Height="38" Margin="61,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" />
 
-
-                    <Label  FontWeight="Black" Content="BALANCE $" HorizontalAlignment="Left" Margin="364,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.854,0.885"/>
-                    <TextBox FontSize="14" FontWeight="ExtraBlack"   Name="BalancePriceTb" HorizontalAlignment="Left" Height="38" Margin="438,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
                     <ComboBox Name="ComboCard" FontWeight="Black"  HorizontalAlignment="Left" Margin="61,187,0,0" VerticalAlignment="Top" Width="170">
                         <ComboBoxItem FontWeight="Black" IsSelected="True">CASH</ComboBoxItem>
                         <ComboBoxItem  FontWeight="Black">CREDIT CART</ComboBoxItem>
                     </ComboBox>
                     <StackPanel>
                         <StackPanel.Resources>
-                            <Style TargetType="Calendar"
-           x:Key="DateTimeCalendar">
+                            <Style TargetType="Calendar" x:Key="DateTimeCalendar">
                                 <Setter Property="Background" Value="White"/>
                                 <Setter Property="BorderBrush" Value="LightYellow"/>
                                 <Setter Property="BorderThickness" Value="5"/>
                             </Style>
-
                         </StackPanel.Resources>
                         <DatePicker Name="dpDate" Background="LightPink"
               CalendarStyle="{StaticResource DateTimeCalendar}" SelectedDateFormat="Long" SelectedDate="{x:Static sys:DateTime.Now}" FontWeight="SemiBold"
-                                    
                   DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
-                  FirstDayOfWeek="Monday"  HorizontalAlignment="Left" Margin="438,115,0,0" VerticalAlignment="Top" Height="28" Width="177"/>
+                  FirstDayOfWeek="Monday"  HorizontalAlignment="Left" Margin="438,115,0,0" VerticalAlignment="Top" Height="34" Width="226"/>
                     </StackPanel>
-
-
-
-
-
+                    <Button Content="New Order"  HorizontalAlignment="Left" Margin="353,183,0,0" VerticalAlignment="Top" Width="196" Height="32" Click="Button_NewOrder"/>
                 </Grid>
             </Grid>
-
-
-
 
             <Button Click="ButtonAdd_Click" FontWeight="Bold" Content="ADD PRODUCT" HorizontalAlignment="Left" Margin="710,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button  Click="ButtonDelete_Click" FontWeight="Bold" Content="DELETE PRODUCT" HorizontalAlignment="Left" Margin="914,754,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
             <Button Click="ButtonChekOut_Click" FontWeight="Bold" Content="CHECKOUT" HorizontalAlignment="Left" Margin="914,814,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
-            <Button Click="ButtonPrint_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="1131,815,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
-            <Button  Click ="ButtonReset_Click" FontWeight="Bold" Content="RESET" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
+            <Button  Click="ButtonInvoice_Click" FontWeight="Bold" Content="PRINT INVOICE" HorizontalAlignment="Left" Margin="1131,815,0,0" VerticalAlignment="Top" Width="156" Height="40"/>
+            <Button  Click ="ButtonReset_Click" FontWeight="Bold" Content="RESET/New Order" HorizontalAlignment="Left" Margin="1131,754,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
             <Button Click="ButtonTotal_Click" Content="SUBTOTAL" FontWeight="Bold" HorizontalAlignment="Left" Margin="710,814,0,0" VerticalAlignment="Top" Width="156" Height="39"/>
 
             <Button Click="ButtonHotDrink_Click" FontWeight="Bold" Background="Aqua"  BorderBrush="Gainsboro"  HorizontalAlignment="Left" Margin="710,210,0,0" VerticalAlignment="Top" Width="188" Height="134" FontStretch="SemiCondensed" OpacityMask="Black">
@@ -113,7 +105,6 @@
 
 
             <TabControl Name="TabControl" BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="333" Margin="710,387,0,0" VerticalAlignment="Top" Width="584">
-
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
                         <Setter Property="Template">
@@ -141,11 +132,13 @@
                 </TabControl.Resources>
                 <TabItem Header="Menu" Name="tab1">
                     <Grid>
-                        <ListView Name="LvItems" HorizontalAlignment="Left" Height="304" Margin="0,0,-190,0" VerticalAlignment="Top" Width="584" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" FontWeight="Bold" MouseDoubleClick="LvItems_MouseDoubleClick" >
+                        <!--PreviewMouseMove="List_MouseMove"    PreviewMouseLeftButtonDown="List_PreviewMouseLeftButtonDown"-->
+                        <ListView Name="LvItems" 
+                                  HorizontalAlignment="Left" Height="304" Margin="0,0,-190,0" VerticalAlignment="Top" Width="584" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" FontWeight="Bold" MouseDoubleClick="LvItems_MouseDoubleClick" >
                             <ListView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                             </ListView.Background>
-                            
+
                             <ListView.View >
                                 <GridView>
                                     <GridViewColumn Header="Product Name" Width="310" DisplayMemberBinding="{Binding Path=ProductName}"   />
@@ -154,23 +147,18 @@
 
                                 </GridView>
                             </ListView.View>
-                         
+
                         </ListView>
                     </Grid>
                 </TabItem>
                 <TabItem   Header="Invoice" Name="tab2">
-                    <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
-                        <TextBlock  x:Name="TBoxInvoice" TextWrapping="Wrap" Margin="0,0,0,0"/>
-                    </ScrollViewer>
-
+                    <FlowDocumentScrollViewer x:Name="FdViewer">
+                        <FlowDocument Name="FlowDocument1">
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
                 </TabItem>
 
-
-
-
-
             </TabControl>
-
 
             <Label Content="Beer" HorizontalAlignment="Left" Margin="767,152,0,0" VerticalAlignment="Top" Width="52" FontWeight="Bold" FontSize="15"/>
             <Label Content="Dessert" HorizontalAlignment="Left" Margin="981,152,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold" />

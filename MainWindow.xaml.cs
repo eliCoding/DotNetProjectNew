@@ -23,11 +23,14 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class MainWindow : Window
     {
-
-          
-      
-        Database db;
+        private Database db;
+        // private PrintInvoice pi;
         public int IdOfCategory;
+        public int currentOrderId;
+        public string path = @"..\..\Invoice.txt";
+        decimal total;
+        decimal totalTax;
+
         public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
                                          {0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},};
         public string[,] ProductName =
@@ -38,14 +41,12 @@ namespace PointOfSaleManagementSys
                 {  {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},
                     {0,0,0,0,0,0},{0,0,0,0,0,0},};
-      
-
-          
 
         List<Shopping> shoppingList = new List<Shopping>();
-
+        FlowDocument doc = new FlowDocument();
         public MainWindow()
         {
+            //   pi = new PrintInvoice(); 
             try
             {
                 db = new Database();
@@ -56,14 +57,11 @@ namespace PointOfSaleManagementSys
                 MessageBox.Show("Error opening database connection: " + e.Message);
                 Environment.Exit(1);
             }
-
             InitializeComponent();
             ReadProductPrice();
             RefreshShoppingList();
-            
         }
 
-        
         private void ReadProductPrice()
         {
             for (int i = 0; i < 6; i++)
@@ -77,29 +75,32 @@ namespace PointOfSaleManagementSys
                     Counts[j, i] = 0;
                 }
             }
+            currentOrderId = db.MaxOrderId() + 1;
         }
+
         private void RefreshShoppingList()
         {
             LvShopping.Items.Clear();
-            List<OrderList> list = db.GetAllOrderList();
-            decimal total = 0.0m;
-            decimal totalTax = 0.0m;
-            foreach (OrderList l in list)
+            List<OrderList> list = db.GetAllOrderList(currentOrderId);
+            if (list != null)
             {
-                int categoryId = (l.ProductId - 1) / 6;
-                int i = l.ProductId - categoryId * 6 - 1;
-                string name = ProductName[categoryId, i];
-                Counts[categoryId, i] = l.Quantity;
-                decimal subtaotal = l.Quantity * l.UnitPrice;
-                total = total + subtaotal;
-                decimal tax = subtaotal * 0.15m;
-                totalTax = totalTax + tax;
-                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
-                LvShopping.Items.Add(s);
-            } 
-                               
+                total = 0.0m;
+                totalTax = 0.0m;
+                foreach (OrderList l in list)
+                {
+                    int categoryId = (l.ProductId - 1) / 6;
+                    int i = l.ProductId - categoryId * 6 - 1;
+                    string name = ProductName[categoryId, i];
+                    Counts[categoryId, i] = l.Quantity;
+                    decimal subtaotal = l.Quantity * l.UnitPrice;
+                    total = total + subtaotal;
+                    decimal tax = subtaotal * 0.15m;
+                    totalTax = totalTax + tax;
+                    Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
+                    LvShopping.Items.Add(s);
+                }
+            }
         }
-
 
         private void ButtonBeer_Click(object sender, RoutedEventArgs e)
         {
@@ -136,8 +137,8 @@ namespace PointOfSaleManagementSys
                 LvItems.Items.Add(it);
             }
             IdOfCategory = categoryId;
+            TabControl.SelectedIndex = 0;
         }
-
 
         private void ApplyDataBinding()
         {
@@ -150,7 +151,6 @@ namespace PointOfSaleManagementSys
         {
             List<OrderList> oList = new List<OrderList>();
             int idx = LvItems.SelectedIndex;
-           
             if (idx < 0)
             {
                 MessageBox.Show("Please select Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -161,41 +161,37 @@ namespace PointOfSaleManagementSys
             Counts[IdOfCategory, idx]++;
             int quantity = Counts[IdOfCategory, idx];
             int productId = idx + 1 + 6 * IdOfCategory;
-            OrderList o = new OrderList(1, productId, quantity, unitprice, 0.1m);
-            if (quantity ==1)
+            OrderList ol = new OrderList(currentOrderId, productId, quantity, unitprice, 0.1m);
+            if (quantity == 1)
             {
-                db.AddOrderList(o);
+                db.AddOrderList(ol);
                 RefreshShoppingList();
                 return;
             }
-            db.UpdateOrderList(o);
+            db.UpdateOrderList(ol);
             RefreshShoppingList();
-        }
-
-        private void ButtonPrint_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ButtonReset_Click(object sender, RoutedEventArgs e)
         {
-            int Id = 1;
-            db.DeleteOrderById(Id);
-            RefreshShoppingList();
-            TBoxInvoice.Text = "";
+            TabControl.SelectedIndex = 0;
+            db.DeleteOrderById(currentOrderId);
+            NewClear();
+        }
+
+        private void NewClear()
+        {
+            BalancePriceTb.Text = "";
             totalTaxCost.Clear();
             PaidTextBox.Clear();
             BalancePriceTb.Clear();
-
-            int nIndex = TabControl.SelectedIndex - 1;
-            if (nIndex < 1)
-            {
-                nIndex = TabControl.Items.Count - 1;
-            }
-            TabControl.SelectedIndex = nIndex;
-            
-
+            //TabControl.SelectedIndex = 0;
+            ReadProductPrice();
+            RefreshShoppingList();
+            total = 0.0m;
+            totalTax = 0.0m;
         }
+
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             int index = LvShopping.SelectedIndex;
@@ -210,13 +206,11 @@ namespace PointOfSaleManagementSys
                 int categoryId = (s.ID - 1) / 6;
                 int i = s.ID - categoryId * 6 - 1;
                 Counts[categoryId, i] = s.Quantity - 1;
-               
-                OrderList o = new OrderList(1, s.ID, s.Quantity - 1, s.UnitPrice, 0.1m);
+                OrderList o = new OrderList(currentOrderId, s.ID, s.Quantity - 1, s.UnitPrice, 0.1m);
                 db.UpdateOrderList(o);
                 RefreshShoppingList();
                 return;
             }
-
             try
             {
                 db.DeleteOrderListById(s.ID);
@@ -231,107 +225,100 @@ namespace PointOfSaleManagementSys
 
         private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
         {
-            // Bind Check out Button With Tab COntrol
-            int nIndex = TabControl.SelectedIndex + 1;
-            if (nIndex < 1)
+          //  ButtonTotal_Click(null, null);
+            if (total==0m)
             {
-                nIndex = TabControl.Items.Count + 1;
+                return;
             }
-            TabControl.SelectedIndex = nIndex;
-
+            doc.Blocks.Clear();
             string theDate = dpDate.Text;
-            string invoiceNo = Convert.ToString(dpDate.SelectedDate.Value.Month + dpDate.SelectedDate.Value.Day);               
-            string itemPurchasedInfo ="";
-           itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n" + "=============================" + "\r\n" + "" + "Address:" + "\r\n" + "John Abbot College" + "\r\n" + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO: " + invoiceNo + "\t\t" + "Date: " + theDate + "\r\n=============================" + "\r\n";
-           
-          
+            //.ToString("yyyy-MM-dd");
+            string itemPurchasedInfo = "";
+            string invoiceNoText = Convert.ToString(dpDate.SelectedDate.Value.Year) + Convert.ToString(dpDate.SelectedDate.Value.Month)
+                + Convert.ToString(dpDate.SelectedDate.Value.Day) + Convert.ToString(currentOrderId);
+            int invoiceNo;
+            Int32.TryParse(invoiceNoText, out invoiceNo);
+            itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n"
+                                + "=============================" + "\r\n" + "" + "Address:" + "\r\n" +
+                                "John Abbot College" + "\r\n"
+                                + "Phone: 514- 543 74 89" + "\r\n" + "INVOICE NO: " + invoiceNo + "\t\t" +
+                                "Date: " + theDate + "\r\n"
+                                + "=============================" + "\r\n";
             for (int i = 0; i < LvShopping.Items.Count; i++)
             {
                 Shopping s = (Shopping)LvShopping.Items[i];
-                itemPurchasedInfo += "Product Name: " + s.ProductName + "\r\n  Quantity: " + s.Quantity +
-                    "\r\n  Unit Price: " + String.Format("{0:C}", s.UnitPrice) + "\r\n\r\n";
+                itemPurchasedInfo += "Product Name: " + s.ProductName + "\r\n  Quantity: " + s.Quantity
+                                     + "\r\n  Unit Price: " + String.Format("{0:C}", s.UnitPrice) + "\r\n\r\n";
             }
             itemPurchasedInfo += "====================" + "\r\n";
-
-           itemPurchasedInfo += "Tax:  " + totalTaxCost.Text + "\r\n";
-           itemPurchasedInfo += "Balance:  " + BalancePriceTb.Text + "\r\n";
-           itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";
-           itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
-
-           itemPurchasedInfo += "\r\n" + "********************************" + "\r\n" + "Thank you for Shoping at Mike & Elmira's Company";
- 
-       
-           try
-           {
-             string path = @"..\..\Invoice.txt";
-            System.IO.StreamWriter file = new System.IO.StreamWriter(path);
-            file.WriteLine(itemPurchasedInfo );
-
-                file.Close();
-
-                // Open the file to read from.
-                           
-                using (StreamReader sr = File.OpenText(path))
-                {
-
-                    string [] s = File.ReadAllLines(path);
-                    for (int i = 0; i < s.Length; i++)
-                    {
-                        TBoxInvoice.Text = TBoxInvoice.Text + "\r\n" + s[i];
-                    }
-                        
-                 
-                }
-           
-               
-            }
-            catch (IOException er)
-            {
-                Console.WriteLine(er.StackTrace);
-                MessageBoxResult result = MessageBox.Show("There is an Error in Opening or Finding the File!", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Question);
-                if (result == MessageBoxResult.OK)
-                {
-                    return;
-                }
-               
-            }
-          
-         
-
+            itemPurchasedInfo += "Tax:  " + totalTaxCost.Text + "\r\n";
+            itemPurchasedInfo += "Balance:  " + BalancePriceTb.Text + "\r\n";
+            itemPurchasedInfo += "Paid:  " + PaidTextBox.Text + "\r\n";
+            itemPurchasedInfo += "Method Of Payment:  " + ComboCard.Text;
+            itemPurchasedInfo += "\r\n" + "*****************************" + "\r\n"
+                                 + "Thank you for Shoping at Mike & Elmira's Company";
+            Paragraph p = new Paragraph(new Run(itemPurchasedInfo));
+            doc.Blocks.Add(p);
+            FdViewer.Document = doc;
+            Order o = new Order(currentOrderId, 1, DateTime.Today, 100, total, ComboCard.Text, invoiceNo);
+            db.AddOrder(o);
+            DeductProduct();
+            currentOrderId++;
+            TabControl.SelectedIndex = 1;
+            total = 0.0m;
         }
 
+        private void DeductProduct()
+        {
+            for (int i = 0; i < LvShopping.Items.Count; i++)
+            {
+                Shopping s = (Shopping)LvShopping.Items[i];
+                db.DeductProductById(s.ID, s.Quantity);
+                if (db.ProductStockById(s.ID))
+                {
+                    MessageBox.Show(s.ProductName+ " needs reload !!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            
+        }
         private void ButtonTotal_Click(object sender, RoutedEventArgs e)
         {
             LvShopping.Items.Clear();
-            List<OrderList> list = db.GetAllOrderList();
-            decimal total = 0.0m;
-            decimal totalTax = 0.0m;
+            List<OrderList> list = db.GetAllOrderList(currentOrderId);
+            total = 0.0m;
+            totalTax = 0.0m;
             foreach (OrderList l in list)
             {
                 int categoryId = (l.ProductId - 1) / 6;
                 int i = l.ProductId - categoryId * 6 - 1;
                 string name = ProductName[categoryId, i];
                 Counts[categoryId, i] = l.Quantity;
-                decimal subtotal = l.Quantity * l.UnitPrice;
-                total = total + subtotal;
-                decimal tax = subtotal * 0.15m;
+                decimal subtaotal = l.Quantity * l.UnitPrice;
+                total = total + subtaotal;
+                decimal tax = subtaotal * 0.15m;
                 totalTax = totalTax + tax;
-                total = total + tax;
-                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtotal, tax);
+                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
                 LvShopping.Items.Add(s);
             }
             totalTaxCost.Text = String.Format("{0:C}", totalTax);
-            BalancePriceTb.Text = String.Format("{0:C}",total);
-            PaidTextBox.Text = String.Format("{0:C}", total); 
+            BalancePriceTb.Text = String.Format("{0:C}", total);
+            PaidTextBox.Text = String.Format("{0:C}", total);
+        }
 
+        private void ButtonInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog pd = new PrintDialog();
+            if (pd.ShowDialog() != true) return;
+            doc.PageHeight = pd.PrintableAreaHeight;
+            doc.PageWidth = pd.PrintableAreaWidth;
+            IDocumentPaginatorSource idocument = doc as IDocumentPaginatorSource;
+            pd.PrintDocument(idocument.DocumentPaginator, "Printing Flow Document...");
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            int Id = 1;
-            db.DeleteOrderById(Id);
+            db.DeleteOrderById(currentOrderId);
             RefreshShoppingList();
-        
         }
 
         private void LvItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -345,9 +332,81 @@ namespace PointOfSaleManagementSys
             {
                 ButtonDelete_Click(null, null);
             }
-           
         }
-      
+
+        private void Button_NewOrder(object sender, RoutedEventArgs e)
+        {
+            NewClear();
+        }
+
+
+
+   //     public Point startPoint;
+   //     private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+   //     {
+   //         // Store the mouse position
+   //        startPoint = e.GetPosition(null);
+   //     }
+
+   //     private void List_MouseMove(object sender, MouseEventArgs e)
+   //     {
+   //         // Get the current mouse position
+   //         Point mousePos = e.GetPosition(null);
+   //         Vector diff = startPoint - mousePos;
+
+   //         if (e.LeftButton == MouseButtonState.Pressed &&
+   //             Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+   //             Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
+   //         {
+   //             // Get the dragged ListViewItem
+   //             ListView listView = sender as ListView;
+   //             ListViewItem listViewItem =
+   //                 FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
+
+   //             // Find the data behind the ListViewItem
+   //ItemList contact = (ItemList)listView.ItemContainerGenerator.
+   //ItemFromContainer(listViewItem);
+
+   //             // Initialize the drag & drop operation
+   //     DataObject dragData = new DataObject("myFormat", contact);
+   //             //DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+   //         }
+   //     }
+
+
+   //     private static T FindAnchestor<T>(DependencyObject current)
+   //         where T : DependencyObject
+   //     {
+   //         do
+   //         {
+   //             if (current is T)
+   //             {
+   //                 return (T)current;
+   //             }
+   //             current = VisualTreeHelper.GetParent(current);
+   //         }
+   //         while (current != null);
+   //         return null;
+   //     }
+
+   //     private void DropList_DragEnter(object sender, DragEventArgs e)
+   //     {
+   //         if (!e.Data.GetDataPresent("myFormat") ||
+   //             sender == e.Source)
+   //         {
+   //             e.Effects = DragDropEffects.None;
+   //         }
+   //     }
+
+   //     private void DropList_Drop(object sender, DragEventArgs e)
+   //     {
+   //         if (e.Data.GetDataPresent("myFormat"))
+   //         {
+   //             ItemList contact = e.Data.GetData("myFormat") as ItemList;
+   //             ListView listView1 = sender as ListView;
+   //            // listView.Items.Add(contact);
+   //         }
+   //     }
 
     }
 }

@@ -14,13 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagementConsole
+namespace PointOfSaleManagementSys.ManagementConsole
 {
+    //PointOfSaleManagementSys.Database db1;
+    ////PointOfSaleManagementSys.PrintInvoice pi;
+    ////public int IdOfCategory;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+<<<<<<< HEAD
         Database db;
         public MainWindow()
         {
@@ -100,6 +105,16 @@ namespace ManagementConsole
                         }
                         db.UpdateOrderList(o);
                         RefreshShoppingList();*/
+=======
+
+
+
+        public MainWindow()
+        {
+            //db1 = new PointOfSaleManagementSys.Database();
+            
+            //InitializeComponent();
+>>>>>>> 6236c628d3702cb1fab4f8ee9f4ab2cdb1a33e79
         }
     }
 }

@@ -221,7 +221,20 @@ WHERE I NEED HELP IS
 1)
 
 
+--- Apr. 21 Mike
 
+DID SINCE LAST SCRUM:
+1)impletement of Print Function
+2) started drag and drop
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)printing invoice
+2)work for drag and drop
+
+WHERE I NEED HELP IS
+1)graphic chart
+2) chart
 
 --- Apr. 21 Mike
 
