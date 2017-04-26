@@ -142,5 +142,10 @@ namespace ManagementConsole
 
         }
 
+        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
