@@ -1,0 +1,17 @@
+﻿<Window x:Class="PointOfSaleManagementSys.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TestWindow" MinHeight="300" MinWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Center" MinHeight="504" VerticalAlignment="Center" MinWidth="373"/>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+        <Grid Grid.Column="2" HorizontalAlignment="Center" MinHeight="494" Margin="10,0,0,0" VerticalAlignment="Center" MinWidth="367"/>
+
+
+    </Grid>
+</Window>

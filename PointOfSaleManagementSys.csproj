@@ -66,6 +66,9 @@
     <Compile Include="orderList.cs" />
     <Compile Include="PrintInvoice.cs" />
     <Compile Include="Shopping.cs" />
+    <Compile Include="TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -109,21 +116,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\corona.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\coffee.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Jelly.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\pizza.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\cheese burger.jpg" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\coffee.jpg" />
+    <Resource Include="Images\corona.jpg" />
+    <Resource Include="Images\Jelly.jpg" />
+    <Resource Include="Images\pizza.jpg" />
     <Resource Include="Images\wine.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
