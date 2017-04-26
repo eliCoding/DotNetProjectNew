@@ -126,7 +126,8 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                     string lastName = (string)reader["lastName"];
                     string userName = (string)reader["userName"];
                     string PSword = (string)reader["PSword"];
-                    Employee ep = new Employee(empId, firstName, lastName, userName, PSword);
+                    decimal salary = (decimal) reader["salary"];
+                    Employee ep = new Employee(empId, firstName, lastName, userName, PSword,salary);
                     result.Add(ep);
                 }
             }
@@ -185,13 +186,14 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         public void AddEmployee(Employee e)
         {
-            string sql = "INSERT INTO Employees (FirstName, LastName, Username, PSword) VALUES (@firstName, @lastName, @userName, @pSword)";
+            string sql = "INSERT INTO Employees (FirstName, LastName, Username, PSword, salary) VALUES (@firstName, @lastName, @userName, @pSword,@salary)";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.Add("@firstName", SqlDbType.Text).Value = e.FirstName;
             cmd.Parameters.Add("@lastName", SqlDbType.Text).Value = e.LastName;
             cmd.Parameters.Add("@userName", SqlDbType.Text).Value = e.UserName;
             cmd.Parameters.Add("@pSword", SqlDbType.Text).Value = e.PSword;
+            cmd.Parameters.Add("@salary", SqlDbType.Money).Value = e.Salary;
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
         }

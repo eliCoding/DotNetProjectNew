@@ -111,11 +111,12 @@
                                     </ListView.Background>
                                     <ListView.View >
                                         <GridView>
-                                            <GridViewColumn  Header="Employee ID" Width="120" DisplayMemberBinding="{Binding Path=Id, StringFormat={}{0:      #}}"/>
-                                            <GridViewColumn Header="First Name" Width="220" DisplayMemberBinding="{Binding Path=FirstName}" />
-                                            <GridViewColumn Header="Last Name" Width="240"  DisplayMemberBinding="{Binding Path=LastName}"  />
-                                            <GridViewColumn Header="User Name" Width="200" DisplayMemberBinding="{Binding Path=UserName}" />
-                                            <GridViewColumn Header="Pass Word" Width="200"   DisplayMemberBinding="{Binding Path=PSword}" />
+                                            <GridViewColumn  Header="Employee ID" Width="100" DisplayMemberBinding="{Binding Path=Id, StringFormat={}{0:      #}}"/>
+                                            <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding Path=FirstName, StringFormat={}{0:      #}}" />
+                                            <GridViewColumn Header="Last Name" Width="150"  DisplayMemberBinding="{Binding Path=LastName, StringFormat={}{0:      #}}"  />
+                                            <GridViewColumn Header="User Name" Width="150" DisplayMemberBinding="{Binding Path=UserName, StringFormat={}{0:      #}}" />
+                                            <GridViewColumn Header="Pass Word" Width="150"   DisplayMemberBinding="{Binding Path=PSword, StringFormat={}{0:      #}}" />
+                                            <GridViewColumn Header="Salary" Width="150"   DisplayMemberBinding="{Binding Path=Salary,StringFormat={}{0:$ #.00}}" />
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
