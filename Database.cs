@@ -231,6 +231,15 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                 cmd.ExecuteNonQuery();
             }
         }
+        public void DeleteOrderListByOrderId(int Id)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM orderlist WHERE orderId=@Id", conn))
+            {
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id", Id);
+                cmd.ExecuteNonQuery();
+            }
+        }
         public void DeleteEmployeeById(int Id)
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM employees WHERE empId=@Id", conn))

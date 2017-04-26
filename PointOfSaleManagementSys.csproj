@@ -109,11 +109,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\cheese burger.jpg" />
-    <Resource Include="Images\coffee.jpg" />
     <Resource Include="Images\corona.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\coffee.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\Jelly.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\pizza.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cheese burger.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\wine.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

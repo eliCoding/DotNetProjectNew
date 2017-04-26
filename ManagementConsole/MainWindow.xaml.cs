@@ -23,11 +23,6 @@ namespace ManagementConsole
     public partial class MainWindow : Window
     {
 
-
-
-       
-
-
         private Database db1;
 
         public MainWindow()

@@ -76,6 +76,7 @@ namespace PointOfSaleManagementSys
                 }
             }
             currentOrderId = db.MaxOrderId() + 1;
+         
         }
 
         private void RefreshShoppingList()
@@ -102,7 +103,12 @@ namespace PointOfSaleManagementSys
             }
         }
       
-       
+        //private void ApplyDataBinding()
+        //{
+        //    List<string> itemList = new List<string>();
+        //    // Bind ArrayList with the ListBox
+        //    LvItems.ItemsSource = itemList;
+        //}
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -135,6 +141,7 @@ namespace PointOfSaleManagementSys
         {
             TabControl.SelectedIndex = 0;
             db.DeleteOrderById(currentOrderId);
+            db.DeleteOrderListByOrderId(currentOrderId);
             NewClear();
         }
 
@@ -278,7 +285,8 @@ namespace PointOfSaleManagementSys
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             db.DeleteOrderById(currentOrderId);
-            RefreshShoppingList();
+            db.DeleteOrderListByOrderId(currentOrderId);
+           // RefreshShoppingList();
         }
 
         private void LvItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -311,7 +319,6 @@ namespace PointOfSaleManagementSys
             TabControl.SelectedIndex = 0;
         }
 
-
         private void ButtonBeer_Click(object sender, RoutedEventArgs e)
         {
             ItemList(0);
@@ -338,15 +345,6 @@ namespace PointOfSaleManagementSys
         }
 
 
-     
-
-       
-
-      
-            }
-        }
-
-   
 
    //     public Point startPoint;
    //     private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -415,4 +413,5 @@ namespace PointOfSaleManagementSys
    //         }
    //     }
 
-
+    }
+}
