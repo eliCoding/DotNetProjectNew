@@ -23,11 +23,12 @@ namespace ManagementConsole
     public partial class MainWindow : Window
     {
 
-<<<<<<< HEAD
+
+
         public MainWindow()
         {
 
-=======
+
         private Database db1;
 
         public MainWindow()
@@ -144,7 +145,6 @@ namespace ManagementConsole
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
->>>>>>> 36238fb301d66f49ba4019c45fcb4aaf48a95df9
 
         }
 

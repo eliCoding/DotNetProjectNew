@@ -316,6 +316,7 @@ namespace PointOfSaleManagementSys
             TabControl.SelectedIndex = 0;
         }
 
+
         private void ButtonBeer_Click(object sender, RoutedEventArgs e)
         {
             ItemList(0);
@@ -340,6 +341,7 @@ namespace PointOfSaleManagementSys
         {
             ItemList(5);
         }
+
 
      
 
