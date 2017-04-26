@@ -3,7 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Point of Sale " Height="900" Width="1350"   Closing="Window_Closing" >
+<<<<<<< HEAD
+
+    
+=======
     <Viewbox>
+>>>>>>> 6236c628d3702cb1fab4f8ee9f4ab2cdb1a33e79
         <Grid Width="auto" Height="900">
             <Grid Width="670" Margin="0,10,629,0">
                 <!--   <Grid.RowDefinitions>
@@ -163,6 +168,6 @@
 
         </Grid>
 
-    </Viewbox>
+   
 
 </Window>
