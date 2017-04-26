@@ -236,29 +236,19 @@ WHERE I NEED HELP IS
 1)graphic chart
 2) chart
 
-
-
-
-Weekend Scrum : 
-
-WILL DO: drag and drop
-         console management
-
-
---- Apr. 24 Elmria 
+--- Apr. 21 Mike
 
 DID SINCE LAST SCRUM:
-1) Implemented Console management Design
-2) Implemented Classes for console management
+1) Implimented Print 
 
 
 
 WILL DO IN THE NEXT 24 HOURS
-1)Grid Splitter
-2) Pop up  dialogue for Print
+1)Inventory Management Console
+2)Drag and Drop
 
 WHERE I NEED HELP IS
-1)Grid Splitter
+1)
 
 --- Apr. 24 Mike
 
@@ -266,7 +256,13 @@ DID SINCE LAST SCRUM:
 1) Completed Data base live on POS
 2) share classes between two projects system
 
+Weekend Scrum : 
 
+WILL DO: drag and drop
+         console management
+
+
+<<<<<<< HEAD
 WILL DO IN THE NEXT 24 HOURS
 1) Console management data base connection
 2) Implement Delete, Edit, Print, Add Button in COnsole Management 
@@ -298,14 +294,12 @@ WHERE I NEED HELP IS
 DID SINCE LAST SCRUM:
 1) Completed Data base live on POS
 2) Console management System
+=======
+
+>>>>>>> 36238fb301d66f49ba4019c45fcb4aaf48a95df9
 
 
-WILL DO IN THE NEXT 24 HOURS
-1) Console management data base connection
-2) Implement Delete, Edit, Print, Add Button in COnsole Management 
 
-WHERE I NEED HELP IS
-1)
 
 
 --- Apr. 26 Elmria 

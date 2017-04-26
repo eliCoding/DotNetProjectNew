@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace PointOfSaleManagementSys
 {
     /// <summary>
@@ -27,7 +28,6 @@ namespace PointOfSaleManagementSys
         // private PrintInvoice pi;
         public int IdOfCategory;
         public int currentOrderId;
-        public string path = @"..\..\Invoice.txt";
         decimal total;
         decimal totalTax;
 
@@ -101,51 +101,13 @@ namespace PointOfSaleManagementSys
                 }
             }
         }
-
-        private void ButtonBeer_Click(object sender, RoutedEventArgs e)
-        {
-            ItemList(0);
-        }
-        private void ButtonDessert_Click(object sender, RoutedEventArgs e)
-        {
-            ItemList(1);
-        }
-        private void ButtonLunch_Click(object sender, RoutedEventArgs e)
-        {
-            ItemList(2);
-        }
-        private void ButtonHotDrink_Click(object sender, RoutedEventArgs e)
-        {
-            ItemList(3);
-        }
-        private void ButtonDinner_Click(object sender, RoutedEventArgs e)
-        {
-            ItemList(4);
-        }
-        private void ButtonWine_Click(object sender, RoutedEventArgs e)
-        {
-            ItemList(5);
-        }
-
-        private void ItemList(int categoryId)
-        {
-            List<ItemList> item = new List<ItemList>();
-            LvItems.Items.Clear();
-            for (int i = 0; i < 6; i++)
-            {
-                ItemList it = new ItemList(ProductName[categoryId, i], ProductPrice[categoryId, i]);
-                LvItems.Items.Add(it);
-            }
-            IdOfCategory = categoryId;
-            TabControl.SelectedIndex = 0;
-        }
-
-        private void ApplyDataBinding()
-        {
-            List<string> itemList = new List<string>();
-            // Bind ArrayList with the ListBox
-            LvItems.ItemsSource = itemList;
-        }
+      
+        //private void ApplyDataBinding()
+        //{
+        //    List<string> itemList = new List<string>();
+        //    // Bind ArrayList with the ListBox
+        //    LvItems.ItemsSource = itemList;
+        //}
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -166,9 +128,11 @@ namespace PointOfSaleManagementSys
             {
                 db.AddOrderList(ol);
                 RefreshShoppingList();
+                SubTotal();
                 return;
             }
             db.UpdateOrderList(ol);
+            SubTotal();
             RefreshShoppingList();
         }
 
@@ -225,7 +189,6 @@ namespace PointOfSaleManagementSys
 
         private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
         {
-          //  ButtonTotal_Click(null, null);
             if (total==0m)
             {
                 return;
@@ -260,7 +223,7 @@ namespace PointOfSaleManagementSys
             Paragraph p = new Paragraph(new Run(itemPurchasedInfo));
             doc.Blocks.Add(p);
             FdViewer.Document = doc;
-            Order o = new Order(currentOrderId, 1, DateTime.Today, 100, total, ComboCard.Text, invoiceNo);
+            Order o = new Order(currentOrderId, 1, dpDate.SelectedDate.Value.Date, 100, total, ComboCard.Text, invoiceNo);
             db.AddOrder(o);
             DeductProduct();
             currentOrderId++;
@@ -281,9 +244,8 @@ namespace PointOfSaleManagementSys
             }
             
         }
-        private void ButtonTotal_Click(object sender, RoutedEventArgs e)
+        private void SubTotal()
         {
-            LvShopping.Items.Clear();
             List<OrderList> list = db.GetAllOrderList(currentOrderId);
             total = 0.0m;
             totalTax = 0.0m;
@@ -293,18 +255,21 @@ namespace PointOfSaleManagementSys
                 int i = l.ProductId - categoryId * 6 - 1;
                 string name = ProductName[categoryId, i];
                 Counts[categoryId, i] = l.Quantity;
-                decimal subtaotal = l.Quantity * l.UnitPrice;
-                total = total + subtaotal;
-                decimal tax = subtaotal * 0.15m;
+                decimal subtotal = l.Quantity * l.UnitPrice;
+                total = total + subtotal;
+                decimal tax = subtotal * 0.15m;
                 totalTax = totalTax + tax;
-                Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
-                LvShopping.Items.Add(s);
             }
             totalTaxCost.Text = String.Format("{0:C}", totalTax);
             BalancePriceTb.Text = String.Format("{0:C}", total);
             PaidTextBox.Text = String.Format("{0:C}", total);
         }
 
+        private void ButtonInventory_Click(object sender, RoutedEventArgs e)
+        {
+            //ManagementConsole.MainWindow f = new ManagementConsole.MainWindow();
+            //f.Show();
+        }
         private void ButtonInvoice_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog pd = new PrintDialog();
@@ -337,6 +302,43 @@ namespace PointOfSaleManagementSys
         private void Button_NewOrder(object sender, RoutedEventArgs e)
         {
             NewClear();
+        }
+        private void ItemList(int categoryId)
+        {
+            List<ItemList> item = new List<ItemList>();
+            LvItems.Items.Clear();
+            for (int i = 0; i < 6; i++)
+            {
+                ItemList it = new ItemList(ProductName[categoryId, i], ProductPrice[categoryId, i]);
+                LvItems.Items.Add(it);
+            }
+            IdOfCategory = categoryId;
+            TabControl.SelectedIndex = 0;
+        }
+
+        private void ButtonBeer_Click(object sender, RoutedEventArgs e)
+        {
+            ItemList(0);
+        }
+        private void ButtonDessert_Click(object sender, RoutedEventArgs e)
+        {
+            ItemList(1);
+        }
+        private void ButtonLunch_Click(object sender, RoutedEventArgs e)
+        {
+            ItemList(2);
+        }
+        private void ButtonHotDrink_Click(object sender, RoutedEventArgs e)
+        {
+            ItemList(3);
+        }
+        private void ButtonDinner_Click(object sender, RoutedEventArgs e)
+        {
+            ItemList(4);
+        }
+        private void ButtonWine_Click(object sender, RoutedEventArgs e)
+        {
+            ItemList(5);
         }
 
      

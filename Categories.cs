@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSaleManagementSys
 {
-    class Categories
+    public class Categories
     {
         private int _categoryId;
         private string _categoryName;
