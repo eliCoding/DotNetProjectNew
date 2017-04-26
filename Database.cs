@@ -287,22 +287,18 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
             return false;
         }
-        public string ValidPassword(string username, string password)
+        public Boolean ValidPassword(string username, string password)
         {
-            //using (SqlCommand command = new SqlCommand("select * from Employees WHERE username='" + username + "' and psword='" + password+"'", conn))
-            //   string sql = "SELECT * FROM Employees username=`" + username + "` and psword=`" + password + "`";
             using (SqlCommand command = new SqlCommand("SELECT * FROM Employees where username='" + username + "' and psword='" + password + "'", conn))
-            //    using (SqlCommand command = new SqlCommand("SELECT * FROM Employees where username='mikeyu'  and psword='monk6500'", conn))
-
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
                 {
                     string name = (string)reader["FirstName"];
                     Console.WriteLine(name);
-                    return name;
+                    return true;
                 }
-                return "you are wrong!!!";
+                return false;
             }
         }
         public int MaxOrderId()

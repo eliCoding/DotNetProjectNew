@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+
+namespace PointOfSaleManagementSys
+{
+    /// <summary>
+    /// Interaction logic for login.xaml
+    /// </summary>
+    public partial class login : Window
+    {
+        public login()
+        {
+            InitializeComponent();
+        }
+
+        Registration registration = new Registration();
+        MainWindow Main = new MainWindow();
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxEmail.Text.Length == 0)
+            {
+                errormessage.Text = "Enter valid UserName or password!";
+                textBoxEmail.Focus();
+            }
+            string email = textBoxEmail.Text;
+            string password = passwordBox.Text;
+            Console.WriteLine(password);
+            if (globas.Db.ValidPassword(email, password))
+            {
+                Main.Show();
+                Close();
+            }
+            else
+            {
+                errormessage.Text = "Sorry! Please enter existing username/password.";
+            }
+        }
+
+        private void buttonRegister_Click(object sender, RoutedEventArgs e)
+        {
+            registration.Show();
+            ////Main.Show();
+            //Close();
+        }
+
+
+    }
+}
