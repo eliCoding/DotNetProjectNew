@@ -25,8 +25,7 @@ namespace ManagementConsole
 
 
 
-        public MainWindow()
-        {
+       
 
 
         private Database db1;
