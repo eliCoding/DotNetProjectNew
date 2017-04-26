@@ -102,12 +102,7 @@ namespace PointOfSaleManagementSys
             }
         }
       
-        //private void ApplyDataBinding()
-        //{
-        //    List<string> itemList = new List<string>();
-        //    // Bind ArrayList with the ListBox
-        //    LvItems.ItemsSource = itemList;
-        //}
+       
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
