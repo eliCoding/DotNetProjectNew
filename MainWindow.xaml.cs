@@ -28,7 +28,6 @@ namespace PointOfSaleManagementSys
         // private PrintInvoice pi;
         public int IdOfCategory;
         public int currentOrderId;
-        public string path = @"..\..\Invoice.txt";
         decimal total;
         decimal totalTax;
 
@@ -102,15 +101,13 @@ namespace PointOfSaleManagementSys
                 }
             }
         }
-
-       
       
-        private void ApplyDataBinding()
-        {
-            List<string> itemList = new List<string>();
-            // Bind ArrayList with the ListBox
-            LvItems.ItemsSource = itemList;
-        }
+        //private void ApplyDataBinding()
+        //{
+        //    List<string> itemList = new List<string>();
+        //    // Bind ArrayList with the ListBox
+        //    LvItems.ItemsSource = itemList;
+        //}
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -127,7 +124,6 @@ namespace PointOfSaleManagementSys
             int quantity = Counts[IdOfCategory, idx];
             int productId = idx + 1 + 6 * IdOfCategory;
             OrderList ol = new OrderList(currentOrderId, productId, quantity, unitprice, 0.1m);
-
             if (quantity == 1)
             {
                 db.AddOrderList(ol);
@@ -193,7 +189,6 @@ namespace PointOfSaleManagementSys
 
         private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
         {
-          //  ButtonTotal_Click(null, null);
             if (total==0m)
             {
                 return;
@@ -228,7 +223,7 @@ namespace PointOfSaleManagementSys
             Paragraph p = new Paragraph(new Run(itemPurchasedInfo));
             doc.Blocks.Add(p);
             FdViewer.Document = doc;
-            Order o = new Order(currentOrderId, 1, DateTime.Today, 100, total, ComboCard.Text, invoiceNo);
+            Order o = new Order(currentOrderId, 1, dpDate.SelectedDate.Value.Date, 100, total, ComboCard.Text, invoiceNo);
             db.AddOrder(o);
             DeductProduct();
             currentOrderId++;
@@ -264,8 +259,6 @@ namespace PointOfSaleManagementSys
                 total = total + subtotal;
                 decimal tax = subtotal * 0.15m;
                 totalTax = totalTax + tax;
-            //    Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtotal, tax);
-              //  LvShopping.Items.Add(s);
             }
             totalTaxCost.Text = String.Format("{0:C}", totalTax);
             BalancePriceTb.Text = String.Format("{0:C}", total);
