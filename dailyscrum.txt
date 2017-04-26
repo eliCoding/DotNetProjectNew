@@ -250,12 +250,95 @@ WILL DO IN THE NEXT 24 HOURS
 WHERE I NEED HELP IS
 1)
 
+--- Apr. 24 Mike
 
+DID SINCE LAST SCRUM:
+1) Completed Data base live on POS
+2) share classes between two projects system
 
 Weekend Scrum : 
 
 WILL DO: drag and drop
          console management
+
+
+<<<<<<< HEAD
+WILL DO IN THE NEXT 24 HOURS
+1) Console management data base connection
+2) Implement Delete, Edit, Print, Add Button in COnsole Management 
+
+WHERE I NEED HELP IS
+1)
+
+
+--- Apr. 25 Elmria 
+
+DID SINCE LAST SCRUM:
+1) GridSplitter
+
+
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Grid Splitter
+2) Pop up  dialogue for Print
+
+WHERE I NEED HELP IS
+1)Grid Splitter
+
+
+
+
+--- Apr. 25 Mike
+
+DID SINCE LAST SCRUM:
+1) Completed Data base live on POS
+2) Console management System
+=======
+
+>>>>>>> 36238fb301d66f49ba4019c45fcb4aaf48a95df9
+
+
+
+
+
+--- Apr. 26 Elmria 
+
+DID SINCE LAST SCRUM:
+1) Grid Splitter
+
+
+
+
+WILL DO IN THE NEXT 24 HOURS
+1)Grid Splitter
+2) Pop up  dialogue for Print
+
+WHERE I NEED HELP IS
+1)Grid Splitter
+
+
+
+
+--- Apr. 26 Mike
+
+DID SINCE LAST SCRUM:
+1) Completed Data base For Console Management
+ 
+
+
+WILL DO IN THE NEXT 24 HOURS
+
+1) Implement Delete, Edit, Print, Add Button in COnsole Management 
+
+WHERE I NEED HELP IS
+1)
+
+
+
+
+
+
 
 
 

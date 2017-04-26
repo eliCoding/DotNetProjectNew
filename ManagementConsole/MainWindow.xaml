@@ -2,9 +2,30 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
+<<<<<<< HEAD
+         Title="Inventory Management " Height="800" Width="1100" WindowStyle="SingleBorderWindow"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1"
+          Grid.Column="0"
+          Background="#ECBEB4" Margin="0,83,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="396" VerticalAlignment="Top" >
+=======
          Title="Inventory Management " Height="800" Width="850">
     <Viewbox>
         <Grid>
+>>>>>>> 36238fb301d66f49ba4019c45fcb4aaf48a95df9
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
@@ -180,6 +201,29 @@
                 <Button Click="ButtonAdd_Click" Content="Add" Width="244" FontWeight="Bold" FontSize="25"/>
             </StackPanel>
         </Grid>
+<<<<<<< HEAD
+
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Grid.ColumnSpan="2"
+          Background="#519E8A" Margin="0,0,0,186" >
+            <Label FontWeight="SemiBold" FontSize="25" Content="INVENTORY MANAGEMENT"  HorizontalAlignment="Left" Margin="368,10,0,0" VerticalAlignment="Top" Height="44" Width="350"/>
+
+        </Grid>
+
+        <StackPanel Height="50" Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+
+            <Button FontWeight="Bold" FontSize="25" Content="Delete" Width="284"/>
+            <Button   FontWeight="Bold" FontSize="25" Content="Edit" Width="284"/>
+            <Button FontWeight="Bold" FontSize="25" Content="Print" Width="284"/>
+            <Button Content="Add" Width="244" FontWeight="Bold" FontSize="25"/>
+        </StackPanel>
+    </Grid>
+=======
     </Viewbox>
+>>>>>>> 36238fb301d66f49ba4019c45fcb4aaf48a95df9
 </Window>
     
