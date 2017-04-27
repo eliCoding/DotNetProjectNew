@@ -165,16 +165,16 @@
 
         </TabControl>
 
-        <Button FontWeight="SemiBold" Click="ButtonAdd_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Content="ADD"   Margin="18,0,327,35" MinHeight="34" MinWidth="50" Grid.Column="2" Width="55" />
+        <Button FontWeight="SemiBold" Click="ButtonAdd_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Content="ADD"   Margin="18,0,327,35" MinHeight="34" MinWidth="100" Grid.Column="2" />
 
 
-        <Button FontWeight="SemiBold" Click="ButtonDelete_Click"  Content="DELETE" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="18,0,327,-1"  FontSize="15"  MinHeight="34" MinWidth="50" Grid.Column="2"/>
+        <Button FontWeight="SemiBold" Click="ButtonDelete_Click"  Content="DELETE" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="18,0,327,-1"  FontSize="15"  MinHeight="34" MinWidth="100" Grid.Column="2"/>
 
-        <Button FontWeight="SemiBold" Click="ButtonChekOut_Click"  FontSize="14" Content="CHECKOUT" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="130,0,192,-3" MinHeight="70" MinWidth="73" Grid.Column="2"    />
+        <Button FontWeight="SemiBold" Click="ButtonChekOut_Click"  FontSize="14" Content="CHECKOUT" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="130,0,192,-3" MinHeight="70" MinWidth="113" Grid.Column="2"    />
 
 
-        <Button FontWeight="SemiBold" Click="ButtonInvoice_Click"  Content="PRINT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15"   Margin="271,0,56,33" MinHeight="34"  MinWidth="73" Grid.Column="2"  />
-        <Button FontWeight="SemiBold" Click ="ButtonReset_Click"  Content="RESET" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Margin="271,0,56,-3" MinHeight="34" Grid.Column="2" MinWidth="73" />
+        <Button FontWeight="SemiBold" Click="ButtonInvoice_Click"  Content="PRINT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15"   Margin="271,0,56,33" MinHeight="34"  MinWidth="100" Grid.Column="2"  />
+        <Button FontWeight="SemiBold" Click ="ButtonReset_Click"  Content="RESET" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Margin="271,0,56,-3" MinHeight="34" Grid.Column="2" MinWidth="100" />
 
     </Grid>
 
