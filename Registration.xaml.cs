@@ -26,7 +26,11 @@ namespace PointOfSaleManagementSys
         public Registration()
         {
             InitializeComponent();
+
             try
+
+
+
             {
                 db = new Database();
             }
@@ -41,12 +45,30 @@ namespace PointOfSaleManagementSys
         private void Login_Click(object sender, RoutedEventArgs e)
         {
 
+
             login login = new login();
             login.Show();
             Close();
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+
+        //private void button2_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Reset();
+        //}
+
+        //public void Reset()
+        //{
+        //    textBoxFirstName.Text = "";
+        //    textBoxLastName.Text = "";
+        //    textBoxEmail.Text = "";
+        //    passwordBox1.Password = "";
+        //    passwordBoxConfirm.Password = "";
+        //}
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+
+      
         {
             Reset();
         }
@@ -61,18 +83,22 @@ namespace PointOfSaleManagementSys
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
+
         {
             Close();
         }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+
+        private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
             if (textBoxEmail.Text.Length == 0 || textBoxFirstName.Text.Length == 0 || textBoxLastName.Text.Length == 0)
+
             {
                 Errormessage.Text = "Enter good Name and UserName !!!";
                 //textBoxEmail.Focus();
             }
             else
+
             {
                 string firstname = textBoxFirstName.Text;
                 string lastname = textBoxLastName.Text;
@@ -80,15 +106,25 @@ namespace PointOfSaleManagementSys
                 string password = passwordBox1.Password;
 
                 if (passwordBox1.Password.Length < 6)
+
                 {
                     Errormessage.Text = "Enter password more than 6 letters!";
                     passwordBox1.Focus();
                 }
+
+
+                string firstname = textBoxFirstName.Text;
+                string lastname = textBoxLastName.Text;
+                string email = textBoxEmail.Text;
+                string password = passwordBox1.Password;
+
+
                 if (passwordBox1.Password != passwordBoxConfirm.Password)
                 {
                     Errormessage.Text = "Confirm password must be same as password.";
                     passwordBoxConfirm.Focus();
                 }
+
 
                 if (db.ValidUserName(email))
                 {
@@ -101,6 +137,7 @@ namespace PointOfSaleManagementSys
                     db.AddEmployee(ep);
                     Errormessage.Text = "*******User registered!******";
                 }
+
             }
         }
     }
