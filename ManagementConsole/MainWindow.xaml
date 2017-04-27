@@ -127,6 +127,7 @@
         <Grid
             Grid.Column="0"
             Grid.ColumnSpan="2"
+
             Background="#7EB09B" Margin="0,20,0,18" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
@@ -143,6 +144,8 @@
                                     <ControlTemplate TargetType="TabItem">
                                         <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
                                             <ContentPresenter x:Name="ContentSite"
+
+
                                                               VerticalAlignment="Center"
                                                               HorizontalAlignment="Center"
                                                               ContentSource="Header"
@@ -162,6 +165,7 @@
                         </Style>
                     </TabControl.Resources>
                     <TabItem Header="In Stock" Name="tab1Search" FontSize="16" HorizontalAlignment="Left" Width="99">
+
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -188,33 +192,15 @@
                             <Label Content="Expiry" Grid.Column="2" HorizontalAlignment="Left" Margin="410,69,0,-9" VerticalAlignment="Top" Width="71"/>
                             <TextBox Name="TbExpiry" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="491,74,0,-6" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
 
-                        </Grid>
-
-                    </TabItem>
-                    <TabItem   Header="Order" Name="tab2Search" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="29*"/>
-                                <ColumnDefinition Width="195*"/>
-                                <ColumnDefinition Width="549*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label FontSize="15" Content="CustomerID" HorizontalAlignment="Left" Margin="316,0,0,0" VerticalAlignment="Top" Width="106" Grid.Column="2" />
-                            <TextBox Name="TbCustomerId" Height="25" TextWrapping="Wrap"  Margin="422,5,37,0" VerticalAlignment="Top" Width="90" Grid.Column="2" />
-                            <Label FontSize="15"  Content="IncvoiceNumber" HorizontalAlignment="Left" Margin="0,61,0,0" VerticalAlignment="Top" Width="121" Grid.ColumnSpan="2" />
-                            <TextBox Name="TbInvoiceNo" HorizontalAlignment="Left" Height="25" Width="90" Margin="92.189,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="1"/>
-                            <Label FontSize="15" Content="Total Price" HorizontalAlignment="Left" Margin="57,0,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                            <TextBox Name="TbTotalPrice" HorizontalAlignment="Left" Height="25" Margin="190,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90" Grid.Column="2"/>
-                            <Label FontSize="15" Content="OrderID" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.142,0.604" Grid.ColumnSpan="2"/>
-                            <TextBox Name="TbOrderID" HorizontalAlignment="Left" Width="90" Margin="92.189,0,0,66" TextWrapping="Wrap" Grid.Column="1"/>
-                            <Label FontSize="15" Content="Order Date" HorizontalAlignment="Left" Margin="57,65,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" Width="94"/>
-                            <TextBox Name="TbOderDate" HorizontalAlignment="Left" Height="25" Margin="190,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
-                            <Label FontSize="15" Content="Payment Method" HorizontalAlignment="Left" Margin="57,30,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                            <TextBox Name="TbPaymentMethod" HorizontalAlignment="Left" Height="25" Margin="190,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
-                            <Label Content="Employee ID" HorizontalAlignment="Left" Margin="316,59,0,-4" VerticalAlignment="Top" Grid.Column="2" Height="36" RenderTransformOrigin="0.879,0.491"/>
-                            <TextBox FontSize="15" Name="TbEmployeeID" HorizontalAlignment="Left" Height="25" Margin="422,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
-
+ 
 
                         </Grid>
+
+
+             
+
+
+               
 
                     </TabItem>
                     <TabItem   Header="Employee" Name="tab3Search" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -242,8 +228,12 @@
         <Grid Grid.Row="0"
               Grid.Column="0"
               Grid.ColumnSpan="2"
+
               Background="#519E8A" Margin="0,0,0,92" >
             <Label FontWeight="SemiBold" FontSize="18" Content="INVENTORY MANAGEMENT"  HorizontalAlignment="Stretch" Margin="296,0,317,-6" VerticalAlignment="Stretch" MinHeight="40" MinWidth="238"/>
+
+              Background="#519E8A" Margin="0,0,0,186" >
+
         </Grid>
         <StackPanel Height="50" Grid.Row="3"
                     Grid.ColumnSpan="2"
