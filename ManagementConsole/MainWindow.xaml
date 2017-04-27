@@ -137,7 +137,7 @@
                     <ColumnDefinition Width="127*"/>
                     <ColumnDefinition Width="658*"/>
                 </Grid.ColumnDefinitions>
-                <GroupBox FontWeight="SemiBold" FontSize="32" Header="Search" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="1013" Height="250">
+                <GroupBox FontWeight="SemiBold" FontSize="32" Header="Search----UPDATA----ADDING" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="1013" Height="250">
                     <TabControl Name="TabControlSearch" BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="202" Margin="10,-4,0,0" VerticalAlignment="Top" Width="965">
                         <TabControl.Resources>
                             <Style TargetType="TabItem">
@@ -171,17 +171,17 @@
                                     <ColumnDefinition Width="124*"/>
                                     <ColumnDefinition Width="831*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label FontSize="18" Content="Product Name" HorizontalAlignment="Left" Margin="0,128,0,0" VerticalAlignment="Top" Width="133" Grid.ColumnSpan="2" />
-                                <TextBox Name="ProductId" Height="43" TextWrapping="Wrap"  Margin="21,11,703,0" VerticalAlignment="Top" Grid.Column="1" />
-                                <Label FontSize="18"  Content="Sale Price" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.526,2.317" />
+                                <Label Content="Product Name" HorizontalAlignment="Left" Margin="0,128,0,0" VerticalAlignment="Top" Width="133" Grid.ColumnSpan="2" />
+                                <TextBox Name="TbProductId" Height="43" TextWrapping="Wrap"  Margin="37.2,11,661.2,0" VerticalAlignment="Top" Grid.Column="1" />
+                                <Label Content="Sale Price" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Grid.Column="1" />
                                 <TextBox Name="TbSalePrice" HorizontalAlignment="Left" Height="43" Margin="394,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                                <Label FontSize="18" Content="Vendor" HorizontalAlignment="Left" Margin="602,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <Label  Content="Vendor" HorizontalAlignment="Left" Margin="602,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                                 <TextBox Name="TbVendor" HorizontalAlignment="Left" Height="43" Margin="710,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="114" Grid.Column="1"/>
-                                <TextBox Name="TbProductName" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="21,119,0,-2" TextWrapping="Wrap" VerticalAlignment="Top" Width="110"/>
+                                <TextBox Name="TbProductName" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="38.2,119,0,-1.6" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
                                 <Label Content="Product ID" HorizontalAlignment="Left" Margin="0,17,0,0" VerticalAlignment="Top"/>
-                                <Label Content="Cat ID" HorizontalAlignment="Left" Margin="0,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.648" Width="115"/>
-                                <TextBox Name="TbCategoryId" Grid.Column="1" HorizontalAlignment="Left" Margin="21,69,0,50" TextWrapping="Wrap" Width="110"/>
-                                <Label Content="purchased Price" Grid.Column="1" HorizontalAlignment="Left" Margin="235,69,0,0" VerticalAlignment="Top" Width="159"/>
+                                <Label Content="Cat ID" HorizontalAlignment="Left" Margin="0,69,0,56.4" RenderTransformOrigin="-0.002,0.648" Width="115"/>
+                                <TextBox Name="TbCategoryId" Grid.Column="1" HorizontalAlignment="Left" Margin="38.2,70,0,48.4" TextWrapping="Wrap" Width="135"/>
+                                <Label Content="Purchased Price" Grid.Column="1" HorizontalAlignment="Left" Margin="235,69,0,0" VerticalAlignment="Top" Width="159"/>
                                 <TextBox Name="TbPurchasedPrice" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="394,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                 <Label Content="Stock Unit" Grid.Column="1" HorizontalAlignment="Left" Margin="235,115,0,0" VerticalAlignment="Top" Width="107"/>
                                 <TextBox Name="TbStockUnit" Grid.Column="1" HorizontalAlignment="Left" Height="43" Margin="394,119,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
@@ -194,23 +194,26 @@
                         <TabItem   Header="Order" Name="tab2Search" FontSize="20" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="278*"/>
+                                    <ColumnDefinition Width="49*"/>
+                                    <ColumnDefinition Width="13*"/>
+                                    <ColumnDefinition Width="9*"/>
+                                    <ColumnDefinition Width="208*"/>
                                     <ColumnDefinition Width="681*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label FontSize="18" Content="CustomerID" HorizontalAlignment="Left" Margin="421.335,10,0,0" VerticalAlignment="Top" Width="111" Grid.Column="1" />
-                                <TextBox Name="TbCustomerId" Height="43" TextWrapping="Wrap"  Margin="561.335,5,10,0" VerticalAlignment="Top" Width="110" Grid.Column="1" />
-                                <Label FontSize="18"  Content="IncvoiceNumber" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" />
-                                <TextBox Name="TbInvoiceNo" HorizontalAlignment="Left" Height="43" Margin="174,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                                <Label FontSize="18" Content="Total Price" HorizontalAlignment="Left" Margin="77.335,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                <TextBox Name="TbTotalPrice" HorizontalAlignment="Left" Height="43" Margin="240.335,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="114" Grid.Column="1"/>
-                                <Label Content="OrderID" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.142,0.604"/>
-                                <TextBox Name="TbOrderID" HorizontalAlignment="Left" Height="40" Margin="174,4,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                                <Label Content="Order Date" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top"/>
-                                <TextBox Name="TbOderDate" HorizontalAlignment="Left" Height="37" Margin="174,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                                <Label Content="Payment Method" HorizontalAlignment="Left" Margin="69.335,68,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                <TextBox Name="TbPaymentMethod" HorizontalAlignment="Left" Height="43" Margin="240.335,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="1"/>
-                                <Label Content="Employee ID" HorizontalAlignment="Left" Margin="77.335,123,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                <TextBox Name="TbEmployeeID" HorizontalAlignment="Left" Height="37" Margin="240.335,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="1"/>
+                                <Label FontSize="18" Content="CustomerID" HorizontalAlignment="Left" Margin="421.6,10,0,0" VerticalAlignment="Top" Width="111" Grid.Column="4" />
+                                <TextBox Name="TbCustomerId" Height="43" TextWrapping="Wrap"  Margin="561.6,5,9.2,0" VerticalAlignment="Top" Width="110" Grid.Column="4" />
+                                <Label FontSize="18"  Content="IncvoiceNumber" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" />
+                                <TextBox Name="TbInvoiceNo" HorizontalAlignment="Left" Height="43" Margin="103.284,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="3"/>
+                                <Label FontSize="18" Content="Total Price" HorizontalAlignment="Left" Margin="77.6,10,0,0" VerticalAlignment="Top" Grid.Column="4"/>
+                                <TextBox Name="TbTotalPrice" HorizontalAlignment="Left" Height="43" Margin="240.6,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="114" Grid.Column="4"/>
+                                <Label Content="OrderID" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.142,0.604" Grid.ColumnSpan="4"/>
+                                <TextBox Name="TbOrderID" HorizontalAlignment="Left" Height="40" Margin="103.284,4,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" TextChanged="TbOrderID_TextChanged" Grid.Column="3"/>
+                                <Label Content="Order Date" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4"/>
+                                <TextBox Name="TbOderDate" HorizontalAlignment="Left" Height="37" Margin="103.284,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="3"/>
+                                <Label Content="Payment Method" HorizontalAlignment="Left" Margin="69.6,68,0,0" VerticalAlignment="Top" Grid.Column="4"/>
+                                <TextBox Name="TbPaymentMethod" HorizontalAlignment="Left" Height="43" Margin="240.6,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="4"/>
+                                <Label Content="Employee ID" HorizontalAlignment="Left" Margin="77.6,123,0,0" VerticalAlignment="Top" Grid.Column="4"/>
+                                <TextBox Name="TbEmployeeID" HorizontalAlignment="Left" Height="37" Margin="240.6,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="4"/>
 
 
                             </Grid>
@@ -247,8 +250,8 @@
                     Grid.ColumnSpan="2"
                     Orientation="Horizontal">
                 <Button Click="ButtonDelete_Click" FontWeight="Bold" FontSize="25" Content="Delete" Width="209"/>
-                <Button Click="ButtonEdit_Click"  FontWeight="Bold" FontSize="25" Content="Update" Width="220"/>
-                <Button Click="ButtonPrint_Click" FontWeight="Bold" FontSize="25" Content="Print" Width="202"/>
+                <Button Click="ButtonUpdate_Click"  FontWeight="Bold" FontSize="25" Content="Update" Width="220"/>
+                <Button Click="ButtonConfirm_Click" FontWeight="Bold" FontSize="25" Content="Confirm" Width="202"/>
                 <Button Click="ButtonAdd_Click" Content="Add" Width="224" FontWeight="Bold" FontSize="25"/>
                 <Button Click="ButtonSearch_Click" Content="Search" Width="233" FontWeight="Bold" FontSize="25"/>
             </StackPanel>
