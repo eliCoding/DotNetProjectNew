@@ -165,6 +165,7 @@
 
         </TabControl>
 
+
         <Button FontWeight="SemiBold" Click="ButtonAdd_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Content="ADD"   Margin="18,0,327,35" MinHeight="34" MinWidth="100" Grid.Column="2" />
 
 
@@ -175,6 +176,7 @@
 
         <Button FontWeight="SemiBold" Click="ButtonInvoice_Click"  Content="PRINT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15"   Margin="271,0,56,33" MinHeight="34"  MinWidth="100" Grid.Column="2"  />
         <Button FontWeight="SemiBold" Click ="ButtonReset_Click"  Content="RESET" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Margin="271,0,56,-3" MinHeight="34" Grid.Column="2" MinWidth="100" />
+
 
     </Grid>
 
