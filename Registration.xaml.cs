@@ -29,6 +29,8 @@ namespace PointOfSaleManagementSys
 
             try
 
+
+
             {
                 db = new Database();
             }
@@ -91,7 +93,6 @@ namespace PointOfSaleManagementSys
         {
             if (textBoxEmail.Text.Length == 0 || textBoxFirstName.Text.Length == 0 || textBoxLastName.Text.Length == 0)
 
-     
             {
                 Errormessage.Text = "Enter good Name and UserName !!!";
                 //textBoxEmail.Focus();
@@ -111,10 +112,12 @@ namespace PointOfSaleManagementSys
                     passwordBox1.Focus();
                 }
 
+
                 string firstname = textBoxFirstName.Text;
                 string lastname = textBoxLastName.Text;
                 string email = textBoxEmail.Text;
                 string password = passwordBox1.Password;
+
 
                 if (passwordBox1.Password != passwordBoxConfirm.Password)
                 {

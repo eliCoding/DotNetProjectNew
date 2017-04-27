@@ -127,6 +127,7 @@ namespace ManagementConsole
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+
         {
             switch (TabControlConsole.SelectedIndex)
             {
@@ -277,6 +278,169 @@ namespace ManagementConsole
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+
+        {
+            switch (TabControlConsole.SelectedIndex)
+            {
+                case 2:
+
+                    if (LvEmployee.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("Please select an Employee", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                    Employee ep = (Employee)LvEmployee.Items[LvEmployee.SelectedIndex];
+                    TbEmployeeId.Text = ep.Id + "";
+                    TbFirstName.Text = ep.FirstName;
+                    TbLastName.Text = ep.LastName;
+                    TbUserName.Text = ep.UserName;
+                    TbPassWord.Text = ep.PSword;
+                    TbSalary.Text = ep.Salary+"";
+                    TabControlSearch.SelectedIndex = 2;
+                    break;
+                case 1:
+                    if (LvOrders.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("Please select a Order Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                    Order o = (Order)LvOrders.Items[LvOrders.SelectedIndex];
+                    TbOrderID.Text = o.OrderId+"";
+                    TbInvoiceNo.Text = o.InvoiceNr+"";
+                    TbCustomerId.Text = o.CustomerId + "";
+                    TbEmployeeID.Text = o.EmpId+"";
+                    TbTotalPrice.Text = o.TotalPrice+"";
+                    TbPaymentMethod.Text = o.PaymentMethod+"";
+                    TbOderDate.Text = o.OrderDate.ToString();
+                    TabControlSearch.SelectedIndex = 1;
+                    break;
+                case 0:
+                    if (LvItems.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("Please select a Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                    InStock ins = (InStock)LvItems.Items[LvItems.SelectedIndex];
+                    TbProductName.Text = ins.ProductName;
+                    TbAlertUnit.Text = ins.TriggerLevel+"";
+                    TbVendor.Text  = ins.Vendor;
+                    TbCategoryId.Text  = ins.CategoryId+"";
+                    TbStockUnit.Text  = ins.Quantity+"";
+                    TbPurchasedPrice.Text  = ins.UnitPrice+"";
+                    TbProductId.Text = ins.Id+"";
+
+                    TbEmployeeId.Text = "";
+                    TbFirstName.Text = "";
+                    TbLastName.Text = "";
+                    TbUserName.Text = "";
+                    TbPassWord.Text = "";
+                    TbSalary.Text = "";
+                    TabControlSearch.SelectedIndex = 2;
+                    break;
+                case 1:
+                    TbOrderID.Text = "";
+                    TbInvoiceNo.Text = "";
+                    TbCustomerId.Text = "";
+                    TbEmployeeID.Text = "";
+                    TbTotalPrice.Text = "";
+                    TbPaymentMethod.Text = "";
+                    TbOderDate.Text = "";
+                    TabControlSearch.SelectedIndex = 1;
+                    break;
+                case 0:
+
+                    TbProductName.Text = "";
+                    TbAlertUnit.Text = "";
+                    TbVendor.Text = "";
+                    TbCategoryId.Text = "";
+                    TbStockUnit.Text = "";
+                    TbPurchasedPrice.Text = "";
+                    TbProductId.Text = "";
+                    TbSalePrice.Text = "";
+                    TabControlSearch.SelectedIndex = 0;
+
+                    break;
+            }
+        }
+
+
+        private void ButtonConfirm_Click(object sender, RoutedEventArgs e)
+
+
+        {
+            switch (TabControlSearch.SelectedIndex)
+            {
+                case 2:
+                    int Id;
+                    Int32.TryParse(TbEmployeeId.Text, out Id);
+                    decimal salary;
+                    decimal.TryParse(TbSalary.Text, out salary);
+                    Employee ep = new Employee(Id, TbFirstName.Text, TbLastName.Text, TbUserName.Text, TbPassWord.Text, salary);
+                    List<Employee> list = db1.GetAllEmployees();
+                    if (list != null)
+                    {
+                        foreach (Employee emp in list)
+                        {
+                            if (emp.Id == Id)
+                            {
+                                db1.UpdateEmployee(ep);
+                                ReadEmployee();
+                                return;
+                            } 
+                        }
+                        db1.AddEmployee(ep);
+                        ReadEmployee();
+                    }
+                    return;
+                case 1:
+                    int orderId;
+                    Int32.TryParse(TbOrderID.Text, out orderId);
+                    decimal totalPrice;
+                    decimal.TryParse(TbTotalPrice.Text, out totalPrice);
+                    int invoiceNr;
+                    Int32.TryParse(TbInvoiceNo.Text, out invoiceNr);
+                    int customerId;
+                    Int32.TryParse(TbCustomerId.Text , out customerId);
+                    int empId;
+                    Int32.TryParse(TbEmployeeID.Text, out empId);
+                    string paymentMethod = TbPaymentMethod.Text;
+                    DateTime orderDate;
+                    DateTime.TryParse(TbOderDate.Text, out orderDate);
+                    Order od = new Order(orderId, empId, orderDate.Date, customerId, totalPrice,paymentMethod,invoiceNr);
+                   // Order o = new Order(currentOrderId, 1, dpDate.SelectedDate.Value.Date, 100, total, ComboCard.Text, invoiceNo);
+
+
+
+                    List<Order> oList = db1.GetAllOrders();
+                    if (oList != null)
+                    {
+                        foreach (Order o in oList)
+                        {
+                            if (o.OrderId == orderId)
+                            {
+                                db1.UpdateOrder(od);
+                                ReadOrders();
+                                return;
+                            } 
+                        }
+                        db1.AddOrder(od);
+                        ReadOrders();
+                    }
+                    return;
+                case 0:
+                    if (LvItems.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("Please select a Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                    InStock ins = (InStock)LvItems.Items[LvItems.SelectedIndex];
+                    db1.DeleteProductById(ins.Id);
+                    ReadStocks();
+                    break;
+            }
+        }
+
+        private void TbOrderID_TextChanged(object sender, TextChangedEventArgs e)
         {
             switch (TabControlConsole.SelectedIndex)
             {
@@ -308,7 +472,6 @@ namespace ManagementConsole
                     TbStockUnit.Text = "";
                     TbPurchasedPrice.Text = "";
                     TbProductId.Text = "";
-                    TbSalePrice.Text = "";
                     TabControlSearch.SelectedIndex = 0;
                     break;
             }
@@ -317,16 +480,11 @@ namespace ManagementConsole
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
 
+
         }
 
         private void TbOrderID_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-        }
-
-        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
-        {
-
 
         }
 
