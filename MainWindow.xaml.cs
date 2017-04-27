@@ -341,15 +341,7 @@ namespace PointOfSaleManagementSys
             ItemList(5);
         }
 
-     
 
-       
-
-      
-            }
-        }
-
-   
 
    //     public Point startPoint;
    //     private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -418,4 +410,5 @@ namespace PointOfSaleManagementSys
    //         }
    //     }
 
-
+    }
+}
