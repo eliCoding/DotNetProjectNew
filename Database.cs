@@ -131,7 +131,11 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                     string lastName = (string)reader["lastName"];
                     string userName = (string)reader["userName"];
                     string PSword = (string)reader["PSword"];
-                    decimal salary = (decimal)reader["salary"];
+
+      
+
+                    decimal salary = (decimal) reader["salary"];
+
                     Employee ep = new Employee(empId, firstName, lastName, userName, PSword, salary);
                     result.Add(ep);
                 }
@@ -225,6 +229,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
         public void AddEmployee(Employee e)
         {
+
             string sql1 =
                 "INSERT INTO Employees ( FirstName, LastName, Username, PSword,salary) VALUES ( @firstName, @lastName, @userName, @pSword, @salary)";
             SqlCommand cmd1 = new SqlCommand(sql1, conn);
@@ -240,11 +245,16 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
+           // string sql = "INSERT INTO Employees (EmpID, FirstName, LastName, Username, PSword, Salary) VALUES (@EmpID, @firstName, @lastName, @userName, @pSword,@salary)";
+            string sql = "INSERT INTO Employees (FirstName, LastName, Username, PSword, Salary) VALUES (@firstName, @lastName, @userName, @pSword,@salary)";
+
+
         public void UpdateEmployee(Employee e)
         {
             string sql =
                 "update Employees set FirstName=@firstName, LastName=@lastName, Username=@userName, PSword=@pSword, Salary=@salary WHERE empId=@EmpId";
             SqlCommand cmd = new SqlCommand(sql, conn);
+
             {
                 cmd.Parameters.Add("@EmpId", SqlDbType.Int).Value = e.Id;
                 cmd.Parameters.Add("@firstName", SqlDbType.Text).Value = e.FirstName;
@@ -255,10 +265,12 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
             }
+
         }
 
         public void AddOrder(Order o)
         {
+
             string sql =
                 "INSERT INTO Orders (empId, orderDate,customerId, totalPrice, paymentMethod, invoiceNr) VALUES ( @empId, @orderDate, @customerId, @totalPrice, @paymentMethod, @invoiceNr)";
             SqlCommand cmd = new SqlCommand(sql, conn);
@@ -292,6 +304,21 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                 cmd.ExecuteNonQuery();
             }
         }
+
+
+         /*   string sql = "INSERT INTO Orders (empId, orderDate,customerId, totalPrice, paymentMethod, invoiceNr) VALUES ( @empId, @orderDate, @customerId, @totalPrice, @paymentMethod, @invoiceNr)";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            //cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = o.OrderId;
+            cmd.Parameters.Add("@empId", SqlDbType.Int).Value = o.EmpId;
+            cmd.Parameters.Add("@orderDate", SqlDbType.DateTime).Value = o.OrderDate;
+            cmd.Parameters.Add("@customerId", SqlDbType.Int).Value = o.CustomerId;
+            cmd.Parameters.Add("@paymentMethod", SqlDbType.Text).Value = o.PaymentMethod;
+            cmd.Parameters.Add("@totalPrice", SqlDbType.Money).Value = o.TotalPrice;
+            cmd.Parameters.Add("@invoiceNr", SqlDbType.Int).Value = o.InvoiceNr;
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+        }*/
+
 
         public void DeleteOrderListById(int Id)
         {
@@ -374,6 +401,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             {
                 if (reader.Read())
                 {
+
                     return true;
                 }
                 return false;
@@ -386,6 +414,10 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             {
                 if (reader.Read())
                 {
+
+                    string name = (string)reader["FirstName"];
+                    Console.WriteLine(name);
+
                     return true;
                 }
                 return false;

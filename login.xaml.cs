@@ -52,8 +52,10 @@ namespace PointOfSaleManagementSys
 
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
+
             registration.ShowDialog();
            // Close();
+
         }
 
 

@@ -140,6 +140,7 @@ namespace PointOfSaleManagementSys
         {
             TabControl.SelectedIndex = 0;
             db.DeleteOrderById(currentOrderId);
+            db.DeleteOrderListByOrderId(currentOrderId);
             NewClear();
         }
 
@@ -283,7 +284,8 @@ namespace PointOfSaleManagementSys
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             db.DeleteOrderById(currentOrderId);
-            RefreshShoppingList();
+            db.DeleteOrderListByOrderId(currentOrderId);
+           // RefreshShoppingList();
         }
 
         private void LvItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
