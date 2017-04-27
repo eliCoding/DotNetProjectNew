@@ -76,7 +76,6 @@ namespace PointOfSaleManagementSys
                 }
             }
             currentOrderId = db.MaxOrderId() + 1;
-         
         }
 
         private void RefreshShoppingList()

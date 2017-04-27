@@ -127,7 +127,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                     string userName = (string)reader["userName"];
                     string PSword = (string)reader["PSword"];
                     decimal salary = (decimal) reader["salary"];
-                    Employee ep = new Employee(empId, firstName, lastName, userName, PSword,salary);
+                    Employee ep = new Employee(empId, firstName, lastName, userName, PSword, salary);
                     result.Add(ep);
                 }
             }
@@ -186,9 +186,11 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         public void AddEmployee(Employee e)
         {
-            string sql = "INSERT INTO Employees (FirstName, LastName, Username, PSword, salary) VALUES (@firstName, @lastName, @userName, @pSword,@salary)";
+           // string sql = "INSERT INTO Employees (EmpID, FirstName, LastName, Username, PSword, Salary) VALUES (@EmpID, @firstName, @lastName, @userName, @pSword,@salary)";
+            string sql = "INSERT INTO Employees (FirstName, LastName, Username, PSword, Salary) VALUES (@firstName, @lastName, @userName, @pSword,@salary)";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add("@EmpId", SqlDbType.Int).Value = e.Id;
             cmd.Parameters.Add("@firstName", SqlDbType.Text).Value = e.FirstName;
             cmd.Parameters.Add("@lastName", SqlDbType.Text).Value = e.LastName;
             cmd.Parameters.Add("@userName", SqlDbType.Text).Value = e.UserName;
@@ -199,9 +201,9 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         public void AddOrder(Order o)
         {
-            string sql = "INSERT INTO Orders (orderId, empId, orderDate,customerId, totalPrice, paymentMethod, invoiceNr) VALUES (@orderId, @empId, @orderDate, @customerId, @totalPrice, @paymentMethod, @invoiceNr)";
+            string sql = "INSERT INTO Orders (empId, orderDate,customerId, totalPrice, paymentMethod, invoiceNr) VALUES ( @empId, @orderDate, @customerId, @totalPrice, @paymentMethod, @invoiceNr)";
             SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = o.OrderId;
+            //cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = o.OrderId;
             cmd.Parameters.Add("@empId", SqlDbType.Int).Value = o.EmpId;
             cmd.Parameters.Add("@orderDate", SqlDbType.DateTime).Value = o.OrderDate;
             cmd.Parameters.Add("@customerId", SqlDbType.Int).Value = o.CustomerId;
@@ -211,7 +213,6 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
         }
-
 
         public void DeleteOrderListById(int Id)
         {
@@ -315,5 +316,18 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             return maxOrderId;
         }
 
+        //public int MaxEmployeeId()
+        //{
+        //    int maxEmpId = 0;
+        //    using (SqlCommand command = new SqlCommand("SELECT MAX(empId) as maxId FROM employees", conn))
+        //    using (SqlDataReader reader = command.ExecuteReader())
+        //    {
+        //        while (reader.Read())
+        //        {
+        //            maxEmpId = (int)reader["maxId"];
+        //        }
+        //    }
+        //    return maxEmpId;
+        //}
     }
 }

@@ -22,149 +22,75 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class Registration : Window
     {
+        private Database db;
         public Registration()
         {
             InitializeComponent();
+         try
+            {
+                db = new Database();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("Error opening database connection: " + ex.Message);
+                Environment.Exit(1);
+            }
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-
+            
             login login = new login();
-
             login.Show();
-
             Close();
-
         }
-
-
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-
             Reset();
-
         }
-
-
 
         public void Reset()
         {
-
             textBoxFirstName.Text = "";
-
             textBoxLastName.Text = "";
-
             textBoxEmail.Text = "";
-
             passwordBox1.Password = "";
-
             passwordBoxConfirm.Password = "";
-
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-
             Close();
-
         }
-
-
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-
-            if (textBoxEmail.Text.Length == 0)
+            if (textBoxEmail.Text.Length == 0 || textBoxFirstName.Text.Length == 0 || textBoxLastName.Text.Length ==0 )
             {
-
-                errormessage.Text = "Enter an email.";
-
-                textBoxEmail.Focus();
-
+                Errormessage.Text = "Enter good Name and UserName !!!";
+                //textBoxEmail.Focus();
             }
-
-            else if (!Regex.IsMatch(textBoxEmail.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
-            {
-
-                errormessage.Text = "Enter a valid email.";
-
-                textBoxEmail.Select(0, textBoxEmail.Text.Length);
-
-                textBoxEmail.Focus();
-
-            }
-
             else
-            {
-
-                string firstname = textBoxFirstName.Text;
-
-                string lastname = textBoxLastName.Text;
-
-                string email = textBoxEmail.Text;
-
-                string password = passwordBox1.Password;
-
-                if (passwordBox1.Password.Length == 0)
+            {   if (passwordBox1.Password.Length <6 )
                 {
-
-                    errormessage.Text = "Enter password.";
-
+                    Errormessage.Text = "Enter password more than 6 letters!";
                     passwordBox1.Focus();
-
                 }
-
-                else if (passwordBoxConfirm.Password.Length == 0)
+                string firstname = textBoxFirstName.Text;
+                string lastname = textBoxLastName.Text;
+                string email = textBoxEmail.Text;
+                string password = passwordBox1.Password;
+                if (passwordBox1.Password != passwordBoxConfirm.Password)
                 {
-
-                    errormessage.Text = "Enter Confirm password.";
-
+                    Errormessage.Text = "Confirm password must be same as password.";
                     passwordBoxConfirm.Focus();
-
                 }
-
-                else if (passwordBox1.Password != passwordBoxConfirm.Password)
-                {
-
-                    errormessage.Text = "Confirm password must be same as password.";
-
-                    passwordBoxConfirm.Focus();
-
-                }
-
-                else
-                {
-
-                    //errormessage.Text = "";
-
-                    //string address = "";
-
-                    //SqlConnection con = new SqlConnection("Data Source=TEST;Initial Catalog=Data;User ID=sa;Password=wintellect");
-
-                    //con.Open();
-
-                    //SqlCommand cmd = new SqlCommand("Insert into Registration (FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "','" + address + "')", con);
-
-                    //cmd.CommandType = CommandType.Text;
-
-                    //cmd.ExecuteNonQuery();
-
-                    //con.Close();
-
-                    //errormessage.Text = "You have Registered successfully.";
-
-                    //Reset();
-
-                }
-
+                Employee ep = new Employee(0, firstname, lastname, email, password, 10000.0m);
+                db.AddEmployee(ep);
+                Errormessage.Text = "*******User registered!******";
             }
-
         }
-
-
-
-
     }
 }

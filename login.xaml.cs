@@ -30,14 +30,15 @@ namespace PointOfSaleManagementSys
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxEmail.Text.Length == 0)
+            if (TextBoxEmail.Text.Length == 0)
             {
-                errormessage.Text = "Enter valid UserName or password!";
-                textBoxEmail.Focus();
+                Errormessage.Text = "Enter valid UserName or password!";
+                TextBoxEmail.Focus();
             }
-            string email = textBoxEmail.Text;
-            string password = passwordBox.Text;
-            Console.WriteLine(password);
+            string email = TextBoxEmail.Text;
+         
+            string password =PasswordBox.Password;
+            
             if (globas.Db.ValidPassword(email, password))
             {
                 Main.Show();
@@ -45,15 +46,14 @@ namespace PointOfSaleManagementSys
             }
             else
             {
-                errormessage.Text = "Sorry! Please enter existing username/password.";
+                Errormessage.Text = "Sorry! Please enter existing username/password.";
             }
         }
 
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
             registration.Show();
-            ////Main.Show();
-            //Close();
+            Close();
         }
 
 

@@ -12,7 +12,7 @@
 
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="LoginHeading" Text="Login:" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
 
-        <TextBlock Height="50" HorizontalAlignment="Left" Margin="43,33,0,0" Name="textBlockHeading" VerticalAlignment="Top" FontSize="12" FontStyle="Italic" Padding="5" Width="309" Foreground="#FFBFAAAA">
+        <TextBlock Height="50" HorizontalAlignment="Left" Margin="43,33,0,0" Name="TextBlockHeading" VerticalAlignment="Top" FontSize="12" FontStyle="Italic" Padding="5" Width="309" Foreground="#FFBFAAAA">
 
             Note: Please login in with your email and password. If you are new on this site then <LineBreak /><!--line break-->
 
@@ -25,15 +25,15 @@
 
         </TextBlock>
 
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,105,0,0" Name="textBlock1" Text="UserName" VerticalAlignment="Top" Width="93" FontSize="18" />
+        <TextBlock Foreground="Beige" Height="23" HorizontalAlignment="Left" Margin="10,105,0,0" Name="TextBlockextBlock1" Text="UserName" VerticalAlignment="Top" Width="93" FontSize="18" />
 
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="26,168,0,0" Name="textBlock2" Text="Password" VerticalAlignment="Top" Width="77" FontSize="18" />
+        <TextBlock  Foreground="Beige" Height="23" HorizontalAlignment="Left" Margin="12,168,0,0" Name="TextBlock2" Text="Password" VerticalAlignment="Top" Width="77" FontSize="18" />
 
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="118,105,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="247" />
+        <TextBox Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="118,105,0,0" Name="TextBoxEmail" VerticalAlignment="Top" Width="247" />
 
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="passwordBox" VerticalAlignment="Top" Width="247" />
+        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="PasswordBox" VerticalAlignment="Top" Width="247" />
 
-        <Button Content="Login" Height="30" HorizontalAlignment="Left" Margin="171,209,0,0" Name="button1" VerticalAlignment="Top" Width="82" Click="button1_Click" FontSize="18" >
+        <Button Content="Login" Height="30" HorizontalAlignment="Left" Margin="171,209,0,0" Name="Button1" VerticalAlignment="Top" Width="82" Click="button1_Click" FontSize="18" >
             <Button.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -44,7 +44,7 @@
             </Button.Background>
         </Button>
 
-        <TextBlock Height="23" FontSize="18" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top"  Margin="12,244,0,0"  OpacityMask="Red" Foreground="#FFE5572C"  />
+        <TextBlock Background="Yellow" Height="23" FontSize="18" HorizontalAlignment="Left" x:Name ="Errormessage" VerticalAlignment="Top"  Margin="12,244,0,0"  OpacityMask="Red" Foreground="#FFE5572C"  />
 
     </Grid>
 </Window>
