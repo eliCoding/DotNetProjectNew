@@ -68,27 +68,27 @@
         	FirstDayOfWeek="Monday"   Margin="111,0,0,2" VerticalAlignment="Bottom" Width="136"  />
 
         <Button  Click="ButtonBeer_Click"  Margin="0,17,257,0" VerticalAlignment="Top"    Grid.Column="2" Height="74" Width="120" >
-            <Image Source="Images\corona.jpg" Height="74" Width="120"/>
+            <Image Source="Images\corona.jpg" Stretch="UniformToFill" />
         </Button>
 
         <Button  Click="ButtonDessert_Click" Margin="136,16,128,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120">
-            <Image Source="Images\Jelly.jpg" Height="74" Width="120"  />
+            <Image Source="Images\Jelly.jpg" Stretch="UniformToFill" />
         </Button>
 
         <Button  Click="ButtonLunch_Click"  Margin="263,14,1,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120"  >
-            <Image Source="Images\cheese burger.jpg" Height="74" Width="120"/>
+            <Image Source="Images\cheese burger.jpg" Stretch="UniformToFill"/>
         </Button>
 
 
         <Button  Click="ButtonDinner_Click"  Margin="0,132,257,0" VerticalAlignment="Top" Height="74" Width="120"  Grid.Column="2" >
-            <Image Source="Images/pizza.jpg" Height="74" Width="120" />
+            <Image Source="Images/pizza.jpg" Stretch="UniformToFill" />
         </Button>
 
         <Button  Click="ButtonHotDrink_Click"  Margin="135,132,129,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120" >
-            <Image Source="Images/coffee.jpg" Height="74" Width="120" />
+            <Image Source="Images/coffee.jpg" Stretch="UniformToFill" />
         </Button>
         <Button   Click="ButtonWine_Click" Margin="264,132,0,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120" >
-            <Image Source="Images/wine.jpg"  Height="74" Width="120" />
+            <Image Source="Images/wine.jpg"  Stretch="UniformToFill" />
         </Button>
 
         <Label Grid.Column="2" Content="Beer"  Margin="41,94,287,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="15" Height="30" Width="63" />
@@ -165,16 +165,16 @@
 
         </TabControl>
 
-        <Button FontWeight="SemiBold" Click="ButtonAdd_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Content="ADD"   Margin="18,0,327,35" MinHeight="34" MinWidth="50" Grid.Column="2" Width="55" />
+        <Button FontWeight="SemiBold" Click="ButtonAdd_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Content="ADD"   Margin="18,0,327,35" MinHeight="34" MinWidth="100" Grid.Column="2" />
 
 
-        <Button FontWeight="SemiBold" Click="ButtonDelete_Click"  Content="DELETE" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="18,0,327,-1"  FontSize="15"  MinHeight="34" MinWidth="50" Grid.Column="2"/>
+        <Button FontWeight="SemiBold" Click="ButtonDelete_Click"  Content="DELETE" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="18,0,327,-1"  FontSize="15"  MinHeight="34" MinWidth="100" Grid.Column="2"/>
 
-        <Button FontWeight="SemiBold" Click="ButtonChekOut_Click"  FontSize="14" Content="CHECKOUT" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="130,0,192,-3" MinHeight="70" MinWidth="73" Grid.Column="2"    />
+        <Button FontWeight="SemiBold" Click="ButtonChekOut_Click"  FontSize="14" Content="CHECKOUT" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="130,0,192,-3" MinHeight="70" MinWidth="113" Grid.Column="2"    />
 
 
-        <Button FontWeight="SemiBold" Click="ButtonInvoice_Click"  Content="PRINT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15"   Margin="271,0,56,33" MinHeight="34"  MinWidth="73" Grid.Column="2"  />
-        <Button FontWeight="SemiBold" Click ="ButtonReset_Click"  Content="RESET" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Margin="271,0,56,-3" MinHeight="34" Grid.Column="2" MinWidth="73" />
+        <Button FontWeight="SemiBold" Click="ButtonInvoice_Click"  Content="PRINT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15"   Margin="271,0,56,33" MinHeight="34"  MinWidth="100" Grid.Column="2"  />
+        <Button FontWeight="SemiBold" Click ="ButtonReset_Click"  Content="RESET" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Margin="271,0,56,-3" MinHeight="34" Grid.Column="2" MinWidth="100" />
 
     </Grid>
 
