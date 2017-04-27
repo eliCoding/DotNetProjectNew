@@ -68,27 +68,27 @@
         	FirstDayOfWeek="Monday"   Margin="111,0,0,2" VerticalAlignment="Bottom" Width="136"  />
 
         <Button  Click="ButtonBeer_Click"  Margin="0,17,257,0" VerticalAlignment="Top"    Grid.Column="2" Height="74" Width="120" >
-            <Image Source="Images\corona.jpg" Height="74" Width="120"/>
+            <Image Source="Images\corona.jpg" Stretch="UniformToFill" />
         </Button>
 
         <Button  Click="ButtonDessert_Click" Margin="136,16,128,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120">
-            <Image Source="Images\Jelly.jpg" Height="74" Width="120"  />
+            <Image Source="Images\Jelly.jpg" Stretch="UniformToFill" />
         </Button>
 
         <Button  Click="ButtonLunch_Click"  Margin="263,14,1,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120"  >
-            <Image Source="Images\cheese burger.jpg" Height="74" Width="120"/>
+            <Image Source="Images\cheese burger.jpg" Stretch="UniformToFill"/>
         </Button>
 
 
         <Button  Click="ButtonDinner_Click"  Margin="0,132,257,0" VerticalAlignment="Top" Height="74" Width="120"  Grid.Column="2" >
-            <Image Source="Images/pizza.jpg" Height="74" Width="120" />
+            <Image Source="Images/pizza.jpg" Stretch="UniformToFill" />
         </Button>
 
         <Button  Click="ButtonHotDrink_Click"  Margin="135,132,129,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120" >
-            <Image Source="Images/coffee.jpg" Height="74" Width="120" />
+            <Image Source="Images/coffee.jpg" Stretch="UniformToFill" />
         </Button>
         <Button   Click="ButtonWine_Click" Margin="264,132,0,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120" >
-            <Image Source="Images/wine.jpg"  Height="74" Width="120" />
+            <Image Source="Images/wine.jpg"  Stretch="UniformToFill" />
         </Button>
 
         <Label Grid.Column="2" Content="Beer"  Margin="41,94,287,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="15" Height="30" Width="63" />
