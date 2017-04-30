@@ -237,7 +237,7 @@
 
                         </Grid>
                     </TabItem>
-                    <TabItem   Header="LINQ" x:Name="tab3Search1" FontSize="16" Margin="420,0,-420.4,0.2" >
+                    <TabItem  Foreground="Red" Header="Search" x:Name="tab3Search1" FontSize="16" Margin="420,0,-420.4,0.2" >
                         <Grid Margin="0,0,-0.4,-18.6">
                             <Label Content="Search KeyWord"  FontSize="20" HorizontalAlignment="Left" Margin="57,31,0,0" VerticalAlignment="Top" Height="56"/>
                             <TextBox x:Name="TbSearchKeyword" HorizontalAlignment="Left" Height="52" Margin="285,25,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="469" TextChanged="TbSearchKeyword_TextChanged"/>
