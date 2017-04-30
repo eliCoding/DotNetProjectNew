@@ -61,3 +61,15 @@ C:\Users\Home\Desktop\project\PointOfSaleManagementSys\ManagementConsole\obj\Deb
 D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\bin\Debug\ManagementConsole.exe.config
 D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\ManagementConsole.exe
 D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\ManagementConsole.pdb
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\bin\Debug\ManagementConsole.exe
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\bin\Debug\ManagementConsole.pdb
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\bin\Debug\PointOfSaleManagementSys.exe
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\bin\Debug\PointOfSaleManagementSys.pdb
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\ManagementConsole.csprojResolveAssemblyReference.cache
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\MainWindow.baml
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\MainWindow.g.cs
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\App.g.cs
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\ManagementConsole_MarkupCompile.cache
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\ManagementConsole.g.resources
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\ManagementConsole.Properties.Resources.resources
+D:\Elmira-IPD\DotNetProjectGitHUb\DotNetProjectNew\ManagementConsole\obj\Debug\ManagementConsole.csproj.GenerateResource.Cache
