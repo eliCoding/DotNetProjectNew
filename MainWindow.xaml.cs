@@ -25,19 +25,20 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Database db;
+        private Database db;
         public int IdOfCategory;
         public int MaxOfCategoryId;
         public int currentOrderId;
-        public decimal total;
+       public int  EmpId;
+        public int CustomerId = 505;
+        decimal total;
         decimal totalTax;
         private List<InStock> productList;
         public int[] QCounts = new int[64];
         FlowDocument doc = new FlowDocument();
-        public MainWindow()
+        public MainWindow(string UserName)
         {
-           
-
+            
             try
             {
                 db = new Database();
@@ -51,6 +52,20 @@ namespace PointOfSaleManagementSys
             InitializeComponent();
             ReadAllProduct();
             RefreshShoppingList();
+
+            List<Employee> result = db.GetAllEmployees();
+            if (result != null)
+            {
+                foreach (Employee emp in result)
+                {
+                    if (UserName == emp.UserName)
+                    {
+                        EmpId = emp.Id;
+                        TbUserName.Text=emp.FirstName+" "+emp.LastName+"   ID: "+EmpId;
+                       
+                    }
+                }
+            }
         }
 
         private void ReadAllProduct()
@@ -93,7 +108,6 @@ namespace PointOfSaleManagementSys
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            //List<OrderList> oList = new List<OrderList>();
             int idx = LvItems.SelectedIndex;
             if (idx < 0)
             {
@@ -103,19 +117,15 @@ namespace PointOfSaleManagementSys
             ItemList it = (ItemList)LvItems.Items[idx];
             int quality = QCounts[it.ProductId - 1] + 1;
             QCounts[it.ProductId - 1] = quality;
-            Console.WriteLine(" before add Olist"+ it.ProductId+"  "+ quality);
             OrderList ol = new OrderList(currentOrderId, it.ProductId, quality, it.Price, 0.1m);
-            
             if (quality == 1)
             {
                 db.AddOrderList(ol);
-                Console.WriteLine(" after add 1 in Olist" + it.ProductId + "  " + quality);
                 RefreshShoppingList();
                 SubTotal();
                 return;
             }
             db.UpdateOrderList(ol);
-            Console.WriteLine(" after add >1 in Olist" + it.ProductId + "  " + quality);
             SubTotal();
             RefreshShoppingList();
         }
@@ -211,7 +221,7 @@ namespace PointOfSaleManagementSys
             Paragraph p = new Paragraph(new Run(itemPurchasedInfo));
             doc.Blocks.Add(p);
             FdViewer.Document = doc;
-            Order o = new Order(currentOrderId, 1, DpDate.SelectedDate.Value.Date, 100, total, ComboCard.Text, invoiceNo);
+            Order o = new Order(currentOrderId,  EmpId, DpDate.SelectedDate.Value.Date, CustomerId, total, ComboCard.Text, invoiceNo);
             db.AddOrder(o);
             DeductProduct();
             currentOrderId++;
@@ -232,7 +242,7 @@ namespace PointOfSaleManagementSys
             }
 
         }
-        public void SubTotal()
+        private void SubTotal()
         {
             List<OrderList> list = db.GetOrderListbyId(currentOrderId);
             total = 0.0m;
@@ -266,6 +276,7 @@ namespace PointOfSaleManagementSys
         {
             db.DeleteOrderById(currentOrderId);
             db.DeleteOrderListByOrderId(currentOrderId);
+            Environment.Exit(1);
             // RefreshShoppingList();
         }
 
