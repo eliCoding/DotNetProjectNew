@@ -41,7 +41,12 @@ namespace PointOfSaleManagementSys
         public DateTime OrderDate
         {
             get { return _orderDate; }
-            set { _orderDate = value; }
+          set{  if (value < DateTime.Now)
+                {
+                    throw new ArgumentException("expiry Date Has to be After Current Date");
+                }
+                _orderDate = value;
+            }
         }
         public int CustomerId
         {
@@ -51,12 +56,28 @@ namespace PointOfSaleManagementSys
         public decimal TotalPrice
         {
             get { return _totalPrice; }
-            set { _totalPrice = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _totalPrice = value;
+            }
         }
         public string PaymentMethod
         {
             get { return _paymentMethod; }
-            set { _paymentMethod = value; }
+            set {
+                if (!value.Equals("CASH") || !value.Equals("CREDIT CART"))
+                {
+
+                     throw new ArgumentException("Please enter  valid method of Payment");
+                }
+            
+                
+                _paymentMethod = value; 
+            }
         }
         public int InvoiceNr
         {

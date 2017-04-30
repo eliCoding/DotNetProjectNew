@@ -143,7 +143,7 @@ namespace ManagementConsole
                     TbLastName.Text = ep.LastName;
                     TbUserName.Text = ep.UserName;
                     TbPassWord.Text = ep.PSword;
-                    TbSalary.Text = ep.Salary.ToString("#.##");
+                    TbSalary.Text = ep.Salary.ToString("$#.##");
                     TabControlSearch.SelectedIndex = 2;
                     TabControlConsole.SelectedIndex = 2;
                     break;
@@ -158,7 +158,7 @@ namespace ManagementConsole
                     TbInvoiceNo.Text = o.InvoiceNr + "";
                     TbCustomerId.Text = o.CustomerId + "";
                     TbEmployeeID.Text = o.EmpId + "";
-                    TbTotalPrice.Text = o.TotalPrice.ToString("###.00");
+                    TbTotalPrice.Text = o.TotalPrice.ToString("$ ###.00");
                     TbPaymentMethod.Text = o.PaymentMethod + "";
                     TbOderDate.Text = o.OrderDate.ToString();
                     TabControlSearch.SelectedIndex = 1;
@@ -174,10 +174,10 @@ namespace ManagementConsole
                     TbProductName.Text = ins.ProductName;
                     TbAlertUnit.Text = ins.TriggerLevel + "";
                     TbVendor.Text = ins.Vendor;
-                    TbSalePrice.Text = ins.SalePrice.ToString(" ##.00");
+                    TbSalePrice.Text = ins.SalePrice.ToString("$ ##.00");
                     TbCategoryId.Text = ins.CategoryId + "";
                     TbStockUnit.Text = ins.Quantity + "";
-                    TbPurchasedPrice.Text = ins.UnitPrice.ToString(" ##.00");
+                    TbPurchasedPrice.Text = ins.UnitPrice.ToString("$ ##.00");
                     TbProductId.Text = ins.Id + "";
                     TabControlConsole.SelectedIndex = 0;
                     TabControlSearch.SelectedIndex = 0;
@@ -337,8 +337,7 @@ namespace ManagementConsole
                 List<InStock> inst = db1.GetAllProducts();
                 foreach (InStock t in inst)
                 {
-                    if (t.ProductName.ToLower().Contains(filter) || t.Vendor.ToLower().Contains(filter)
-                        || t.Quantity.ToString().Contains(filter))
+                    if (t.ProductName.ToLower().Contains(filter) || t.Vendor.ToLower().Contains(filter))
                         try
                         {
                             LvItems.Items.Add(t);

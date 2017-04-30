@@ -38,19 +38,39 @@ namespace PointOfSaleManagementSys
         public int Quantity
         {
             get { return _quantity; }
-            set { _quantity = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _quantity = value;
+            }
         }
 
         public decimal UnitPrice
         {
             get { return _unitPrice; }
-            set { _unitPrice = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _unitPrice = value;
+            }
         }
 
         public decimal Discount
         {
             get { return _discount; }
-            set { _discount = value; }
+          set  {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+               _discount = value;
+            }
         }
     }
 

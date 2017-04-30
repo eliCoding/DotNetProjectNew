@@ -59,6 +59,8 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
             return result;
         }
+
+
         public List<OrderList> GetOrderListbyProductId(int Id)
         {
             List<OrderList> result = new List<OrderList>();
@@ -186,6 +188,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
+
         public void AddOrderList(OrderList o)
         {
             string sql =
@@ -279,38 +282,40 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
            cmd.Parameters.Add("@productId", SqlDbType.Int).Value = ins.Id;
             cmd.Parameters.Add("@CategoryId", SqlDbType.Int).Value = ins.CategoryId;
             cmd.Parameters.Add("@productName", SqlDbType.Text).Value = ins.ProductName;
-            cmd.Parameters.Add("@unitPrice", SqlDbType.Money).Value = ins.UnitPrice;
-            cmd.Parameters.Add("@purchasedPrice", SqlDbType.Money).Value = ins.SalePrice;
+            cmd.Parameters.Add("@unitPrice", SqlDbType.Decimal).Value = ins.UnitPrice;
+            cmd.Parameters.Add("@purchasedPrice", SqlDbType.Decimal).Value = ins.SalePrice;
             cmd.Parameters.Add("@TriggerLevel", SqlDbType.Int).Value = ins.TriggerLevel;
             cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = ins.Quantity;
             cmd.Parameters.Add("@expiryDate", SqlDbType.DateTime).Value = ins.ExpiryDate;
             cmd.Parameters.Add("@vendor", SqlDbType.Text).Value = ins.Vendor;
             cmd.Parameters.Add("@vendorAddress", SqlDbType.Text).Value = ins.Vendor;
+         
         //    cmd.Parameters.Add("@expiryDate", SqlDbType.DateTime).Value = ins.ExpiryDate;
 
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
         }
         
-        //public void AddProduct1(InStock ins)
-        //{
-        //    string sql = "INSERT INTO Products (categoryID, productname,UnitPrice,PurchasedPrice, Triggerlevel,UnitInStock, ExpiryDate,Vendor,VendorAddress) values " +
-        //                 "(@CategoryId, @productName, @unitPrice, @purchasedPrice,  @TriggerLevel, @quantity, @expiryDate, @vendor, @vendorAddress)";
+        
+        public void AddProduct1(InStock ins)
+        {
+            string sql = "INSERT INTO Products (categoryID, productname,UnitPrice,PurchasedPrice, Triggerlevel,UnitInStock, ExpiryDate,Vendor,VendorAddress) values " +
+                         "(@CategoryId, @productName, @unitPrice, @purchasedPrice,  @TriggerLevel, @quantity, @expiryDate, @vendor, @vendorAddress)";
 
-        //    SqlCommand cmd = new SqlCommand(sql, conn);
-        //    //  cmd.Parameters.Add("@productId", SqlDbType.Int).Value = ins.Id;
-        //    cmd.Parameters.Add("@CategoryId", SqlDbType.Int).Value = ins.CategoryId;
-        //    cmd.Parameters.Add("@productName", SqlDbType.Text).Value = ins.ProductName;
-        //    cmd.Parameters.Add("@unitPrice", SqlDbType.Decimal).Value = ins.UnitPrice;
-        //    cmd.Parameters.Add("@purchasedPrice", SqlDbType.Decimal).Value = ins.SalePrice;
-        //    cmd.Parameters.Add("@TriggerLevel", SqlDbType.Int).Value = ins.TriggerLevel;
-        //    cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = ins.Quantity;
-        //    cmd.Parameters.Add("@expiryDate", SqlDbType.DateTime).Value = ins.ExpiryDate;
-        //    cmd.Parameters.Add("@vendor", SqlDbType.Text).Value = ins.Vendor;
-        //    cmd.Parameters.Add("@vendorAddress", SqlDbType.Text).Value = ins.Vendor;
-        //    cmd.CommandType = CommandType.Text;
-        //    cmd.ExecuteNonQuery();
-        //}
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            //  cmd.Parameters.Add("@productId", SqlDbType.Int).Value = ins.Id;
+            cmd.Parameters.Add("@CategoryId", SqlDbType.Int).Value = ins.CategoryId;
+            cmd.Parameters.Add("@productName", SqlDbType.Text).Value = ins.ProductName;
+            cmd.Parameters.Add("@unitPrice", SqlDbType.Decimal).Value = ins.UnitPrice;
+            cmd.Parameters.Add("@purchasedPrice", SqlDbType.Decimal).Value = ins.SalePrice;
+            cmd.Parameters.Add("@TriggerLevel", SqlDbType.Int).Value = ins.TriggerLevel;
+            cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = ins.Quantity;
+            cmd.Parameters.Add("@expiryDate", SqlDbType.DateTime).Value = ins.ExpiryDate;
+            cmd.Parameters.Add("@vendor", SqlDbType.Text).Value = ins.Vendor;
+            cmd.Parameters.Add("@vendorAddress", SqlDbType.Text).Value = ins.Vendor;
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+        }
 
         public void UpdateProduct(InStock ins)
         {
@@ -331,6 +336,9 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
         }
+
+
+
 
         public void DeleteOrderListById(int Id)
         {
@@ -444,6 +452,19 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             return maxOrderId;
         }
 
+        //public int MaxEmployeeId()
+        //{
+        //    int maxEmpId = 0;
+        //    using (SqlCommand command = new SqlCommand("SELECT MAX(empId) as maxId FROM employees", conn))
+        //    using (SqlDataReader reader = command.ExecuteReader())
+        //    {
+        //        while (reader.Read())
+        //        {
+        //            maxEmpId = (int)reader["maxId"];
+        //        }
+        //    }
+        //    return maxEmpId;
+        //}
     }
 }
 

@@ -14,7 +14,7 @@ namespace PointOfSaleManagementSys
 
         public ItemList(string productName, decimal price, int productId)
         {
-            if (productName == null) throw new ArgumentNullException("productName");
+          
             this.productName = productName;
             this.price = price;
             this.productId = productId;
@@ -23,13 +23,28 @@ namespace PointOfSaleManagementSys
         public string ProductName
         {
             get { return productName; }
-            set { productName = value; }
+              set
+            {
+                if (value.Length < 2 || value.Length > 50 || value.Equals(null))
+                {
+                    throw new ArgumentException("Product Name must be 2-50 characters long");
+                }
+                productName = value;
+            }
+         //   set { productName = value; }
         }
 
         public decimal Price
         {
             get { return price; }
-            set { price = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                price = value;
+            }
         }
 
         public int ProductId
