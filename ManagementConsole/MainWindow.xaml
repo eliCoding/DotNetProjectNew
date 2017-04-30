@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
          Title="Inventory Management " MinHeight="500" MinWidth="860"    WindowStyle="SingleBorderWindow"  WindowStartupLocation="CenterScreen" Width="820">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -20,10 +19,6 @@
         <Grid Grid.Row="1"
               Grid.Column="0"
               Background="#ECBEB4" Margin="0,0,-0.4,1" Grid.RowSpan="3" Grid.ColumnSpan="2" Height="271" VerticalAlignment="Bottom" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="23*"/>
-                <ColumnDefinition Width="250*"/>
-            </Grid.ColumnDefinitions>
             <GroupBox  FontWeight="SemiBold" FontSize="22" Header="Inventory" HorizontalAlignment="Left" Margin="27,0,0,40" VerticalAlignment="Bottom" Height="224" Width="817" Grid.ColumnSpan="2">
                 <TabControl Name="TabControlConsole" BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="195" Margin="10,0,0,-10.8" VerticalAlignment="Bottom" Width="783">
                     <TabControl.Resources>
