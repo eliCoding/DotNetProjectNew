@@ -9,6 +9,7 @@ namespace PointOfSaleManagementSys
     class Globas
 
         {
+            //public static User CurrentUser;
             //public static Portoflio CurrentPortfolio;
             private static Database _db;
             public static Database Db

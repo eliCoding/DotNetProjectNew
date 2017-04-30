@@ -28,7 +28,14 @@ namespace PointOfSaleManagementSys
         public string CategoryName
         {
             get { return _categoryName; }
-            set { _categoryName = value; }
+            set
+            {
+                if (value.Length < 2 || value.Length > 50 || value.Equals(""))
+                {
+                    throw new ArgumentException("Category Name must be 2-50 characters long");
+                }
+                _categoryName = value;
+            }
         }
        
     }

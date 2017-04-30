@@ -1,0 +1,7 @@
+C:\Users\Home\Desktop\project\PointOfSaleManagementSys\PointOfSaleManagementSysTests\bin\Debug\PointOfSaleManagementSysTests.dll
+C:\Users\Home\Desktop\project\PointOfSaleManagementSys\PointOfSaleManagementSysTests\bin\Debug\PointOfSaleManagementSysTests.pdb
+C:\Users\Home\Desktop\project\PointOfSaleManagementSys\PointOfSaleManagementSysTests\bin\Debug\PointOfSaleManagementSys.exe
+C:\Users\Home\Desktop\project\PointOfSaleManagementSys\PointOfSaleManagementSysTests\bin\Debug\PointOfSaleManagementSys.pdb
+C:\Users\Home\Desktop\project\PointOfSaleManagementSys\PointOfSaleManagementSysTests\obj\Debug\PointOfSaleManagementSysTests.csprojResolveAssemblyReference.cache
+C:\Users\Home\Desktop\project\PointOfSaleManagementSys\PointOfSaleManagementSysTests\obj\Debug\PointOfSaleManagementSysTests.dll
+C:\Users\Home\Desktop\project\PointOfSaleManagementSys\PointOfSaleManagementSysTests\obj\Debug\PointOfSaleManagementSysTests.pdb

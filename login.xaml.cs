@@ -19,27 +19,27 @@ namespace PointOfSaleManagementSys
     /// </summary>
     public partial class Login : Window
     {
-        public string UserName;
         public Login()
         {
             InitializeComponent();
         }
-        Registration registration = new Registration();
 
-        private void BTN_Login(object sender, RoutedEventArgs e)
+        Registration registration = new Registration();
+        MainWindow Main = new MainWindow();
+
+        private void button1_Click(object sender, RoutedEventArgs e)
         {
             if (TextBoxEmail.Text.Length == 0)
             {
                 Errormessage.Text = "Enter valid UserName or password!";
                 TextBoxEmail.Focus();
             }
-            UserName = TextBoxEmail.Text;
+            string email = TextBoxEmail.Text;
 
             string password = PasswordBox.Password;
 
-            if (Globas.Db.ValidPassword(UserName, password))
+            if (Globas.Db.ValidPassword(email, password))
             {
-                MainWindow Main = new MainWindow(UserName);
                 Main.Show();
                 Close();
             }
@@ -53,6 +53,7 @@ namespace PointOfSaleManagementSys
         {
             registration.ShowDialog();
         }
+
 
     }
 }

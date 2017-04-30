@@ -64,7 +64,7 @@
                                         <GridViewColumn Header="Cate.ID" Width="70" DisplayMemberBinding="{Binding Path=CategoryId, StringFormat={}{0:      #}}" />
                                         <GridViewColumn Header="Product Name" Width="120"  DisplayMemberBinding="{Binding Path=ProductName}" />
                                         <GridViewColumn Header="Sale Price" Width="80" DisplayMemberBinding="{Binding Path=UnitPrice, StringFormat={}{0:   $ #.00}}"/>
-                                        <GridViewColumn Header="Purchashed Price" Width="140"   DisplayMemberBinding="{Binding Path=SalePrice, StringFormat={}{0:   $ #.00}}" />
+                                        <GridViewColumn Header="purchashed Price" Width="140"   DisplayMemberBinding="{Binding Path=SalePrice, StringFormat={}{0:   $ #.00}}" />
                                         <GridViewColumn Header="StockUnit" Width="80"  DisplayMemberBinding="{Binding Path=Quantity, StringFormat={}{0:        #}}"  />
                                         <GridViewColumn Header="AlertUnit" Width="80" DisplayMemberBinding="{Binding Path=TriggerLevel, StringFormat={}{0:        #}}"  />
                                         <GridViewColumn Header="Vendor" Width="70" DisplayMemberBinding="{Binding Path=Vendor}"  />
@@ -91,7 +91,7 @@
                                         <GridViewColumn Header="Order ID" Width="70"   DisplayMemberBinding="{Binding Path=OrderId, StringFormat={}{0:      #}}"/>
                                         <GridViewColumn Header="Invoice Number" Width="125" DisplayMemberBinding="{Binding Path=InvoiceNr, StringFormat={}{0:   #}}"  />
                                         <GridViewColumn Header="Order Date" Width="100"  DisplayMemberBinding="{Binding Path=OrderDate.Date, ConverterCulture='en-US', StringFormat=d}" />
-                                        <GridViewColumn Header="Total Price " Width="95"  DisplayMemberBinding="{Binding Path=TotalPrice, StringFormat={}{0:  $ #.00}}"   />
+                                        <GridViewColumn Header="Total Price" Width="95"  DisplayMemberBinding="{Binding Path=TotalPrice, StringFormat={}{0:   $ #.00}}"   />
                                         <GridViewColumn Header="Payment method" Width="140" DisplayMemberBinding="{Binding Path=PaymentMethod}"  />
                                         <GridViewColumn Header="Employee ID" Width="120" DisplayMemberBinding="{Binding Path=EmpId, StringFormat={}{0:      #}}"/>
                                         <GridViewColumn Header="Customer ID" Width="120" DisplayMemberBinding="{Binding Path=CustomerId, StringFormat={}{0:      #}}" />
@@ -232,12 +232,15 @@
                             <Label Content="Pass Word" FontSize="15" HorizontalAlignment="Left" Margin="269.2,33,0,35" Grid.Column="1"/>
                             <TextBox Name="TbPassWord" HorizontalAlignment="Left" Height="25" Margin="394.2,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="1"/>
                             <Label Content="Salary" HorizontalAlignment="Left" Margin="267.2,62,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1"/>
-                            <TextBox Name="TbSalary" HorizontalAlignment="Left" Height="24" Margin="394.2,68,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="113" Grid.Column="1"/>
+                            <TextBox Name="TbSalary" HorizontalAlignment="Left" Height="24" Margin="394.2,68,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="113" Grid.Column="1">
+                                
+                                
+                            </TextBox>
 
 
                         </Grid>
                     </TabItem>
-                    <TabItem  Foreground="Red" Header="Search" x:Name="tab3Search1" FontSize="16" Margin="420,0,-420.4,0.2" >
+                    <TabItem   Header="LINQ" x:Name="tab3Search_Copy" FontSize="16" Margin="420,0,-420.4,0.2" >
                         <Grid Margin="0,0,-0.4,-18.6">
                             <Label Content="Search KeyWord"  FontSize="20" HorizontalAlignment="Left" Margin="57,31,0,0" VerticalAlignment="Top" Height="56"/>
                             <TextBox x:Name="TbSearchKeyword" HorizontalAlignment="Left" Height="52" Margin="285,25,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="469" TextChanged="TbSearchKeyword_TextChanged"/>

@@ -23,8 +23,7 @@ namespace PointOfSaleManagementSys
         public InStock(int id, int categoryId, string productName, decimal unitPrice, decimal salePrice, int quantity,
             int triggerLevel, string vendor, DateTime expiryDate)
         {
-            if (productName == null) throw new ArgumentNullException("productName");
-            if (vendor == null) throw new ArgumentNullException("vendor");
+           
             _id = id;
             _categoryId = categoryId;
             _productName = productName;
@@ -51,19 +50,43 @@ namespace PointOfSaleManagementSys
         public string ProductName
         {
             get { return _productName; }
-            set { _productName = value; }
+              set
+            {
+                if (value.Length < 2 || value.Length > 50 || value.Equals(null))
+                {
+                    throw new ArgumentException("Product Name must be 2-50 characters long");
+                }
+                _productName = value;
+            }
+           // set {  = value; }
         }
 
         public decimal UnitPrice
         {
             get { return _unitPrice; }
-            set { _unitPrice = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _unitPrice = value;
+            }
+            //   set { _unitPrice = value; }
         }
 
         public decimal SalePrice
         {
             get { return _salePrice; }
-            set { _salePrice = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _salePrice = value;
+            }
+            //set { _salePrice = value; }
         }
 
         public int Quantity
@@ -81,13 +104,33 @@ namespace PointOfSaleManagementSys
         public string Vendor
         {
             get { return _vendor; }
-            set { _vendor = value; }
+            set
+            {
+                if (value.Length < 2 || value.Length > 50 || value.Equals(null))
+                {
+                    throw new ArgumentException("Vendor must be 2-50 characters long");
+                }
+                _vendor = value;
+            }
+            // set { _vendor = value; }
         }
 
         public DateTime ExpiryDate
         {
             get { return _expiryDate; }
-            set { _expiryDate = value; }
+            set
+            {
+
+                if (value < DateTime.Now)
+                {
+                    throw new ArgumentException("expiry Date Has to be After Current Date");
+                }
+                _expiryDate = value;
+            }
+           // set { _expiryDate = value; }
         }
+
+      
+       
     }
 }

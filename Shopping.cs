@@ -37,42 +37,85 @@ namespace PointOfSaleManagementSys
         public string ProductName
         {
             get { return _productName; }
-            set { _productName = value; }
+            set
+            {
+                if (value.Length < 2 || value.Length > 50 || value.Equals(null))
+                {
+                    throw new ArgumentException("Product Name must be 2-50 characters long");
+                }
+                _productName = value;
+            }
         }
 
 
         public int Quantity
         {
             get { return _quantity; }
-            set { _quantity = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _quantity = value;
+            }
+           // set { _quantity = value; }
         }
 
 
         public decimal UnitPrice
         {
             get { return _unitPrice; }
-            set { _unitPrice = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _unitPrice = value;
+            }
         }
 
 
         public decimal Discount
         {
             get { return _discount; }
-            set { _discount = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _discount = value;
+            }
         }
 
 
         public decimal Total
         {
             get { return _total; }
-            set { _total = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _total = value;
+            }
         }
 
 
         public decimal Tax
         {
             get { return _tax; }
-            set { _tax = value; }
+            set
+            {
+                if (value.Equals(null) || value < 0)
+                {
+                    throw new ArgumentException("Please enter  positive Number");
+                }
+                _tax = value;
+            }
         }
 
 
