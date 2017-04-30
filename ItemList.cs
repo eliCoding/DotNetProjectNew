@@ -6,16 +6,25 @@ using System.Threading.Tasks;
 
 namespace PointOfSaleManagementSys
 {
-    class ItemList
+   public class ItemList
     {
         string productName;
         decimal price;
+        private int productId;
+
+        public ItemList(string productName, decimal price, int productId)
+        {
+            if (productName == null) throw new ArgumentNullException("productName");
+            this.productName = productName;
+            this.price = price;
+            this.productId = productId;
+        }
+
         public string ProductName
         {
             get { return productName; }
             set { productName = value; }
         }
-       
 
         public decimal Price
         {
@@ -23,14 +32,10 @@ namespace PointOfSaleManagementSys
             set { price = value; }
         }
 
-          public ItemList(string productName, decimal price)
+        public int ProductId
         {
-            this.ProductName= productName;
-            this.Price= price;
-
+            get { return productId; }
+            set { productId = value; }
         }
-
-
-
     }
 }

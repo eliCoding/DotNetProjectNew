@@ -18,13 +18,13 @@ namespace PointOfSaleManagementSys
 
         public Shopping(int id, string productName, int quantity, decimal unitPrice, decimal discount, decimal total, decimal tax)
         {
-           this.ID = id;
-           this.ProductName = productName;
-           this.Quantity = quantity;
-           this.UnitPrice = unitPrice;
-           this.Discount = discount;
-           this.Total = total;
-           this.Tax = tax;
+            this.ID = id;
+            this.ProductName = productName;
+            this.Quantity = quantity;
+            this.UnitPrice = unitPrice;
+            this.Discount = discount;
+            this.Total = total;
+            this.Tax = tax;
         }
 
         public int ID
@@ -74,7 +74,7 @@ namespace PointOfSaleManagementSys
             get { return _tax; }
             set { _tax = value; }
         }
-      
+
 
     }
 }

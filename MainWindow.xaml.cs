@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -25,28 +26,19 @@ namespace PointOfSaleManagementSys
     public partial class MainWindow : Window
     {
         private Database db;
-        // private PrintInvoice pi;
         public int IdOfCategory;
+        public int MaxOfCategoryId;
         public int currentOrderId;
+       public int  EmpId;
+        public int CustomerId = 505;
         decimal total;
         decimal totalTax;
-
-        public decimal[,] ProductPrice = { { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, { 0.00m, 0.00m, 0.00m, 0.00m, 0.00m, 0.00m }, 
-                                         {0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},{0.00m, 0.00m, 0.00m, 0.00m,0.00m, 0.00m},};
-        public string[,] ProductName =
-                {  {" ","","","","",""},{" ","","","","",""},
-                     {" ","","","","",""}, {" ","","","","",""},
-                     {" ","","","","",""},  {" ","","","","",""}};
-        public int[,] Counts =
-                {  {0,0,0,0,0,0},{0,0,0,0,0,0},
-                    {0,0,0,0,0,0},{0,0,0,0,0,0},
-                    {0,0,0,0,0,0},{0,0,0,0,0,0},};
-
-        List<Shopping> shoppingList = new List<Shopping>();
+        private List<InStock> productList;
+        public int[] QCounts = new int[64];
         FlowDocument doc = new FlowDocument();
-        public MainWindow()
+        public MainWindow(string UserName)
         {
-            //   pi = new PrintInvoice(); 
+            
             try
             {
                 db = new Database();
@@ -58,73 +50,75 @@ namespace PointOfSaleManagementSys
                 Environment.Exit(1);
             }
             InitializeComponent();
-            ReadProductPrice();
+            ReadAllProduct();
             RefreshShoppingList();
-        }
 
-        private void ReadProductPrice()
-        {
-            for (int i = 0; i < 6; i++)
+            List<Employee> result = db.GetAllEmployees();
+            if (result != null)
             {
-                for (int j = 0; j < 6; j++)
+                foreach (Employee emp in result)
                 {
-                    int i1 = i + 1 + (j * 6);
-                    Shopping p = db.GetProductbyId(j + 1, i1);
-                    ProductPrice[j, i] = p.UnitPrice;
-                    ProductName[j, i] = p.ProductName;
-                    Counts[j, i] = 0;
+                    if (UserName == emp.UserName)
+                    {
+                        EmpId = emp.Id;
+                        TbUserName.Text=emp.FirstName+" "+emp.LastName+"   ID: "+EmpId;
+                       
+                    }
                 }
             }
+        }
+
+        private void ReadAllProduct()
+        {
+            productList = db.GetAllProducts();
             currentOrderId = db.MaxOrderId() + 1;
+            for (int i = 0; i < 64; i++)
+            {
+                QCounts[i] = 0;
+            }
         }
 
         private void RefreshShoppingList()
         {
             LvShopping.Items.Clear();
-            List<OrderList> list = db.GetAllOrderList(currentOrderId);
+            List<OrderList> list = db.GetOrderListbyId(currentOrderId);
             if (list != null)
             {
                 total = 0.0m;
                 totalTax = 0.0m;
                 foreach (OrderList l in list)
                 {
-                    int categoryId = (l.ProductId - 1) / 6;
-                    int i = l.ProductId - categoryId * 6 - 1;
-                    string name = ProductName[categoryId, i];
-                    Counts[categoryId, i] = l.Quantity;
-                    decimal subtaotal = l.Quantity * l.UnitPrice;
-                    total = total + subtaotal;
-                    decimal tax = subtaotal * 0.15m;
-                    totalTax = totalTax + tax;
-                    Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtaotal, tax);
-                    LvShopping.Items.Add(s);
+                    foreach (InStock ins in productList)
+                    {
+                        if (l.ProductId == ins.Id)
+                        {
+                            string name = ins.ProductName;
+                            decimal subtotal = l.Quantity * l.UnitPrice;
+                            total = total + subtotal;
+                            decimal tax = subtotal * 0.15m;
+                            totalTax = totalTax + tax;
+                            Shopping s = new Shopping(l.ProductId, name, l.Quantity, l.UnitPrice, l.Discount, subtotal, tax);
+                            LvShopping.Items.Add(s);
+                        }
+                    }
                 }
             }
+            SubTotal();
         }
-      
-        //private void ApplyDataBinding()
-        //{
-        //    List<string> itemList = new List<string>();
-        //    // Bind ArrayList with the ListBox
-        //    LvItems.ItemsSource = itemList;
-        //}
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            List<OrderList> oList = new List<OrderList>();
             int idx = LvItems.SelectedIndex;
             if (idx < 0)
             {
                 MessageBox.Show("Please select Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            decimal unitprice = ProductPrice[IdOfCategory, idx];
-            string name = ProductName[IdOfCategory, idx];
-            Counts[IdOfCategory, idx]++;
-            int quantity = Counts[IdOfCategory, idx];
-            int productId = idx + 1 + 6 * IdOfCategory;
-            OrderList ol = new OrderList(currentOrderId, productId, quantity, unitprice, 0.1m);
-            if (quantity == 1)
+            ItemList it = (ItemList)LvItems.Items[idx];
+            int quality = QCounts[it.ProductId - 1] + 1;
+            QCounts[it.ProductId - 1] = quality;
+            OrderList ol = new OrderList(currentOrderId, it.ProductId, quality, it.Price, 0.1m);
+            if (quality == 1)
             {
                 db.AddOrderList(ol);
                 RefreshShoppingList();
@@ -141,7 +135,10 @@ namespace PointOfSaleManagementSys
             TabControl.SelectedIndex = 0;
             db.DeleteOrderById(currentOrderId);
             db.DeleteOrderListByOrderId(currentOrderId);
+            RefreshShoppingList();
             NewClear();
+            // LvItems.Items.Clear();
+
         }
 
         private void NewClear()
@@ -150,11 +147,10 @@ namespace PointOfSaleManagementSys
             totalTaxCost.Clear();
             PaidTextBox.Clear();
             BalancePriceTb.Clear();
-            //TabControl.SelectedIndex = 0;
-            ReadProductPrice();
-            RefreshShoppingList();
-            total = 0.0m;
-            totalTax = 0.0m;
+            for (int i = 0; i < 64; i++)
+            {
+                QCounts[i] = 0;
+            }
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
@@ -166,20 +162,21 @@ namespace PointOfSaleManagementSys
                 return;
             }
             Shopping s = (Shopping)LvShopping.Items[index];
-            if (s.Quantity > 1)
-            {
-                int categoryId = (s.ID - 1) / 6;
-                int i = s.ID - categoryId * 6 - 1;
-                Counts[categoryId, i] = s.Quantity - 1;
-                OrderList o = new OrderList(currentOrderId, s.ID, s.Quantity - 1, s.UnitPrice, 0.1m);
-                db.UpdateOrderList(o);
-                RefreshShoppingList();
-                return;
-            }
             try
             {
+                if (s.Quantity > 1)
+                {
+                    QCounts[s.ID - 1] = s.Quantity - 1;
+                    OrderList o = new OrderList(currentOrderId, s.ID, QCounts[s.ID - 1], s.UnitPrice, 0.1m);
+                    db.UpdateOrderList(o);
+                    RefreshShoppingList();
+                    SubTotal();
+                    return;
+                }
                 db.DeleteOrderListById(s.ID);
+                QCounts[s.ID - 1] = 0;
                 RefreshShoppingList();
+                SubTotal();
             }
             catch (SqlException ex)
             {
@@ -190,16 +187,16 @@ namespace PointOfSaleManagementSys
 
         private void ButtonChekOut_Click(object sender, RoutedEventArgs e)
         {
-            if (total==0m)
+            if (total == 0m)
             {
                 return;
             }
             doc.Blocks.Clear();
-            string theDate = dpDate.Text;
+            string theDate = DpDate.Text;
             //.ToString("yyyy-MM-dd");
             string itemPurchasedInfo = "";
-            string invoiceNoText = Convert.ToString(dpDate.SelectedDate.Value.Year) + Convert.ToString(dpDate.SelectedDate.Value.Month)
-                + Convert.ToString(dpDate.SelectedDate.Value.Day) + Convert.ToString(currentOrderId);
+            string invoiceNoText = Convert.ToString(DpDate.SelectedDate.Value.Year) + Convert.ToString(DpDate.SelectedDate.Value.Month)
+                                   + Convert.ToString(DpDate.SelectedDate.Value.Day) + Convert.ToString(currentOrderId);
             int invoiceNo;
             Int32.TryParse(invoiceNoText, out invoiceNo);
             itemPurchasedInfo = "=============================" + "\r\n" + "Mike & Elmira's Company" + "\r\n"
@@ -224,7 +221,7 @@ namespace PointOfSaleManagementSys
             Paragraph p = new Paragraph(new Run(itemPurchasedInfo));
             doc.Blocks.Add(p);
             FdViewer.Document = doc;
-            Order o = new Order(currentOrderId, 1, dpDate.SelectedDate.Value.Date, 100, total, ComboCard.Text, invoiceNo);
+            Order o = new Order(currentOrderId,  EmpId, DpDate.SelectedDate.Value.Date, CustomerId, total, ComboCard.Text, invoiceNo);
             db.AddOrder(o);
             DeductProduct();
             currentOrderId++;
@@ -240,22 +237,22 @@ namespace PointOfSaleManagementSys
                 db.DeductProductById(s.ID, s.Quantity);
                 if (db.ProductStockById(s.ID))
                 {
-                    MessageBox.Show(s.ProductName+ " needs reload !!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(s.ProductName + " needs reload !!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            
+
         }
         private void SubTotal()
         {
-            List<OrderList> list = db.GetAllOrderList(currentOrderId);
+            List<OrderList> list = db.GetOrderListbyId(currentOrderId);
             total = 0.0m;
             totalTax = 0.0m;
             foreach (OrderList l in list)
             {
                 int categoryId = (l.ProductId - 1) / 6;
                 int i = l.ProductId - categoryId * 6 - 1;
-                string name = ProductName[categoryId, i];
-                Counts[categoryId, i] = l.Quantity;
+                //string name = ProductName[categoryId, i];
+                //Counts[categoryId, i] = l.Quantity;
                 decimal subtotal = l.Quantity * l.UnitPrice;
                 total = total + subtotal;
                 decimal tax = subtotal * 0.15m;
@@ -264,12 +261,6 @@ namespace PointOfSaleManagementSys
             totalTaxCost.Text = String.Format("{0:C}", totalTax);
             BalancePriceTb.Text = String.Format("{0:C}", total);
             PaidTextBox.Text = String.Format("{0:C}", total);
-        }
-
-        private void ButtonInventory_Click(object sender, RoutedEventArgs e)
-        {
-            //ManagementConsole.MainWindow f = new ManagementConsole.MainWindow();
-            //f.Show();
         }
         private void ButtonInvoice_Click(object sender, RoutedEventArgs e)
         {
@@ -285,7 +276,8 @@ namespace PointOfSaleManagementSys
         {
             db.DeleteOrderById(currentOrderId);
             db.DeleteOrderListByOrderId(currentOrderId);
-           // RefreshShoppingList();
+            Environment.Exit(1);
+            // RefreshShoppingList();
         }
 
         private void LvItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -301,116 +293,47 @@ namespace PointOfSaleManagementSys
             }
         }
 
-        private void Button_NewOrder(object sender, RoutedEventArgs e)
-        {
-            NewClear();
-        }
         private void ItemList(int categoryId)
         {
-            List<ItemList> item = new List<ItemList>();
+           // List<InStock> productList = db.GetAllProducts();
             LvItems.Items.Clear();
-            for (int i = 0; i < 6; i++)
+            foreach (InStock ins in productList)
             {
-                ItemList it = new ItemList(ProductName[categoryId, i], ProductPrice[categoryId, i]);
-                LvItems.Items.Add(it);
+                if (ins.CategoryId == categoryId)
+                {
+                    ItemList it = new ItemList(ins.ProductName, ins.SalePrice, ins.Id);
+                    LvItems.Items.Add(it);
+                }
             }
-            IdOfCategory = categoryId;
+            LvItems.Items.Refresh();
             TabControl.SelectedIndex = 0;
         }
 
         private void ButtonBeer_Click(object sender, RoutedEventArgs e)
         {
-            ItemList(0);
+            ItemList(1);
         }
         private void ButtonDessert_Click(object sender, RoutedEventArgs e)
         {
-            ItemList(1);
+            ItemList(2);
         }
         private void ButtonLunch_Click(object sender, RoutedEventArgs e)
         {
-            ItemList(2);
+            ItemList(3);
         }
         private void ButtonHotDrink_Click(object sender, RoutedEventArgs e)
         {
-            ItemList(3);
+            ItemList(4);
         }
         private void ButtonDinner_Click(object sender, RoutedEventArgs e)
         {
-            ItemList(4);
+            ItemList(5);
         }
         private void ButtonWine_Click(object sender, RoutedEventArgs e)
         {
-            ItemList(5);
+            ItemList(6);
         }
 
-
-
-   //     public Point startPoint;
-   //     private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-   //     {
-   //         // Store the mouse position
-   //        startPoint = e.GetPosition(null);
-   //     }
-
-   //     private void List_MouseMove(object sender, MouseEventArgs e)
-   //     {
-   //         // Get the current mouse position
-   //         Point mousePos = e.GetPosition(null);
-   //         Vector diff = startPoint - mousePos;
-
-   //         if (e.LeftButton == MouseButtonState.Pressed &&
-   //             Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-   //             Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
-   //         {
-   //             // Get the dragged ListViewItem
-   //             ListView listView = sender as ListView;
-   //             ListViewItem listViewItem =
-   //                 FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
-
-   //             // Find the data behind the ListViewItem
-   //ItemList contact = (ItemList)listView.ItemContainerGenerator.
-   //ItemFromContainer(listViewItem);
-
-   //             // Initialize the drag & drop operation
-   //     DataObject dragData = new DataObject("myFormat", contact);
-   //             //DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
-   //         }
-   //     }
-
-
-   //     private static T FindAnchestor<T>(DependencyObject current)
-   //         where T : DependencyObject
-   //     {
-   //         do
-   //         {
-   //             if (current is T)
-   //             {
-   //                 return (T)current;
-   //             }
-   //             current = VisualTreeHelper.GetParent(current);
-   //         }
-   //         while (current != null);
-   //         return null;
-   //     }
-
-   //     private void DropList_DragEnter(object sender, DragEventArgs e)
-   //     {
-   //         if (!e.Data.GetDataPresent("myFormat") ||
-   //             sender == e.Source)
-   //         {
-   //             e.Effects = DragDropEffects.None;
-   //         }
-   //     }
-
-   //     private void DropList_Drop(object sender, DragEventArgs e)
-   //     {
-   //         if (e.Data.GetDataPresent("myFormat"))
-   //         {
-   //             ItemList contact = e.Data.GetData("myFormat") as ItemList;
-   //             ListView listView1 = sender as ListView;
-   //            // listView.Items.Add(contact);
-   //         }
-   //     }
-
+        
     }
 }

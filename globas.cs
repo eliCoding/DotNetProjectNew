@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace PointOfSaleManagementSys
 {
-    public class globas
-    {
-        //public static User CurrentUser;
-        //public static Portoflio CurrentPortfolio;
-        private static Database _db;
-        public static Database Db
+    class Globas
+
         {
-            get
+            //public static Portoflio CurrentPortfolio;
+            private static Database _db;
+            public static Database Db
             {
-                if (_db == null)
+                get
                 {
-                    _db = new Database();
+                    if (_db == null)
+                    {
+                        _db = new Database();
+                    }
+                    return _db;
                 }
-                return _db;
             }
+
         }
 
     }
-
-}

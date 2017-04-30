@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PointOfSaleManagementSys
 {
     public class InStock
@@ -18,7 +19,7 @@ namespace PointOfSaleManagementSys
         private string _vendor;
         private DateTime _expiryDate;
 
-      //  private string _vendorAddress;
+        //  private string _vendorAddress;
         public InStock(int id, int categoryId, string productName, decimal unitPrice, decimal salePrice, int quantity,
             int triggerLevel, string vendor, DateTime expiryDate)
         {

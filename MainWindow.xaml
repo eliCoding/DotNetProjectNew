@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Point of Sale "  MinHeight="500" MinWidth="860"    WindowStyle="SingleBorderWindow"  WindowStartupLocation="CenterScreen">
+        Title="Point of Sale "  MinHeight="500" MinWidth="860"   WindowStyle="SingleBorderWindow"  WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Window.Resources>
         <Style TargetType="{x:Type Calendar}" x:Key="DateTimeCalendar">
             <Setter Property="Background" Value="White"/>
@@ -17,18 +17,18 @@
             <ColumnDefinition Width="*" MinWidth="430"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="Bisque" Grid.Column="0"/>
-        <Rectangle Fill="#F5E1D7" Grid.Column="3"></Rectangle>
-        <ListView  Name="LvShopping" Background="LightYellow" 
-                    VerticalAlignment="Stretch"      FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch"   MinWidth="363" MinHeight="301" Grid.ColumnSpan="2" Margin="0,0,0,202"  >
+        <Rectangle Fill="#F5E1D7" Grid.Column="3"/>
+        <ListView  Name="LvShopping" Background="LightYellow"    MouseDoubleClick="LvShopping_MouseDoubleClick"                
+            VerticalAlignment="Stretch"      FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch"   MinWidth="363" MinHeight="301" Grid.ColumnSpan="2" Margin="0,0,0,202"  >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Center" />
                 </Style>
             </ListView.ItemContainerStyle>
-            <ListView.View  >
+            <ListView.View >
                 <GridView  >
                     <GridViewColumn Width="30"  Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
-                    <GridViewColumn Width="60" Header="Product"  DisplayMemberBinding="{Binding Path=ProductName}" />
+                    <GridViewColumn Width="100" Header="Product"  DisplayMemberBinding="{Binding Path=ProductName}" />
                     <GridViewColumn Width="40" Header="Qty"   DisplayMemberBinding="{Binding Path=Quantity}"  />
                     <GridViewColumn Width="70" Header="UnitPrice" DisplayMemberBinding="{Binding Path=UnitPrice, StringFormat={}{0:$#.00}}"   />
                     <GridViewColumn Width="60" Header="Discount"  DisplayMemberBinding="{Binding Path=Discount, StringFormat={}{0:#.00}}"  />
@@ -37,17 +37,13 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-
-        <Label FontWeight="Black" Content="TAX $"    VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="16,0,0,161"  />
-        <Label  FontWeight="Black" Content="PAID $"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="16,0,0,120" />
+        <Label FontWeight="Black" Content="TAX "    VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="16,0,0,161"  />
+        <Label  FontWeight="Black" Content="PAID "   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="16,0,0,120" />
         <Label  FontWeight="Black" Content="TYPE"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="18,0,0,31"  />
-        <Label  FontWeight="Black" Content="BALANCE $"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15,0,0,75"  />
+        <Label  FontWeight="Black" Content="BALANCE "  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15,0,0,75"  />
         <TextBox Name="BalancePriceTb"  FontSize="14" FontWeight="ExtraBlack" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="109,0,91.5,66" TextWrapping="Wrap" Height="34"  Width="172" />
-
         <TextBox  FontSize="14" FontWeight="ExtraBlack" Name="totalTaxCost" VerticalAlignment="Bottom"  HorizontalAlignment="Left" Margin="107,0,0,156" TextWrapping="Wrap" Height="34" Width="172"  />
         <TextBox FontSize="14" FontWeight="ExtraBlack"  Name="PaidTextBox" VerticalAlignment="Bottom"  HorizontalAlignment="Left"   Margin="108,0,96,111" TextWrapping="Wrap" Height="34"   Width="172" />
-
         <ComboBox Name="ComboCard" FontWeight="Black" Height="26" Margin="111,0,0,31" HorizontalAlignment="Left"   VerticalAlignment="Bottom">
             <ComboBoxItem FontWeight="Black" IsSelected="True">CASH</ComboBoxItem>
             <ComboBoxItem  FontWeight="Black">CREDIT CART</ComboBoxItem>
@@ -62,50 +58,35 @@
             </StackPanel.Resources>
         </StackPanel>
         <GridSplitter  Grid.Column="1"  BorderBrush="Black" BorderThickness="5"  HorizontalAlignment="Stretch" />
-        <DatePicker x:Name="dpDate" Background="LightPink" HorizontalAlignment="Left"  
-        	CalendarStyle="{StaticResource DateTimeCalendar}" SelectedDateFormat="Long" SelectedDate="{x:Static sys:DateTime.Now}" FontWeight="SemiBold"
-        	DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
-        	FirstDayOfWeek="Monday"   Margin="111,0,0,2" VerticalAlignment="Bottom" Width="136"  />
+        <DatePicker x:Name="DpDate" Background="LightPink" HorizontalAlignment="Left"  
+                    CalendarStyle="{StaticResource DateTimeCalendar}" SelectedDateFormat="Long" SelectedDate="{x:Static sys:DateTime.Now}" FontWeight="SemiBold"
+                    DisplayDateStart="1/01/17" DisplayDateEnd="12/31/17" 
+                    FirstDayOfWeek="Monday"   Margin="31,0,0,1" VerticalAlignment="Bottom" Width="136"  />
 
         <Button  Click="ButtonBeer_Click"  Margin="0,17,257,0" VerticalAlignment="Top"    Grid.Column="2" Height="74" Width="120" >
             <Image Source="Images\corona.jpg" Stretch="UniformToFill" />
         </Button>
-
         <Button  Click="ButtonDessert_Click" Margin="136,16,128,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120">
             <Image Source="Images\Jelly.jpg" Stretch="UniformToFill" />
         </Button>
-
         <Button  Click="ButtonLunch_Click"  Margin="263,14,1,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120"  >
             <Image Source="Images\cheese burger.jpg" Stretch="UniformToFill"/>
         </Button>
-
-
         <Button  Click="ButtonDinner_Click"  Margin="0,132,257,0" VerticalAlignment="Top" Height="74" Width="120"  Grid.Column="2" >
             <Image Source="Images/pizza.jpg" Stretch="UniformToFill" />
         </Button>
-
         <Button  Click="ButtonHotDrink_Click"  Margin="135,132,129,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120" >
             <Image Source="Images/coffee.jpg" Stretch="UniformToFill" />
         </Button>
         <Button   Click="ButtonWine_Click" Margin="264,132,0,0" VerticalAlignment="Top"   Grid.Column="2" Height="74" Width="120" >
             <Image Source="Images/wine.jpg"  Stretch="UniformToFill" />
         </Button>
-
         <Label Grid.Column="2" Content="Beer"  Margin="41,94,287,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="15" Height="30" Width="63" />
         <Label  Grid.Column="2" Content="Dessert" Margin="151,93,144,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"   Height="30" Width="63" />
-
-
         <Label  Grid.Column="2" Content="Lunch"  Margin="290,93,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"  Width="64" Height="30"/>
-
-
         <Label Grid.Column="2" Content="Wine"  Margin="295,215,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold" Width="56" Height="30" />
         <Label  Grid.Column="2" Content="Hot Drink"  Margin="149,215,146,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold" Width="83" Height="30" />
-
-
         <Label  Grid.Column="2" Content="Dinner"  Margin="24,214,289,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"  Width="65" Height="30" />
-
-
-
         <TabControl Grid.Column="2" x:Name="TabControl" HorizontalAlignment="Stretch" MinHeight="200" Margin="4,254,0,72" VerticalAlignment="Stretch"  MinWidth="374" >
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}">
@@ -114,10 +95,10 @@
                             <ControlTemplate TargetType="{x:Type TabItem}">
                                 <Border x:Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
                                     <ContentPresenter x:Name="ContentSite"
-            								VerticalAlignment="Center"
-            								HorizontalAlignment="Center"
-            								ContentSource="Header"
-            								Margin="10,2"/>
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      ContentSource="Header"
+                                                      Margin="10,2"/>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
@@ -132,53 +113,42 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Grid.Column="1" Header="Menu" x:Name="tab1">
+            <TabItem Header="Menu" x:Name="Tab1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <!--PreviewMouseMove="List_MouseMove"    PreviewMouseLeftButtonDown="List_PreviewMouseLeftButtonDown"-->
                     <ListView x:Name="LvItems" 
-            				HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" FontWeight="Bold" MouseDoubleClick="LvItems_MouseDoubleClick" MinWidth="350" Grid.ColumnSpan="2" Margin="0,0,0,21" >
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" FontWeight="Bold" MouseDoubleClick="LvItems_MouseDoubleClick" MinWidth="350" Grid.ColumnSpan="2" Margin="0,0,0,21" >
                         <ListView.Background>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                         </ListView.Background>
-
                         <ListView.View >
                             <GridView>
+                                <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ProductId}"   />
                                 <GridViewColumn Header="Product Name" Width="200" DisplayMemberBinding="{Binding ProductName}"   />
-
                                 <GridViewColumn Header="UnitPrice" Width="200"   DisplayMemberBinding="{Binding Price, StringFormat=\{0:$#.00\}}" />
-
                             </GridView>
                         </ListView.View>
-
                     </ListView>
                 </Grid>
             </TabItem>
-            <TabItem  Grid.Column="1" Header="Invoice" x:Name="tab2">
+            <TabItem Header="Invoice" x:Name="tab2">
                 <FlowDocumentScrollViewer x:Name="FdViewer">
                     <FlowDocument x:Name="FlowDocument1"/>
                 </FlowDocumentScrollViewer>
             </TabItem>
-
         </TabControl>
-
-
-        <Button FontWeight="SemiBold" Click="ButtonAdd_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Content="ADD"   Margin="18,0,327,35" MinHeight="34" MinWidth="100" Grid.Column="2" />
-
-
-        <Button FontWeight="SemiBold" Click="ButtonDelete_Click"  Content="DELETE" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="18,0,327,-1"  FontSize="15"  MinHeight="34" MinWidth="100" Grid.Column="2"/>
-
-        <Button FontWeight="SemiBold" Click="ButtonChekOut_Click"  FontSize="14" Content="CHECKOUT" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="130,0,192,-3" MinHeight="70" MinWidth="113" Grid.Column="2"    />
-
-
-        <Button FontWeight="SemiBold" Click="ButtonInvoice_Click"  Content="PRINT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15"   Margin="271,0,56,33" MinHeight="34"  MinWidth="100" Grid.Column="2"  />
-        <Button FontWeight="SemiBold" Click ="ButtonReset_Click"  Content="RESET" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Margin="271,0,56,-3" MinHeight="34" Grid.Column="2" MinWidth="100" />
-
+        <Button FontWeight="SemiBold" Click="ButtonAdd_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Content="ADD"   Margin="18,0,327,35" MinHeight="34" MinWidth="50" Grid.Column="2" Width="55" />
+        <Button FontWeight="SemiBold" Click="ButtonDelete_Click"  Content="DELETE" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="18,0,327,-1"  FontSize="15"  MinHeight="34" MinWidth="50" Grid.Column="2"/>
+        <Button FontWeight="SemiBold" Click="ButtonChekOut_Click"  FontSize="14" Content="CHECKOUT" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="130,0,192,-3" MinHeight="70" MinWidth="73" Grid.Column="2"    />
+        <Button FontWeight="SemiBold" Click="ButtonInvoice_Click"  Content="PRINT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15"   Margin="271,0,56,33" MinHeight="34"  MinWidth="73" Grid.Column="2"  />
+        <Button FontWeight="SemiBold" Click ="ButtonReset_Click"  Content="RESET" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="15" Margin="271,0,56,-3" MinHeight="34" Grid.Column="2" MinWidth="73" />
+        <Label FontWeight="Black" Content="TAX " VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="16,0,0,161"  />
+        <Label FontWeight="Black" Content="Operator" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="190,0,0,17"  />
+        <TextBox x:Name="TbUserName" Foreground ="Red" Background="Aqua" FontSize="18" FontWeight="ExtraBlack" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="276,0,0,4" TextWrapping="Wrap" Height="56"  Width="130" />
 
     </Grid>
-
-
 </Window>
+

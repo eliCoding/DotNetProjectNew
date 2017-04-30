@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PointOfSaleManagementSys.csproj">
-      <Project>{5ff36ae3-ae14-4c60-bacc-c9a4fc6ea31c}</Project>
+      <Project>{69e8ef05-6ffe-4394-88d4-6b0764faf4bd}</Project>
       <Name>PointOfSaleManagementSys</Name>
     </ProjectReference>
   </ItemGroup>

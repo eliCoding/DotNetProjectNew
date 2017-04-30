@@ -14,26 +14,18 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition  />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1"
               Grid.Column="0"
-
-          
-
-              Background="#ECBEB4" Grid.RowSpan="3" Grid.ColumnSpan="2" MinHeight="271" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="852" >
-
+              Background="#ECBEB4" Margin="0,0,-0.4,1" Grid.RowSpan="3" Grid.ColumnSpan="2" Height="271" VerticalAlignment="Bottom" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="23*"/>
                 <ColumnDefinition Width="250*"/>
             </Grid.ColumnDefinitions>
-
-       
-
-            <GroupBox  FontWeight="SemiBold" FontSize="22" Header="Inventory"  Margin="27,119,0,55" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="205" Width="815" Grid.ColumnSpan="2">
-
-                <TabControl Name="TabControlConsole" BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="162" Margin="10,0,0,0" VerticalAlignment="Bottom" Width="783">
+            <GroupBox  FontWeight="SemiBold" FontSize="22" Header="Inventory" HorizontalAlignment="Left" Margin="27,0,0,40" VerticalAlignment="Bottom" Height="224" Width="817" Grid.ColumnSpan="2">
+                <TabControl Name="TabControlConsole" BorderBrush="Gainsboro" HorizontalAlignment="Left" Height="195" Margin="10,0,0,-10.8" VerticalAlignment="Bottom" Width="783">
                     <TabControl.Resources>
                         <Style TargetType="TabItem">
                             <Setter Property="Template">
@@ -59,14 +51,10 @@
                             </Setter>
                         </Style>
                     </TabControl.Resources>
-
-     
-
-                    <TabItem Header="In Stock" Name="tab1" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Width="99">
+                    <TabItem Header="In Stock" Name="tab1" FontSize="16" HorizontalAlignment="Left" Width="99" Margin="0,0,0,0.2">
                         <Grid Margin="0,0,-1,64">
 
-                            <ListView Name="LvItems"  Height="133" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="778" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Margin="0,0,0,-69" RenderTransformOrigin="0.496,0.722"  >
-
+                            <ListView Name="LvItems" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top" Width="778" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Margin="0,10,-0.2,-62.2" RenderTransformOrigin="0.496,0.722"  >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
@@ -76,7 +64,7 @@
                                         <GridViewColumn Header="Cate.ID" Width="70" DisplayMemberBinding="{Binding Path=CategoryId, StringFormat={}{0:      #}}" />
                                         <GridViewColumn Header="Product Name" Width="120"  DisplayMemberBinding="{Binding Path=ProductName}" />
                                         <GridViewColumn Header="Sale Price" Width="80" DisplayMemberBinding="{Binding Path=UnitPrice, StringFormat={}{0:   $ #.00}}"/>
-                                        <GridViewColumn Header="purchashed Price" Width="140"   DisplayMemberBinding="{Binding Path=SalePrice, StringFormat={}{0:   $ #.00}}" />
+                                        <GridViewColumn Header="Purchashed Price" Width="140"   DisplayMemberBinding="{Binding Path=SalePrice, StringFormat={}{0:   $ #.00}}" />
                                         <GridViewColumn Header="StockUnit" Width="80"  DisplayMemberBinding="{Binding Path=Quantity, StringFormat={}{0:        #}}"  />
                                         <GridViewColumn Header="AlertUnit" Width="80" DisplayMemberBinding="{Binding Path=TriggerLevel, StringFormat={}{0:        #}}"  />
                                         <GridViewColumn Header="Vendor" Width="70" DisplayMemberBinding="{Binding Path=Vendor}"  />
@@ -87,16 +75,14 @@
                             </ListView>
                         </Grid>
                     </TabItem>
-
-                    <TabItem   Header="Order" Name="tab2" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+                    <TabItem   Header="Order" Name="tab2" FontSize="16" Margin="-0.2,0,0.4,0.2" >
                         <Grid Margin="0,0,-21,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="99*"/>
-                                <ColumnDefinition Width="298*"/>
+                                <ColumnDefinition Width="11*"/>
+                                <ColumnDefinition Width="53*"/>
+                                <ColumnDefinition Width="202*"/>
                             </Grid.ColumnDefinitions>
-
-                            <ListView Name="LvOrders"  Height="135" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Width="779" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Grid.ColumnSpan="2" Margin="0,0,15,-11"  >
-
+                            <ListView Name="LvOrders" HorizontalAlignment="Left" Height="167" VerticalAlignment="Bottom" Width="779" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Grid.ColumnSpan="3" Margin="0,0,0,-13.2"  >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
@@ -105,7 +91,7 @@
                                         <GridViewColumn Header="Order ID" Width="70"   DisplayMemberBinding="{Binding Path=OrderId, StringFormat={}{0:      #}}"/>
                                         <GridViewColumn Header="Invoice Number" Width="125" DisplayMemberBinding="{Binding Path=InvoiceNr, StringFormat={}{0:   #}}"  />
                                         <GridViewColumn Header="Order Date" Width="100"  DisplayMemberBinding="{Binding Path=OrderDate.Date, ConverterCulture='en-US', StringFormat=d}" />
-                                        <GridViewColumn Header="Total Price" Width="95"  DisplayMemberBinding="{Binding Path=TotalPrice, StringFormat={}{0:   $ #.00}}"   />
+                                        <GridViewColumn Header="Total Price " Width="95"  DisplayMemberBinding="{Binding Path=TotalPrice, StringFormat={}{0:  $ #.00}}"   />
                                         <GridViewColumn Header="Payment method" Width="140" DisplayMemberBinding="{Binding Path=PaymentMethod}"  />
                                         <GridViewColumn Header="Employee ID" Width="120" DisplayMemberBinding="{Binding Path=EmpId, StringFormat={}{0:      #}}"/>
                                         <GridViewColumn Header="Customer ID" Width="120" DisplayMemberBinding="{Binding Path=CustomerId, StringFormat={}{0:      #}}" />
@@ -115,12 +101,9 @@
                         </Grid>
 
                     </TabItem>
-
-                    
-                    <TabItem   Header="Employee" Name="tab3" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+                    <TabItem   Header="Employee" Name="tab3" FontSize="16" Margin="-0.4,0,0,0.2" >
                         <Grid Margin="0,0,246,59">
-                            <ListView Name="LvEmployee"  FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Margin="0,0,-253,-62" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Width="780"   >
-
+                            <ListView Name="LvEmployee" Height="141" VerticalAlignment="Bottom" FontSize="16" FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}" Margin="0,0,-248.4,-42.2" HorizontalAlignment="Left" Width="780"   >
                                 <ListView.Background>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                                 </ListView.Background>
@@ -145,15 +128,15 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
 
-            Background="#7EB09B" Margin="0,20,0,18" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            Background="#7EB09B" Margin="0,20,0,58.5" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="257*"/>
                 <ColumnDefinition Width="127*"/>
                 <ColumnDefinition Width="658*"/>
             </Grid.ColumnDefinitions>
-            <GroupBox FontWeight="SemiBold" FontSize="22" Header="Search"  Height="180" Grid.ColumnSpan="3" Grid.Column="1" Margin="0,25,5,9">
-                <TabControl Name="TabControlSearch" BorderBrush="Gainsboro"  Height="129" Margin="0,10,0,-1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="783">
+            <GroupBox FontWeight="SemiBold" FontSize="22" Header="Search" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Width="815" Height="174" Margin="29,15,0,34.9">
+                <TabControl Name="TabControlSearch" BorderBrush="Gainsboro" Height="129" Margin="2,12,5.4,-3.4" VerticalAlignment="Top">
                     <TabControl.Resources>
                         <Style TargetType="TabItem">
                             <Setter Property="Template">
@@ -161,7 +144,6 @@
                                     <ControlTemplate TargetType="TabItem">
                                         <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
                                             <ContentPresenter x:Name="ContentSite"
-
 
                                                               VerticalAlignment="Center"
                                                               HorizontalAlignment="Center"
@@ -182,61 +164,83 @@
                         </Style>
                     </TabControl.Resources>
                     <TabItem Header="In Stock" Name="tab1Search" FontSize="16" HorizontalAlignment="Left" Width="99">
-
-
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100*"/>
-                                <ColumnDefinition Width="14*"/>
-                                <ColumnDefinition Width="659*"/>
+                                <ColumnDefinition Width="102*"/>
+                                <ColumnDefinition Width="127*"/>
+                                <ColumnDefinition Width="560*"/>
                             </Grid.ColumnDefinitions>
-                            <Label FontSize="15" Content="Product Name" HorizontalAlignment="Left" Margin="0,60,0,-3" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2" Height="34" />
-                            <TextBox Name="ProductId" Height="25" Width="90" TextWrapping="Wrap"  Margin="3.178,0,566,0" VerticalAlignment="Top" Grid.Column="2" />
-                            <Label FontSize="15"  Content="Sale Price" HorizontalAlignment="Left" Margin="142.178,0,0,0" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.526,2.317" />
-                            <TextBox Name="TbSalePrice" HorizontalAlignment="Left" Height="25" Margin="261.178,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
-                            <Label FontSize="15" Content="Vendor" HorizontalAlignment="Left" Margin="410.178,1,0,0" VerticalAlignment="Top" Grid.Column="2" Width="71"/>
-                            <TextBox Name="TbVendor" HorizontalAlignment="Left" Height="25" Margin="491.178,1,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90" Grid.Column="2"/>
-                            <TextBox Name="TbProductName" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="2.178,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                            <Label FontSize="15" Content="Product Name" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2" Height="34" />
+                            <TextBox Name="TbProductId" Height="25" TextWrapping="Wrap"  Margin="15.6,0,4.8,0" VerticalAlignment="Top" Grid.Column="1" />
+                            <Label FontSize="15"  Content="Sale Price" HorizontalAlignment="Left" Margin="28.2,0,0,0" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.526,2.317" />
+                            <TextBox Name="TbSalePrice" HorizontalAlignment="Left" Height="25" Margin="147.2,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" Grid.Column="2"/>
+                            <Label FontSize="15" Content="Vendor" HorizontalAlignment="Left" Margin="296.2,1,0,0" VerticalAlignment="Top" Grid.Column="2" Width="71"/>
+                            <TextBox Name="TbVendor" HorizontalAlignment="Left" Height="25" Margin="377.2,1,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="108" Grid.Column="2"/>
+                            <TextBox Name="TbProductName" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="15.6,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
                             <Label FontSize="15" Content="Product ID" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             <Label FontSize="15" Content="Cat ID" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.648" Width="69"/>
-                            <TextBox Name="TbCategoryId" Grid.Column="2" HorizontalAlignment="Left" Margin="2.178,30,0,36" TextWrapping="Wrap" Height="25" Width="90"/>
-                            <Label FontSize="15" Content="purchased Price" Grid.Column="2" HorizontalAlignment="Left" Margin="142.178,35,0,0" VerticalAlignment="Top" Width="119"/>
-                            <TextBox Name="TbPurchasedPrice" Grid.Column="2" HorizontalAlignment="Left" Margin="261.178,35,0,0" TextWrapping="Wrap" Width="90" Height="25" VerticalAlignment="Top"/>
-                            <Label FontSize="15" Content="Stock Unit" Grid.Column="2" HorizontalAlignment="Left" Margin="142.178,66,0,-1" VerticalAlignment="Top" Width="84" Height="26"/>
-                            <TextBox Name="TbStockUnit" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="261.178,66,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
-                            <Label FontSize="15" Content="Alert Unit" Grid.Column="2" HorizontalAlignment="Left" Margin="410.178,39,0,0" VerticalAlignment="Top"/>
-                            <TextBox Name="TbAlertUnit" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="491.178,39,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
-                            <Label Content="Expiry" Grid.Column="2" HorizontalAlignment="Left" Margin="410,69,0,-9" VerticalAlignment="Top" Width="71"/>
-                            <TextBox Name="TbExpiry" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="491,74,0,-6" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
-
- 
+                            <TextBox Name="TbCategoryId" Grid.Column="1" HorizontalAlignment="Left" Margin="15.6,30,0,38.4" TextWrapping="Wrap" Width="95"/>
+                            <Label FontSize="15" Content="purchased Price" Grid.Column="2" HorizontalAlignment="Left" Margin="28.2,35,0,0" VerticalAlignment="Top" Width="119"/>
+                            <TextBox Name="TbPurchasedPrice" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="147.2,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106"/>
+                            <Label FontSize="15" Content="Stock Unit" Grid.Column="2" HorizontalAlignment="Left" Margin="28.2,66,0,0" VerticalAlignment="Top" Width="84" Height="26"/>
+                            <TextBox Name="TbStockUnit" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="147.2,66,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="106"/>
+                            <Label FontSize="15" Content="Alert Unit" Grid.Column="2" HorizontalAlignment="Left" Margin="296.2,39,0,0" VerticalAlignment="Top"/>
+                            <TextBox Name="TbAlertUnit" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="377.2,39,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="108"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem   Header="Order" Name="tab2Search" FontSize="16" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="213*"/>
+                                <ColumnDefinition Width="16*"/>
+                                <ColumnDefinition Width="561*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="15" Content="CustomerID" HorizontalAlignment="Left" Margin="303.2,0,0,0" VerticalAlignment="Top" Width="111" Grid.Column="2" />
+                            <TextBox Name="TbCustomerId" Height="21" TextWrapping="Wrap"  Margin="418.2,4,32.6,0" VerticalAlignment="Top" Width="110" Grid.Column="2"  />
+                            <Label FontSize="15"  Content="Invoice&#xD;&#xA;Number" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="121" Height="48" />
+                            <TextBox Name="TbInvoiceNo" HorizontalAlignment="Left" Height="25" Margin="121,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+                            <Label FontSize="15" Content="Total Price" HorizontalAlignment="Left" Margin="57.2,0,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                            <TextBox Name="TbTotalPrice" HorizontalAlignment="Left" Height="25" Margin="152.2,4,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="114" Grid.Column="2"/>
+                            <Label FontSize="15" Content="OrderID" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.142,0.604"/>
+                            <TextBox Name="TbOrderID" HorizontalAlignment="Left" Height="25" Margin="122,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+                            <Label FontSize="15" Content="Order Date" HorizontalAlignment="Left" Margin="10,116,0,-21.6" VerticalAlignment="Top"/>
+                            <Label FontSize="15" Content="Payment&#xD;&#xA; Method" HorizontalAlignment="Left" Margin="57.2,39,0,0" VerticalAlignment="Top" Grid.Column="2" Height="50" Width="90"/>
+                            <TextBox Name="TbPaymentMethod" HorizontalAlignment="Left" Height="25" Margin="154.2,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="2"/>
+                            <Label Content="Employee ID" HorizontalAlignment="Left" Margin="77.2,123,0,-28.6" VerticalAlignment="Top" Grid.Column="2"/>
+                            <TextBox FontSize="15" Name="TbEmployeeID" HorizontalAlignment="Left" Height="37" Margin="240.2,125,0,-67.6" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="2"/>
+                            <Label FontSize="15" Content="Order&#xD;&#xA;Date" HorizontalAlignment="Left" Margin="307.2,39,0,0" VerticalAlignment="Top" Grid.Column="2" Height="50" Width="90"/>
+                            <TextBox Name="TbOderDate" HorizontalAlignment="Left" Height="25" Margin="414.2,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="2"/>
 
                         </Grid>
 
-
-             
-
-
-               
-
                     </TabItem>
-                    <TabItem   Header="Employee" Name="tab3Search" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                        <Grid>
+                    <TabItem   Header="Employee" Name="tab3Search" FontSize="16" >
+                        <Grid Margin="0,0,-0.4,-18.6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="133*"/>
+                                <ColumnDefinition Width="657*"/>
+                            </Grid.ColumnDefinitions>
                             <Label FontSize="15" Content="Employee ID" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="104" />
-                            <TextBox Name="TbEmployeeId" Height="25" Width="90" TextWrapping="Wrap"  Margin="114,0,566,0" VerticalAlignment="Top" />
+                            <TextBox Name="TbEmployeeId" Height="25" TextWrapping="Wrap"  Margin="3.2,0,544,0" VerticalAlignment="Top" Width="110" Grid.Column="1" />
                             <Label FontSize="15"  Content="First Name" HorizontalAlignment="Left" Margin="5,28,0,0" VerticalAlignment="Top" />
-                            <TextBox Name="TbFirstName" HorizontalAlignment="Left"  Margin="114,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="90"/>
+                            <TextBox Name="TbFirstName" HorizontalAlignment="Left" Height="25" Margin="1.2,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110" Grid.Column="1"/>
+                            <Label FontSize="18" Content="Salary" HorizontalAlignment="Left" Margin="241.2,116,0,-3" VerticalAlignment="Top" Grid.Column="1"/>
+                            <Label Content="Last Name" HorizontalAlignment="Left" Margin="5,58,0,0" VerticalAlignment="Top" Height="30"/>
+                            <TextBox Name="TbLastName" HorizontalAlignment="Left" Height="25" Margin="1.2,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="110" Grid.Column="1"/>
+                            <Label  FontSize="15" Content="User Name" HorizontalAlignment="Left" Margin="269.2,3,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                            <TextBox Name="TbUserName" HorizontalAlignment="Left" Height="25" Margin="394.2,3,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="114" Grid.Column="1"/>
+                            <Label Content="Pass Word" FontSize="15" HorizontalAlignment="Left" Margin="269.2,33,0,35" Grid.Column="1"/>
+                            <TextBox Name="TbPassWord" HorizontalAlignment="Left" Height="25" Margin="394.2,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Grid.Column="1"/>
+                            <Label Content="Salary" HorizontalAlignment="Left" Margin="267.2,62,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1"/>
+                            <TextBox Name="TbSalary" HorizontalAlignment="Left" Height="24" Margin="394.2,68,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="113" Grid.Column="1"/>
 
-                            <Label Content="Last Name" HorizontalAlignment="Left" Margin="5,55,0,0" VerticalAlignment="Top" Height="30"/>
-                            <TextBox Name="TbLastName" HorizontalAlignment="Left" Height="25" Width="90" Margin="114,60,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" />
-                            <Label  FontSize="15" Content="User Name" HorizontalAlignment="Left" Margin="402,3,0,0" VerticalAlignment="Top"/>
-                            <TextBox Name="TbUserName" HorizontalAlignment="Left" Height="25" Margin="497,3,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
-                            <Label Content="Pass Word" FontSize="15" HorizontalAlignment="Left" Margin="402,33,0,28"/>
-                            <TextBox Name="TbPassWord" HorizontalAlignment="Left" Height="25" Margin="497,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="90"/>
-                            <Label Content="Salary" HorizontalAlignment="Left" Margin="402,63,0,-3" VerticalAlignment="Top"/>
-                            <TextBox  Name="TbSalary" HorizontalAlignment="Left" Height="25" Margin="497,68,0,-2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
 
-
+                        </Grid>
+                    </TabItem>
+                    <TabItem   Header="LINQ" x:Name="tab3Search1" FontSize="16" Margin="420,0,-420.4,0.2" >
+                        <Grid Margin="0,0,-0.4,-18.6">
+                            <Label Content="Search KeyWord"  FontSize="20" HorizontalAlignment="Left" Margin="57,31,0,0" VerticalAlignment="Top" Height="56"/>
+                            <TextBox x:Name="TbSearchKeyword" HorizontalAlignment="Left" Height="52" Margin="285,25,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="469" TextChanged="TbSearchKeyword_TextChanged"/>
                         </Grid>
                     </TabItem>
                 </TabControl>
@@ -245,21 +249,18 @@
         <Grid Grid.Row="0"
               Grid.Column="0"
               Grid.ColumnSpan="2"
-
-              Background="#519E8A" Margin="0,0,0,92" >
-            <Label FontWeight="SemiBold" FontSize="18" Content="INVENTORY MANAGEMENT"  HorizontalAlignment="Stretch" Margin="296,0,317,-6" VerticalAlignment="Stretch" MinHeight="40" MinWidth="238"/>
-
-              Background="#519E8A" Margin="0,0,0,186" >
-
+              Background="#519E8A" Margin="-244,-4,243.6,108.2" >
+            <Label FontWeight="SemiBold" FontSize="18" Content="INVENTORY MANAGEMENT"  HorizontalAlignment="Left" Margin="296,0,0,0" VerticalAlignment="Top" Height="40" Width="238"/>
         </Grid>
         <StackPanel Height="50" Grid.Row="3"
                     Grid.ColumnSpan="2"
-                    Orientation="Horizontal"  Margin="0,74,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
-            <Button Click="ButtonDelete_Click"  FontWeight="SemiBold" FontSize="20" Content="Delete" MinWidth="172" Margin="0,10,0,0"/>
-            <Button Click="ButtonEdit_Click"  FontWeight="SemiBold" FontSize="20" Content="Update" MinWidth="172" Margin="0,10,0,0"/>
-            <Button Click="ButtonPrint_Click" FontWeight="SemiBold" FontSize="20" Content="Print" MinWidth="172" Margin="0,10,0,0"/>
-            <Button Click="ButtonAdd_Click" Content="Add" MinWidth="172" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-            <Button Click="ButtonSearch_Click" Content="Search" MinWidth="172" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    Orientation="Horizontal">
+
+            <Button Click="ButtonDelete_Click" FontWeight="SemiBold" FontSize="20" Content="Delete" Width="172" Margin="0,10,0,0"/>
+            <Button Click="ButtonUpdate_Click"  FontWeight="SemiBold" FontSize="20" Content="Update" Width="204" Margin="0,10,0,0"/>
+            <Button Click="ButtonConfirm_Click" FontWeight="SemiBold" FontSize="20" Content="Confirm" Width="169" Margin="0,10,0,0"/>
+            <Button Click="ButtonAdd_Click" Content="Add" Width="159" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+            <Button Click="ButtonReLoad_Click" Content="ReLoad" Width="152" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
         </StackPanel>
     </Grid>
 

@@ -11,36 +11,35 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Text.RegularExpressions;
 
 namespace PointOfSaleManagementSys
 {
     /// <summary>
     /// Interaction logic for login.xaml
     /// </summary>
-    public partial class login : Window
+    public partial class Login : Window
     {
-        public login()
+        public string UserName;
+        public Login()
         {
             InitializeComponent();
         }
-
         Registration registration = new Registration();
-        MainWindow Main = new MainWindow();
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void BTN_Login(object sender, RoutedEventArgs e)
         {
             if (TextBoxEmail.Text.Length == 0)
             {
                 Errormessage.Text = "Enter valid UserName or password!";
                 TextBoxEmail.Focus();
             }
-            string email = TextBoxEmail.Text;
-         
-            string password =PasswordBox.Password;
-            
-            if (globas.Db.ValidPassword(email, password))
+            UserName = TextBoxEmail.Text;
+
+            string password = PasswordBox.Password;
+
+            if (Globas.Db.ValidPassword(UserName, password))
             {
+                MainWindow Main = new MainWindow(UserName);
                 Main.Show();
                 Close();
             }
@@ -52,12 +51,8 @@ namespace PointOfSaleManagementSys
 
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
-
             registration.ShowDialog();
-           // Close();
-
         }
-
 
     }
 }
