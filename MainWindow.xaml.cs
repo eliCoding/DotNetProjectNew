@@ -52,17 +52,16 @@ namespace PointOfSaleManagementSys
             InitializeComponent();
             ReadAllProduct();
             RefreshShoppingList();
-
             List<Employee> result = db.GetAllEmployees();
             if (result != null)
             {
                 foreach (Employee emp in result)
                 {
-                    if (UserName == emp.UserName)
+                    if (UserName.ToLower() == emp.UserName.ToLower())
                     {
                         EmpId = emp.Id;
-                        TbUserName.Text=emp.FirstName+" "+emp.LastName+"   ID: "+EmpId;
-                       
+                        TbUserName.Text = emp.FirstName + " " + emp.LastName;
+                        TbUserId.Text="ID: "+EmpId;
                     }
                 }
             }

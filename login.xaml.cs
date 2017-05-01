@@ -25,7 +25,7 @@ namespace PointOfSaleManagementSys
         }
 
         Registration registration = new Registration();
-        MainWindow Main = new MainWindow();
+        
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
@@ -34,12 +34,13 @@ namespace PointOfSaleManagementSys
                 Errormessage.Text = "Enter valid UserName or password!";
                 TextBoxEmail.Focus();
             }
-            string email = TextBoxEmail.Text;
+            string UserName = TextBoxEmail.Text;
 
             string password = PasswordBox.Password;
 
-            if (Globas.Db.ValidPassword(email, password))
+            if (Globas.Db.ValidPassword(UserName, password))
             {
+                MainWindow Main = new MainWindow(UserName);
                 Main.Show();
                 Close();
             }
